@@ -9,6 +9,9 @@ import UIKit
 
 class SwipeCell: UICollectionViewCell {
 
+    
+    @IBOutlet weak var photoHotel: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

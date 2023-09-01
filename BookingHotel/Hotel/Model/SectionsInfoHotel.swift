@@ -25,7 +25,7 @@ struct AboutHotel {
 
 struct Hotel {
     
-    var imageArr = [UIImage]()
+    var imageArr: [UIImage?]
     
     var grade: Int
     var descripitonGrade: String

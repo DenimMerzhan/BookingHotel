@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MoreAboutHotelCollectionViewCell: UICollectionViewCell {
+class MoreAboutHotelCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
