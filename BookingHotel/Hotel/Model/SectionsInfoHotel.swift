@@ -11,28 +11,21 @@ import UIKit
 
 enum SectionsInfoHotel {
     
-    case hotel(Hotel)
-    case aboutHotel(AboutHotel)
+    case hotelImage([UIImage?])
+    case hotelDescription(HotelDescription)
+    case aboutHotel([String])
+    case descriptionHotelText(String)
+    case moreAboutHotel
+    
     
 }
 
-struct AboutHotel {
-    
-    var aboutHotel: [String]
-    var descriptionText: String
-    var moreAboutHotel: [String]
-}
-
-struct Hotel {
-    
-    var imageArr: [UIImage?]
+struct HotelDescription {
     
     var grade: Int
     var descripitonGrade: String
     var nameHotel: String
     var adressHotel: String
     var price: String
-    
-    
 }
 

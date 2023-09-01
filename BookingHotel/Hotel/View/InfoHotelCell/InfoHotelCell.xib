@@ -2,67 +2,73 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InfoHotelCell" id="gTV-IL-0wX" customClass="InfoHotelCell" customModule="BookingHotel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="262" height="146"/>
+            <rect key="frame" x="0.0" y="0.0" width="338" height="239"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="262" height="146"/>
+                <rect key="frame" x="0.0" y="0.0" width="338" height="239"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Tqh-15-1bA">
-                        <rect key="frame" x="0.0" y="0.0" width="262" height="146"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tqh-15-1bA">
+                        <rect key="frame" x="0.0" y="0.0" width="338" height="239"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uG-nC-SxZ" userLabel="PefectStackView">
-                                <rect key="frame" x="0.0" y="0.0" width="262" height="40"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lq2-fC-VP9">
+                                <rect key="frame" x="0.0" y="0.0" width="223.33333333333334" height="138.33333333333334"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Fr-mw-W6e">
-                                        <rect key="frame" x="0.0" y="-0.33333333333333215" width="50" height="39.666666666666657"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="cWV-bz-DYo"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBf-kd-U7V">
-                                        <rect key="frame" x="50" y="0.0" width="30" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="Ipq-Np-ZrN"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Превосходно" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-49-k4K">
-                                        <rect key="frame" x="80" y="0.0" width="182" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4uG-nC-SxZ" userLabel="PefectStackView">
+                                        <rect key="frame" x="10" y="0.0" width="203.33333333333334" height="138.33333333333334"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Fr-mw-W6e">
+                                                <rect key="frame" x="0.0" y="-0.3333333333333286" width="22" height="137.99999999999994"/>
+                                                <color key="tintColor" name="PerfectColorInfoHotel"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="cWV-bz-DYo"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Превосходно" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-49-k4K">
+                                                <rect key="frame" x="32" y="0.0" width="171.33333333333334" height="138.33333333333334"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
+                                                <color key="textColor" name="PerfectColorInfoHotel"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="InfoHotelColor"/>
+                                    </stackView>
                                 </subviews>
+                                <color key="backgroundColor" name="InfoHotelColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="9DW-xN-eda"/>
+                                    <constraint firstAttribute="height" constant="45" id="DIa-BX-3zn"/>
+                                    <constraint firstItem="4uG-nC-SxZ" firstAttribute="leading" secondItem="Lq2-fC-VP9" secondAttribute="leading" constant="10" id="IWZ-Nq-Tbo"/>
+                                    <constraint firstAttribute="trailing" secondItem="4uG-nC-SxZ" secondAttribute="trailing" constant="10" id="eA1-5E-L1h"/>
+                                    <constraint firstItem="4uG-nC-SxZ" firstAttribute="top" secondItem="Lq2-fC-VP9" secondAttribute="top" id="rB2-9p-0Jd"/>
+                                    <constraint firstAttribute="bottom" secondItem="4uG-nC-SxZ" secondAttribute="bottom" id="tP3-zb-HV5"/>
                                 </constraints>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strrwqqwr r" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScZ-nw-rGi">
-                                <rect key="frame" x="0.0" y="40" width="262" height="29.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streitger bbbebe " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScZ-nw-rGi">
+                                <rect key="frame" x="0.0" y="143.33333333333334" width="185.66666666666666" height="29"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ww eew ew  ew" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzN-pd-Mtm">
-                                <rect key="frame" x="0.0" y="69.333333333333329" width="262" height="29.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ww eew ew  ew d dwdw dw dwdw " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzN-pd-Mtm">
+                                <rect key="frame" x="0.0" y="177.33333333333334" width="263.33333333333331" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="tintColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="134 000h 23 23 23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFT-13-ESR">
-                                <rect key="frame" x="0.0" y="98.666666666666671" width="262" height="47.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="203.33333333333334" width="234.33333333333334" height="35.666666666666657"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -78,15 +84,24 @@
                 <constraint firstItem="Tqh-15-1bA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jVD-nV-KaX"/>
                 <constraint firstAttribute="bottom" secondItem="Tqh-15-1bA" secondAttribute="bottom" id="pCR-Go-OZm"/>
             </constraints>
-            <size key="customSize" width="262" height="146"/>
+            <size key="customSize" width="338" height="239"/>
             <connections>
                 <outlet property="descriptionGrade" destination="e2v-49-k4K" id="RWS-pt-zXy"/>
-                <outlet property="gradeHotel" destination="qBf-kd-U7V" id="GMZ-rt-hey"/>
+                <outlet property="perfectView" destination="Lq2-fC-VP9" id="Ese-fa-U5C"/>
             </connections>
-            <point key="canvasLocation" x="216.79389312977099" y="85.91549295774648"/>
+            <point key="canvasLocation" x="248.85496183206106" y="143.3098591549296"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="InfoHotelColor">
+            <color red="0.99215686274509807" green="0.95686274509803926" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="PerfectColorInfoHotel">
+            <color red="0.94901960784313721" green="0.67450980392156867" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

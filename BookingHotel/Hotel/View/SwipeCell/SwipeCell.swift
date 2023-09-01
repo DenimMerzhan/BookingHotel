@@ -14,7 +14,7 @@ class SwipeCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        photoHotel.layer.cornerRadius = 10
     }
 
 }

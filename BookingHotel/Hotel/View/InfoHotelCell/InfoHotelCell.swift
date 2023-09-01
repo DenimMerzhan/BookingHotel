@@ -9,12 +9,14 @@ import UIKit
 
 class InfoHotelCell: UICollectionViewCell {
 
-    @IBOutlet weak var gradeHotel: UILabel!
-    @IBOutlet weak var descriptionGrade: UILabel!
+
+    @IBOutlet weak var descriptionGrade: UILabel!    
+    @IBOutlet weak var perfectView: UIView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        perfectView.layer.cornerRadius = 10
     }
 
 }

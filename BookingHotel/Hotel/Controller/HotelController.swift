@@ -10,17 +10,73 @@ import UIKit
 class HotelController: UICollectionViewController {
     
     var sections = [SectionsInfoHotel]()
+    private var topHeightSafeArea = CGFloat()
+    private var constrainTopPageControl: NSLayoutConstraint?
+    
+    private let pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = 10
+        pageControl.currentPageIndicatorTintColor = .black
+        pageControl.pageIndicatorTintColor = .gray
+        pageControl.backgroundStyle = .prominent
+        
+        return pageControl
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(pageControl)
         
-        let hotel = SectionsInfoHotel.hotel(Hotel(imageArr: [UIImage(named: "Hotel")], grade: 5, descripitonGrade: "dwdwdw", nameHotel: "dwwd", adressHotel: "dwdw", price: "dwdw"))
         
-        let aboutHotel = SectionsInfoHotel.aboutHotel(AboutHotel(aboutHotel: ["dwwd"], descriptionText: "dwdwd", moreAboutHotel: ["dwdw"]))
         
-        sections.append(hotel)
-        sections.append(aboutHotel)
-        collectionView.register(UINib(nibName: "SwipeCell", bundle: nil), forCellWithReuseIdentifier: "SwipePhotoCell")
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        pageControl.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        pageControl.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        constrainTopPageControl = pageControl.topAnchor.constraint(equalTo: view.topAnchor,constant: 320)
+        constrainTopPageControl?.isActive = true
+        
+        
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.first
+            if let topPadding = window?.safeAreaInsets.top {
+                topHeightSafeArea = topPadding
+            }
+        }
+        
+        
+        
+        var hotellArr = [UIImage?]()
+        let hotelImage1 = UIImage(named: "Hotel")
+        let hotelImage2 = UIImage(named: "Hotel")
+        
+        hotellArr.append(hotelImage1)
+        hotellArr.append(hotelImage2)
+        
+        let hotelImage = SectionsInfoHotel.hotelImage(hotellArr)
+        let hotelDescription = SectionsInfoHotel.hotelDescription(HotelDescription(grade: 5, descripitonGrade: "5 Превосходно", nameHotel: "Barbaris", adressHotel: "dik My dik", price: "134 00 00 р"))
+        let moreAboutHotel = SectionsInfoHotel.moreAboutHotel
+        let descrHot = SectionsInfoHotel.descriptionHotelText("dwwddw")
+        let aboutHotel = SectionsInfoHotel.aboutHotel(["kek","Pek"])
+        
+        collectionView.isPagingEnabled = true
+        sections.append(hotelImage)
+        sections.append(hotelDescription)
+        //        sections.append(moreAboutHotel)
+        //        sections.append(descrHot)
+        //        sections.append(aboutHotel)
+        
+        
+        switch sections[0] {
+        case .hotelImage(let imageArr):
+            pageControl.numberOfPages = imageArr.count
+        default: break
+        }
+        
+        
+        collectionView.register(UINib(nibName: "SwipeCell", bundle: nil), forCellWithReuseIdentifier: "SwipeCell")
         collectionView.register(UINib(nibName: "InfoHotelCell", bundle: nil), forCellWithReuseIdentifier: "InfoHotelCell")
         collectionView.register(UINib(nibName: "AboutHotelCell", bundle: nil), forCellWithReuseIdentifier: "AboutHotelCell")
         collectionView.register(UINib(nibName: "DescriptionHotelCell", bundle: nil), forCellWithReuseIdentifier: "DescriptionHotelCell")
@@ -30,8 +86,6 @@ class HotelController: UICollectionViewController {
         
         collectionView.collectionViewLayout = createLayout()
     }
-    
-    
     
 }
 
@@ -46,44 +100,48 @@ extension HotelController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch sections[section] {
             
-        case .hotel(let hotel):
-            return hotel.imageArr.count + 1
+        case .hotelImage(let imageArr):
+            return imageArr.count
+        case .hotelDescription(_):
+            return 1
         case .aboutHotel(let aboutHotel):
-            return aboutHotel.aboutHotel.count - 1 + 1 + aboutHotel.moreAboutHotel.count - 1
+            return aboutHotel.count
+        case .descriptionHotelText(_):
+            return 1
+        case .moreAboutHotel:
+            return 3
         }
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipeCell", for: indexPath) as! SwipeCell
         switch sections[indexPath.section] {
             
-        case .hotel(let hotel):
+        case .hotelImage(let imageArr):
+            cell.photoHotel.image = imageArr[indexPath.row]
+            constrainTopPageControl?.constant = cell.frame.maxY - topHeightSafeArea / 2
             
-            if indexPath.row <= hotel.imageArr.count - 1 {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipePhotoCell", for: indexPath) as! SwipeCell
-                
-                return cell
-            }else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
-                cell.gradeHotel.text = String(hotel.grade)
-                cell.descriptionGrade.text = hotel.descripitonGrade
-                return cell
-            }
+        case .hotelDescription(let descriptionHotel):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
             
-        case .aboutHotel(let aboutHotel):
-            
-            if indexPath.row < aboutHotel.aboutHotel.count - 1 {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutHotelCell", for: indexPath) as! AboutHotelCell
-                return cell
-            }else if indexPath.row == aboutHotel.aboutHotel.count {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DescriptionHotelCell", for: indexPath) as! DescriptionHotelCell
-                return cell
-            }else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreAboutHotelCell", for: indexPath) as! MoreAboutHotelCell
-                return cell
-            }
+            cell.descriptionGrade.text = descriptionHotel.descripitonGrade
+            return cell
+            break
+        case .aboutHotel(_):
+            break
+        case .descriptionHotelText(_):
+            break
+        case .moreAboutHotel:
+            break
         }
+        
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        pageControl.currentPage = indexPath.row
     }
     
 }
@@ -97,46 +155,50 @@ extension HotelController {
         
         let layout = UICollectionViewCompositionalLayout { sectionNumber, env in
             
-            let sections = self.sections[sectionNumber]
+            let section = self.sections[sectionNumber]
             
-            switch sections {
+            switch section {
                 
-            case .hotel(_):
-                
-                let photoItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1)))
-                let descriptionItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)))
-                
-                let photoGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
-                let photoGroup = NSCollectionLayoutGroup.horizontal(layoutSize: photoGroupSize, subitems: [photoItem])
-                
-                let groupSize1 = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(500))
-                let group1 = NSCollectionLayoutGroup.vertical(layoutSize: groupSize1, subitems: [photoGroup,descriptionItem])
+            case .hotelImage(_):
+                let imageItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
                 
                 
-                let section = NSCollectionLayoutSection(group: group1)
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitems: [imageItem])
+                group.contentInsets.trailing = 15
+                group.contentInsets.leading = 15
+                
+                let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .paging
                 return section
                 
-            case .aboutHotel(_):
+            case .hotelDescription(_):
                 
-                let aboutHotelItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .absolute(50)))
+                let descriptionItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(300), heightDimension: .estimated(200)))
                 
-                let hotelDescriptionItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(150)))
-                
-                let moreAboutHotel = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(90)))
-                
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalWidth(1))
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [aboutHotelItem,hotelDescriptionItem,moreAboutHotel])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)), subitems: [descriptionItem])
+                group.contentInsets.trailing = 15
+                group.contentInsets.leading = 15
+                group.contentInsets.top = 20
                 
                 let section = NSCollectionLayoutSection(group: group)
+                return section
                 
+            case .aboutHotel(_),.descriptionHotelText(_),.moreAboutHotel:
+                
+                let imageItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+                
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitems: [imageItem])
+                
+                let section = NSCollectionLayoutSection(group: group)
                 return section
                 
             }
             
             
+            
+            
         }
-       
+        
         layout.configuration = configuration
         return layout
     }
