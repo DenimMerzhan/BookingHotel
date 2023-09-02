@@ -9,9 +9,12 @@ import UIKit
 
 class AboutHotelCell: UICollectionViewCell {
 
+    @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var backView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        backView.layer.cornerRadius = 10
     }
 
 }

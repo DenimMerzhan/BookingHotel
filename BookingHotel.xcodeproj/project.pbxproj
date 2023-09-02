@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0D89C32AA34A8200FB2787 /* SwipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D89C12AA34A8200FB2787 /* SwipeCell.swift */; };
+		CF0D89C42AA34A8200FB2787 /* SwipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF0D89C22AA34A8200FB2787 /* SwipeCell.xib */; };
 		CF969D322AA05E8700CD75F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D312AA05E8700CD75F9 /* AppDelegate.swift */; };
 		CF969D342AA05E8700CD75F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D332AA05E8700CD75F9 /* SceneDelegate.swift */; };
 		CF969D362AA05E8700CD75F9 /* HotelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D352AA05E8700CD75F9 /* HotelController.swift */; };
@@ -22,11 +24,13 @@
 		CF969D772AA09A2A00CD75F9 /* AboutHotelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF969D752AA09A2A00CD75F9 /* AboutHotelCell.xib */; };
 		CF969D7A2AA09A4D00CD75F9 /* InfoHotelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D782AA09A4D00CD75F9 /* InfoHotelCell.swift */; };
 		CF969D7B2AA09A4D00CD75F9 /* InfoHotelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF969D792AA09A4D00CD75F9 /* InfoHotelCell.xib */; };
-		CF969D7E2AA09A8700CD75F9 /* SwipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D7C2AA09A8700CD75F9 /* SwipeCell.swift */; };
-		CF969D7F2AA09A8700CD75F9 /* SwipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF969D7D2AA09A8700CD75F9 /* SwipeCell.xib */; };
+		CF969D7E2AA09A8700CD75F9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D7C2AA09A8700CD75F9 /* CollectionCell.swift */; };
+		CF969D7F2AA09A8700CD75F9 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF969D7D2AA09A8700CD75F9 /* CollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF0D89C12AA34A8200FB2787 /* SwipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCell.swift; sourceTree = "<group>"; };
+		CF0D89C22AA34A8200FB2787 /* SwipeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeCell.xib; sourceTree = "<group>"; };
 		CF969D2E2AA05E8700CD75F9 /* BookingHotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookingHotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF969D312AA05E8700CD75F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF969D332AA05E8700CD75F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,8 +48,8 @@
 		CF969D752AA09A2A00CD75F9 /* AboutHotelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutHotelCell.xib; sourceTree = "<group>"; };
 		CF969D782AA09A4D00CD75F9 /* InfoHotelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHotelCell.swift; sourceTree = "<group>"; };
 		CF969D792AA09A4D00CD75F9 /* InfoHotelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoHotelCell.xib; sourceTree = "<group>"; };
-		CF969D7C2AA09A8700CD75F9 /* SwipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCell.swift; sourceTree = "<group>"; };
-		CF969D7D2AA09A8700CD75F9 /* SwipeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeCell.xib; sourceTree = "<group>"; };
+		CF969D7C2AA09A8700CD75F9 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		CF969D7D2AA09A8700CD75F9 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF0D89C02AA34A3000FB2787 /* SwipeCell */ = {
+			isa = PBXGroup;
+			children = (
+				CF0D89C12AA34A8200FB2787 /* SwipeCell.swift */,
+				CF0D89C22AA34A8200FB2787 /* SwipeCell.xib */,
+			);
+			path = SwipeCell;
+			sourceTree = "<group>";
+		};
 		CF969D252AA05E8700CD75F9 = {
 			isa = PBXGroup;
 			children = (
@@ -171,8 +184,9 @@
 		CF969D582AA06AE900CD75F9 /* SwipeCell */ = {
 			isa = PBXGroup;
 			children = (
-				CF969D7C2AA09A8700CD75F9 /* SwipeCell.swift */,
-				CF969D7D2AA09A8700CD75F9 /* SwipeCell.xib */,
+				CF0D89C02AA34A3000FB2787 /* SwipeCell */,
+				CF969D7C2AA09A8700CD75F9 /* CollectionCell.swift */,
+				CF969D7D2AA09A8700CD75F9 /* CollectionCell.xib */,
 			);
 			path = SwipeCell;
 			sourceTree = "<group>";
@@ -265,10 +279,11 @@
 				CF969D3E2AA05E8900CD75F9 /* LaunchScreen.storyboard in Resources */,
 				CF969D7B2AA09A4D00CD75F9 /* InfoHotelCell.xib in Resources */,
 				CF969D772AA09A2A00CD75F9 /* AboutHotelCell.xib in Resources */,
+				CF0D89C42AA34A8200FB2787 /* SwipeCell.xib in Resources */,
 				CF969D3B2AA05E8900CD75F9 /* Assets.xcassets in Resources */,
 				CF969D392AA05E8700CD75F9 /* Main.storyboard in Resources */,
 				CF969D732AA099F800CD75F9 /* DescriptionHotelCell.xib in Resources */,
-				CF969D7F2AA09A8700CD75F9 /* SwipeCell.xib in Resources */,
+				CF969D7F2AA09A8700CD75F9 /* CollectionCell.xib in Resources */,
 				CF969D6F2AA099CC00CD75F9 /* MoreAboutHotelCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +297,8 @@
 			files = (
 				CF969D6E2AA099CC00CD75F9 /* MoreAboutHotelCell.swift in Sources */,
 				CF969D362AA05E8700CD75F9 /* HotelController.swift in Sources */,
-				CF969D7E2AA09A8700CD75F9 /* SwipeCell.swift in Sources */,
+				CF0D89C32AA34A8200FB2787 /* SwipeCell.swift in Sources */,
+				CF969D7E2AA09A8700CD75F9 /* CollectionCell.swift in Sources */,
 				CF969D7A2AA09A4D00CD75F9 /* InfoHotelCell.swift in Sources */,
 				CF969D762AA09A2A00CD75F9 /* AboutHotelCell.swift in Sources */,
 				CF969D722AA099F800CD75F9 /* DescriptionHotelCell.swift in Sources */,

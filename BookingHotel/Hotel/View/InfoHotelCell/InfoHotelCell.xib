@@ -19,56 +19,62 @@
                 <rect key="frame" x="0.0" y="0.0" width="338" height="239"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tqh-15-1bA">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wDs-Rt-uye">
                         <rect key="frame" x="0.0" y="0.0" width="338" height="239"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lq2-fC-VP9">
-                                <rect key="frame" x="0.0" y="0.0" width="223.33333333333334" height="138.33333333333334"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tqh-15-1bA">
+                                <rect key="frame" x="0.0" y="0.0" width="338" height="186.33333333333334"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4uG-nC-SxZ" userLabel="PefectStackView">
-                                        <rect key="frame" x="10" y="0.0" width="203.33333333333334" height="138.33333333333334"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lq2-fC-VP9">
+                                        <rect key="frame" x="0.0" y="0.0" width="218.33333333333334" height="129.33333333333334"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Fr-mw-W6e">
-                                                <rect key="frame" x="0.0" y="-0.3333333333333286" width="22" height="137.99999999999994"/>
-                                                <color key="tintColor" name="PerfectColorInfoHotel"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="22" id="cWV-bz-DYo"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Превосходно" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-49-k4K">
-                                                <rect key="frame" x="32" y="0.0" width="171.33333333333334" height="138.33333333333334"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
-                                                <color key="textColor" name="PerfectColorInfoHotel"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4uG-nC-SxZ" userLabel="PefectStackView">
+                                                <rect key="frame" x="10" y="0.0" width="198.33333333333334" height="129.33333333333334"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Fr-mw-W6e">
+                                                        <rect key="frame" x="0.0" y="-0.3333333333333286" width="22" height="128.99999999999994"/>
+                                                        <color key="tintColor" name="PerfectColorInfoHotel"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="22" id="cWV-bz-DYo"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Превосходно" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-49-k4K">
+                                                        <rect key="frame" x="27" y="0.0" width="171.33333333333334" height="129.33333333333334"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
+                                                        <color key="textColor" name="PerfectColorInfoHotel"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="InfoHotelColor"/>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" name="InfoHotelColor"/>
-                                    </stackView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="DIa-BX-3zn"/>
+                                            <constraint firstItem="4uG-nC-SxZ" firstAttribute="leading" secondItem="Lq2-fC-VP9" secondAttribute="leading" constant="10" id="IWZ-Nq-Tbo"/>
+                                            <constraint firstAttribute="trailing" secondItem="4uG-nC-SxZ" secondAttribute="trailing" constant="10" id="eA1-5E-L1h"/>
+                                            <constraint firstItem="4uG-nC-SxZ" firstAttribute="top" secondItem="Lq2-fC-VP9" secondAttribute="top" id="rB2-9p-0Jd"/>
+                                            <constraint firstAttribute="bottom" secondItem="4uG-nC-SxZ" secondAttribute="bottom" id="tP3-zb-HV5"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streitger bbbebe " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScZ-nw-rGi">
+                                        <rect key="frame" x="0.0" y="134.33333333333334" width="185.66666666666666" height="27"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ww eew ew  ew d dwdw dw dwdw " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzN-pd-Mtm">
+                                        <rect key="frame" x="0.0" y="166.33333333333334" width="263.33333333333331" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="tintColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" name="InfoHotelColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="DIa-BX-3zn"/>
-                                    <constraint firstItem="4uG-nC-SxZ" firstAttribute="leading" secondItem="Lq2-fC-VP9" secondAttribute="leading" constant="10" id="IWZ-Nq-Tbo"/>
-                                    <constraint firstAttribute="trailing" secondItem="4uG-nC-SxZ" secondAttribute="trailing" constant="10" id="eA1-5E-L1h"/>
-                                    <constraint firstItem="4uG-nC-SxZ" firstAttribute="top" secondItem="Lq2-fC-VP9" secondAttribute="top" id="rB2-9p-0Jd"/>
-                                    <constraint firstAttribute="bottom" secondItem="4uG-nC-SxZ" secondAttribute="bottom" id="tP3-zb-HV5"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streitger bbbebe " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScZ-nw-rGi">
-                                <rect key="frame" x="0.0" y="143.33333333333334" width="185.66666666666666" height="29"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ww eew ew  ew d dwdw dw dwdw " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzN-pd-Mtm">
-                                <rect key="frame" x="0.0" y="177.33333333333334" width="263.33333333333331" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="tintColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="134 000h 23 23 23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFT-13-ESR">
-                                <rect key="frame" x="0.0" y="203.33333333333334" width="234.33333333333334" height="35.666666666666657"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
+                                <rect key="frame" x="0.0" y="201.33333333333334" width="338" height="37.666666666666657"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -79,10 +85,10 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="Tqh-15-1bA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eCi-2k-q2s"/>
-                <constraint firstAttribute="trailing" secondItem="Tqh-15-1bA" secondAttribute="trailing" id="ivo-lJ-pZ4"/>
-                <constraint firstItem="Tqh-15-1bA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jVD-nV-KaX"/>
-                <constraint firstAttribute="bottom" secondItem="Tqh-15-1bA" secondAttribute="bottom" id="pCR-Go-OZm"/>
+                <constraint firstAttribute="bottom" secondItem="wDs-Rt-uye" secondAttribute="bottom" id="AJE-Xf-IXm"/>
+                <constraint firstItem="wDs-Rt-uye" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Kzz-A2-iEl"/>
+                <constraint firstAttribute="trailing" secondItem="wDs-Rt-uye" secondAttribute="trailing" id="aj3-t9-6he"/>
+                <constraint firstItem="wDs-Rt-uye" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="eqq-Xz-I3N"/>
             </constraints>
             <size key="customSize" width="338" height="239"/>
             <connections>
