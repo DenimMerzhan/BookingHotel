@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="gTV-IL-0wX" customClass="CollectionCell" customModule="BookingHotel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="187" height="107"/>
+            <rect key="frame" x="0.0" y="0.0" width="187" height="111"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="187" height="107"/>
+                <rect key="frame" x="0.0" y="0.0" width="187" height="111"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="765-HA-USx">
-                        <rect key="frame" x="10" y="0.0" width="167" height="107"/>
+                        <rect key="frame" x="0.0" y="0.0" width="187" height="111"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AuX-3A-FJ8">
                             <size key="itemSize" width="128" height="128"/>
@@ -29,7 +29,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="O2D-oo-z1e">
-                        <rect key="frame" x="0.0" y="61" width="187" height="26"/>
+                        <rect key="frame" x="0.0" y="60" width="187" height="26"/>
                         <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
                         <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
                     </pageControl>
@@ -38,19 +38,19 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="O2D-oo-z1e" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3Dx-D1-RhG"/>
+                <constraint firstItem="O2D-oo-z1e" firstAttribute="bottom" secondItem="765-HA-USx" secondAttribute="bottom" constant="-25" id="PCx-4l-Y1S"/>
                 <constraint firstItem="765-HA-USx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Tkl-hc-aSY"/>
-                <constraint firstAttribute="trailing" secondItem="765-HA-USx" secondAttribute="trailing" constant="10" id="gyr-M2-Y1a"/>
+                <constraint firstAttribute="trailing" secondItem="765-HA-USx" secondAttribute="trailing" id="gyr-M2-Y1a"/>
                 <constraint firstAttribute="trailing" secondItem="O2D-oo-z1e" secondAttribute="trailing" id="hHJ-HQ-UiE"/>
-                <constraint firstAttribute="bottom" secondItem="O2D-oo-z1e" secondAttribute="bottom" constant="20" id="m15-FE-kpo"/>
-                <constraint firstItem="765-HA-USx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="rYR-Nt-otp"/>
+                <constraint firstItem="765-HA-USx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rYR-Nt-otp"/>
                 <constraint firstAttribute="bottom" secondItem="765-HA-USx" secondAttribute="bottom" id="soS-Th-wtN"/>
             </constraints>
-            <size key="customSize" width="187" height="107"/>
+            <size key="customSize" width="187" height="111"/>
             <connections>
                 <outlet property="collectionView" destination="765-HA-USx" id="9Fu-bX-oDN"/>
                 <outlet property="pageControl" destination="O2D-oo-z1e" id="6us-3C-KHt"/>
             </connections>
-            <point key="canvasLocation" x="170.22900763358777" y="39.7887323943662"/>
+            <point key="canvasLocation" x="170.22900763358777" y="41.197183098591552"/>
         </collectionViewCell>
     </objects>
     <resources>

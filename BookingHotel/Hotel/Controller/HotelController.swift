@@ -47,6 +47,8 @@ class HotelController: UICollectionViewController {
         collectionView.register(UINib(nibName: "DescriptionHotelCell", bundle: nil), forCellWithReuseIdentifier: "DescriptionHotelCell")
         collectionView.register(UINib(nibName: "MoreAboutHotelCell", bundle: nil), forCellWithReuseIdentifier: "MoreAboutHotelCell")
         
+        collectionView.register(PriceFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PriceFooter.identifier)
+        
         
         
         collectionView.collectionViewLayout = createLayout()
@@ -103,6 +105,14 @@ extension HotelController {
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PriceFooter.identifier, for: indexPath)
+            return priceFooter
+        }
+        return UICollectionReusableView()
+    }
+    
     
 }
 
@@ -120,15 +130,14 @@ extension HotelController {
             switch section {
                 
             case .hotelImage(_):
+                
                 let imageItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                
-                
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitems: [imageItem])
-//                group.contentInsets.trailing = 15
-//                group.contentInsets.leading = 15
+                group.contentInsets.trailing = 5
+                group.contentInsets.leading = 5
                 
                 let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .paging
+                
                 return section
                 
             case .hotelDescription(_):
