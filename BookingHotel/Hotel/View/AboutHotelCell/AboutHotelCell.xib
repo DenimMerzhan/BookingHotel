@@ -19,11 +19,11 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s91-wo-l0P">
-                        <rect key="frame" x="15" y="0.0" width="198" height="93"/>
+                        <rect key="frame" x="0.0" y="0.0" width="228" height="93"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3-я линия" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5h-xI-LEU">
-                                <rect key="frame" x="10" y="10" width="178" height="73"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="10" y="10" width="208" height="73"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" name="TintAboutHotel"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -39,12 +39,11 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="s91-wo-l0P" secondAttribute="bottom" id="8fb-zB-Eu7"/>
                 <constraint firstItem="s91-wo-l0P" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Hqz-0c-43M"/>
-                <constraint firstAttribute="trailing" secondItem="s91-wo-l0P" secondAttribute="trailing" constant="15" id="UgM-uh-FEU"/>
-                <constraint firstItem="s91-wo-l0P" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="e6q-TY-deC"/>
+                <constraint firstAttribute="trailing" secondItem="s91-wo-l0P" secondAttribute="trailing" id="UgM-uh-FEU"/>
+                <constraint firstItem="s91-wo-l0P" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="e6q-TY-deC"/>
             </constraints>
             <size key="customSize" width="228" height="93"/>
             <connections>

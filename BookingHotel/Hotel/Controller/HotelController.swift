@@ -22,21 +22,24 @@ class HotelController: UICollectionViewController {
         
         let hotelImage = SectionsInfoHotel.hotelImage(hotellArr)
         let hotelDescription = SectionsInfoHotel.hotelDescription(HotelDescription(grade: 5, descripitonGrade: "5 Превосходно", nameHotel: "Barbaris", adressHotel: "dik My dik", price: "134 00 00 р"))
-        let aboutHotel = SectionsInfoHotel.aboutHotel(["kek","Pek"])
+        let aboutHotel = SectionsInfoHotel.aboutHotel(["kek","Pek","mokkook","dwdwdw","drop menu left"])
         let moreAboutHotel = SectionsInfoHotel.moreAboutHotel
-        let descrHot = SectionsInfoHotel.descriptionHotelText("dwwddw")
+        let descrHot = SectionsInfoHotel.descriptionHotelText("dwwdw dw dwdw wdw dw dw d wdw w ddw w dwd wd dwd wdw dw dw dw dw dw dw dw  dw dw dw dw dw wd ddw")
         
-        sections.append(aboutHotel)
+      
         sections.append(hotelImage)
         sections.append(hotelDescription)
+        sections.append(aboutHotel)
+        sections.append(descrHot)
         
         collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
         collectionView.register(UINib(nibName: "InfoHotelCell", bundle: nil), forCellWithReuseIdentifier: "InfoHotelCell")
         collectionView.register(UINib(nibName: "AboutHotelCell", bundle: nil), forCellWithReuseIdentifier: "AboutHotelCell")
-        collectionView.register(UINib(nibName: "DescriptionHotelCell", bundle: nil), forCellWithReuseIdentifier: "DescriptionHotelCell")
+        collectionView.register(DescriptionHotelCell.self, forCellWithReuseIdentifier: DescriptionHotelCell.identifier)
         collectionView.register(UINib(nibName: "MoreAboutHotelCell", bundle: nil), forCellWithReuseIdentifier: "MoreAboutHotelCell")
         
-        collectionView.register(PriceFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PriceFooter.identifier)
+        collectionView.register(UpHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UpHeader.identifier)
+        collectionView.register(UINib(nibName: "PriceFooter", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter")
         
         collectionView.collectionViewLayout = createLayout()
         collectionView.delegate = self
@@ -85,8 +88,10 @@ extension HotelController: UICollectionViewDelegateFlowLayout {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutHotelCell", for: indexPath) as! AboutHotelCell
             cell.descriptionText.text = aboutHotel[indexPath.row]
             return cell
-        case .descriptionHotelText(_):
-            break
+        case .descriptionHotelText(let descriptionHotel):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DescriptionHotelCell.identifier, for: indexPath) as! DescriptionHotelCell
+            cell.descriptionText.text = descriptionHotel
+            return cell
         case .moreAboutHotel:
             break
         }
@@ -96,11 +101,25 @@ extension HotelController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        if kind == UICollectionView.elementKindSectionFooter {
-            let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PriceFooter.identifier, for: indexPath) as! PriceFooter
+        if kind == UICollectionView.elementKindSectionHeader {
+            let upHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "UpFooter", for: indexPath) as! UpHeader
+            
+            switch sections[indexPath.section] {
+                
+            case .hotelImage(_):
+                upHeader.label.textAlignment = .center
+                upHeader.label.text = "Отель"
+            case .aboutHotel(_):
+                upHeader.label.textAlignment = .left
+                upHeader.label.text = "Об отеле"
+            default: break
+            }
+            return upHeader
+        }else {
+            let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
+            priceFooter.button.isHidden = true
             return priceFooter
         }
-        return UICollectionReusableView()
     }
     
 }
@@ -120,10 +139,12 @@ extension HotelController {
                 
             case .hotelImage(_):
                 
-                let imageItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+                let imageItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitems: [imageItem])
+                group.contentInsets.bottom = 20
                 
                 let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)]
                 return section
                 
             case .hotelDescription(_):
@@ -131,10 +152,10 @@ extension HotelController {
                 let descriptionItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)))
                 
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitems: [descriptionItem])
-                group.contentInsets.top = 20
+                group.contentInsets.leading = 15
                 
                 let section = NSCollectionLayoutSection(group: group)
-                section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottomLeading)]
+                section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottomLeading)]
                 return section
                 
             case .aboutHotel(_):
@@ -142,11 +163,28 @@ extension HotelController {
                 let aboutHotelItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .estimated(100)))
                 
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitems: [aboutHotelItem])
+                group.interItemSpacing = .fixed(10)
                 
                 let section = NSCollectionLayoutSection(group: group)
+                section.contentInsets.top = 10
+                section.contentInsets.leading = 15
+                section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)]
+                
                 return section
                 
-            case .descriptionHotelText(_),.moreAboutHotel:
+            case .descriptionHotelText(_):
+                
+                let descriptionHotelText = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)))
+                
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitems: [descriptionHotelText])
+                
+                let section = NSCollectionLayoutSection(group: group)
+                section.contentInsets.leading = 15
+                section.contentInsets.top = 5
+                
+                return section
+                
+            case .moreAboutHotel:
                 
                 let aboutHotelItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .absolute(100)))
                 
@@ -155,7 +193,11 @@ extension HotelController {
                 group.contentInsets.top = 15
                 
                 let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)]
+                
+                
                 return section
+                
             }
         }
         

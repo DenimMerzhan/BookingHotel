@@ -20,23 +20,23 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tqh-15-1bA">
-                        <rect key="frame" x="15" y="0.0" width="323" height="162"/>
+                        <rect key="frame" x="0.0" y="0.0" width="338" height="162"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lq2-fC-VP9">
-                                <rect key="frame" x="0.0" y="0.0" width="218.33333333333334" height="103"/>
+                                <rect key="frame" x="0.0" y="0.0" width="218.33333333333334" height="104"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4uG-nC-SxZ" userLabel="PefectStackView">
-                                        <rect key="frame" x="10" y="0.0" width="198.33333333333334" height="103"/>
+                                        <rect key="frame" x="10" y="0.0" width="198.33333333333334" height="104"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Fr-mw-W6e">
-                                                <rect key="frame" x="0.0" y="-0.3333333333333357" width="22" height="102.66666666666666"/>
+                                                <rect key="frame" x="0.0" y="-0.3333333333333357" width="22" height="103.66666666666666"/>
                                                 <color key="tintColor" name="PerfectColorInfoHotel"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="22" id="cWV-bz-DYo"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Превосходно" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-49-k4K">
-                                                <rect key="frame" x="27" y="0.0" width="171.33333333333334" height="103"/>
+                                                <rect key="frame" x="27" y="0.0" width="171.33333333333334" height="104"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
                                                 <color key="textColor" name="PerfectColorInfoHotel"/>
                                                 <nil key="highlightedColor"/>
@@ -55,13 +55,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streitger bbbebe " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScZ-nw-rGi">
-                                <rect key="frame" x="0.0" y="108" width="185.66666666666666" height="28.333333333333343"/>
+                                <rect key="frame" x="0.0" y="109" width="185.66666666666666" height="27.666666666666657"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ww eew ew  ew d dwdw dw dwdw " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzN-pd-Mtm">
-                                <rect key="frame" x="0.0" y="141.33333333333334" width="263.33333333333331" height="20.666666666666657"/>
+                                <rect key="frame" x="0.0" y="141.66666666666666" width="263.33333333333331" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="tintColor"/>
                                 <nil key="highlightedColor"/>
@@ -75,7 +75,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Tqh-15-1bA" secondAttribute="trailing" id="3Lx-0y-rrd"/>
-                <constraint firstItem="Tqh-15-1bA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="DDp-4K-bOt"/>
+                <constraint firstItem="Tqh-15-1bA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DDp-4K-bOt"/>
                 <constraint firstAttribute="bottom" secondItem="Tqh-15-1bA" secondAttribute="bottom" id="Ju3-eX-XjF"/>
                 <constraint firstItem="Tqh-15-1bA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="db0-aJ-ft3"/>
             </constraints>

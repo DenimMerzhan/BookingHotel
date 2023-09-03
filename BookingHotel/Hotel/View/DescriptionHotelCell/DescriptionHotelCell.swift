@@ -9,9 +9,23 @@ import UIKit
 
 class DescriptionHotelCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    static let identifier = "DescriptionHotelCell"
+    
+    var descriptionText = UITextView()
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        descriptionText.frame = self.bounds
+        descriptionText.font = .systemFont(ofSize: 17)
+        
+        self.addSubview(descriptionText)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
 
 }
