@@ -10,7 +10,7 @@ import UIKit
 class InfoHotelCell: UICollectionViewCell {
 
 
-    @IBOutlet weak var descriptionGrade: UILabel!    
+    @IBOutlet weak var descriptionGrade: UILabel!  
     @IBOutlet weak var perfectView: UIView!
     
     
