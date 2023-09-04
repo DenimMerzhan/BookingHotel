@@ -30,7 +30,8 @@ class CollectionCell: UICollectionViewCell {
     
     
     @IBAction func pageControlTap(_ sender: UIPageControl) {
-        print(sender.currentPage)
+        let page = sender.currentPage
+        collectionView.scrollToItem(at: IndexPath(row: page, section: 0), at: .centeredHorizontally, animated: true)
     }
     
 }
@@ -38,21 +39,18 @@ class CollectionCell: UICollectionViewCell {
 extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(imageArr.count)
         return imageArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipeCell", for: indexPath) as! SwipeCell
         cell.photoHotel.image = imageArr[indexPath.row]
-        cell.label.text = String(indexPath.row)
         return cell
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(collectionView.frame.size)
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
@@ -61,8 +59,7 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        print(pageControl.currentPage)
-//        pageControl.currentPage = indexPath.row
+        pageControl.currentPage = indexPath.row
     }
     
     
