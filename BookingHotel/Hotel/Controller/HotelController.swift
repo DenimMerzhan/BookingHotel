@@ -13,6 +13,9 @@ class HotelController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var heightScrollView: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var selectNumberButton: UIButton!
+    @IBOutlet weak var separateViewSelectNumber: UIView!
     
     
     override func viewDidLoad() {
@@ -51,19 +54,20 @@ class HotelController: UIViewController {
         collectionView.register(UpHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UpHeader.identifier)
         collectionView.register(UINib(nibName: "PriceFooter", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter")
         
+        scrollView.contentInsetAdjustmentBehavior = .never
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.isScrollEnabled = false
         collectionView.collectionViewLayout = createLayout()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        selectNumberButton.layer.cornerRadius = 20
+        separateViewSelectNumber.alpha = 0.2
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        heightScrollView.constant = collectionView.contentSize.height
+        heightScrollView.constant = collectionView.contentSize.height + 100
     }
     
 }
@@ -152,7 +156,14 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
         }else {
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
             priceFooter.button.isHidden = true
-            priceFooter.updateTextlabel(textBold: "от 143 000р ", textGray: " за тур с перелетом")
+            switch sections[indexPath.section] {
+            case .hotelDescription(_):
+                priceFooter.updateTextlabel(priceText: " 143 000р ", descriptionText: " за тур с перелетом")
+            case .moreAboutHotel(_):
+                priceFooter.priceLabel.isHidden = true
+                priceFooter.stackView.spacing = 0
+            default: break
+            }
             return priceFooter
         }
     }
@@ -176,7 +187,6 @@ extension HotelController {
                 
             case .hotelImage(_):
                 
-                let widthHotel = self.view.frame.width
                 let imageItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(270)))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(270)), subitems: [imageItem])
                 
@@ -235,11 +245,13 @@ extension HotelController {
                 let aboutHotelItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(85)))
                 
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(85)), subitems: [aboutHotelItem])
+                group.contentInsets.leading = 15
+                group.contentInsets.trailing = 15
                 
                 let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets.leading = 15
-                section.contentInsets.trailing = 15
+              
                 section.contentInsets.top = 20
+                section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottomLeading)]
                 
                 return section
                 

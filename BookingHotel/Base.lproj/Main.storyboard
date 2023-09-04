@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5c-As-6ee">
-                                <rect key="frame" x="0.0" y="59" width="393" height="665"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5c-As-6ee">
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JjI-EF-3am">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1300"/>
@@ -45,7 +46,7 @@
                                                 </cells>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="SeparateCollectionView"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="HC6-fg-Vzs" secondAttribute="trailing" id="6J6-0a-mZ5"/>
                                             <constraint firstAttribute="height" constant="1300" id="Edc-6y-ykq"/>
@@ -54,38 +55,63 @@
                                             <constraint firstItem="HC6-fg-Vzs" firstAttribute="leading" secondItem="JjI-EF-3am" secondAttribute="leading" id="vIA-pQ-aYo"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" restorationIdentifier="SelectRoomView" translatesAutoresizingMaskIntoConstraints="NO" id="d82-1r-gKv" userLabel="SelectRoomView">
+                                        <rect key="frame" x="0.0" y="1200" width="393" height="100"/>
+                                        <subviews>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CF-4O-PtO">
+                                                <rect key="frame" x="20" y="20" width="353" height="60"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="К выбору номера">
+                                                    <color key="baseBackgroundColor" name="ButtonColor"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qNb-Tb-ZdU" userLabel="SepareteView">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="1"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="JFS-qE-wCp"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="qNb-Tb-ZdU" firstAttribute="leading" secondItem="d82-1r-gKv" secondAttribute="leading" id="0W4-SD-CVJ"/>
+                                            <constraint firstItem="qNb-Tb-ZdU" firstAttribute="top" secondItem="d82-1r-gKv" secondAttribute="top" id="A1K-hP-sY4"/>
+                                            <constraint firstAttribute="trailing" secondItem="4CF-4O-PtO" secondAttribute="trailing" constant="20" id="HaK-lI-EZ9"/>
+                                            <constraint firstAttribute="trailing" secondItem="qNb-Tb-ZdU" secondAttribute="trailing" id="QzE-yD-jjC"/>
+                                            <constraint firstAttribute="bottom" secondItem="4CF-4O-PtO" secondAttribute="bottom" constant="20" id="TcK-1a-uzj"/>
+                                            <constraint firstAttribute="height" constant="100" id="U6l-HE-Jd0"/>
+                                            <constraint firstItem="4CF-4O-PtO" firstAttribute="leading" secondItem="d82-1r-gKv" secondAttribute="leading" constant="20" id="lSl-qn-NNa"/>
+                                            <constraint firstItem="4CF-4O-PtO" firstAttribute="top" secondItem="d82-1r-gKv" secondAttribute="top" constant="20" id="qDH-Fg-shf"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d82-1r-gKv" secondAttribute="trailing" id="0nt-Ba-rwV"/>
+                                    <constraint firstItem="d82-1r-gKv" firstAttribute="leading" secondItem="L5c-As-6ee" secondAttribute="leading" id="2Kp-l5-toD"/>
                                     <constraint firstAttribute="bottom" secondItem="JjI-EF-3am" secondAttribute="bottom" id="3Mf-cu-rwI"/>
                                     <constraint firstItem="JjI-EF-3am" firstAttribute="leading" secondItem="L5c-As-6ee" secondAttribute="leading" id="4ml-sh-mVZ"/>
                                     <constraint firstItem="JjI-EF-3am" firstAttribute="top" secondItem="L5c-As-6ee" secondAttribute="top" id="8ON-fX-Lfa"/>
                                     <constraint firstItem="JjI-EF-3am" firstAttribute="width" secondItem="L5c-As-6ee" secondAttribute="width" id="Q7X-cp-vbE"/>
+                                    <constraint firstItem="d82-1r-gKv" firstAttribute="bottom" secondItem="JjI-EF-3am" secondAttribute="bottom" id="Upu-vB-yeG"/>
                                     <constraint firstAttribute="trailing" secondItem="JjI-EF-3am" secondAttribute="trailing" id="nem-jW-NB2"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQ8-vi-3sx">
-                                <rect key="frame" x="0.0" y="724" width="393" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="bgh-OT-4bn"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TvE-fE-kq5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="L5c-As-6ee" firstAttribute="top" secondItem="TvE-fE-kq5" secondAttribute="top" id="60u-hG-sRB"/>
-                            <constraint firstItem="cQ8-vi-3sx" firstAttribute="leading" secondItem="TvE-fE-kq5" secondAttribute="leading" id="Apk-z2-Kb6"/>
-                            <constraint firstItem="cQ8-vi-3sx" firstAttribute="top" secondItem="L5c-As-6ee" secondAttribute="bottom" id="LVA-Oj-qBy"/>
-                            <constraint firstItem="TvE-fE-kq5" firstAttribute="trailing" secondItem="cQ8-vi-3sx" secondAttribute="trailing" id="XW2-45-eHX"/>
                             <constraint firstItem="TvE-fE-kq5" firstAttribute="trailing" secondItem="L5c-As-6ee" secondAttribute="trailing" id="bmV-Ws-oKv"/>
-                            <constraint firstAttribute="bottom" secondItem="cQ8-vi-3sx" secondAttribute="bottom" id="qZf-C6-KTB"/>
+                            <constraint firstAttribute="bottom" secondItem="L5c-As-6ee" secondAttribute="bottom" id="y6f-z7-ao9"/>
                             <constraint firstItem="L5c-As-6ee" firstAttribute="leading" secondItem="TvE-fE-kq5" secondAttribute="leading" id="zu1-xq-gK7"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="HC6-fg-Vzs" id="c25-Xi-4jy"/>
                         <outlet property="heightScrollView" destination="Edc-6y-ykq" id="Muu-yT-lAk"/>
+                        <outlet property="scrollView" destination="L5c-As-6ee" id="Nwl-9W-Som"/>
+                        <outlet property="selectNumberButton" destination="4CF-4O-PtO" id="ahR-75-t4w"/>
+                        <outlet property="separateViewSelectNumber" destination="qNb-Tb-ZdU" id="krL-77-xNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUb-0m-LHd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -94,11 +120,14 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="ButtonColor">
+            <color red="0.20000000298023224" green="0.43900001049041748" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="SeparateCollectionView">
+            <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
