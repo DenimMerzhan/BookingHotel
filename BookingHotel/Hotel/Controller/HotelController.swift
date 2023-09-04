@@ -7,9 +7,13 @@
 
 import UIKit
 
-class HotelController: UICollectionViewController {
+class HotelController: UIViewController {
     
     var sections = [SectionsInfoHotel]()
+
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var heightScrollView: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,19 +56,29 @@ class HotelController: UICollectionViewController {
         collectionView.dataSource = self
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        heightScrollView.constant = collectionView.contentSize.height
+    }
+    
 }
 
 
 //MARK: - DataSource,Delegate
 
-extension HotelController: UICollectionViewDelegateFlowLayout {
+extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate {
     
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch sections[section] {
         case .hotelImage(_):
             return 1
@@ -79,9 +93,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section] {
             
         case .hotelImage(let imageArr):
@@ -121,8 +133,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let upHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "UpFooter", for: indexPath) as! UpHeader
             
