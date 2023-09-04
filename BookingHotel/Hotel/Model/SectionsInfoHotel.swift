@@ -15,7 +15,7 @@ enum SectionsInfoHotel {
     case hotelDescription(HotelDescription)
     case aboutHotel([String])
     case descriptionHotelText(String)
-    case moreAboutHotel
+    case moreAboutHotel([MoreAboutHotel])
     
     
 }
@@ -29,3 +29,10 @@ struct HotelDescription {
     var price: String
 }
 
+
+struct MoreAboutHotel {
+    
+    var description: String
+    var image: UIImage?
+    
+}

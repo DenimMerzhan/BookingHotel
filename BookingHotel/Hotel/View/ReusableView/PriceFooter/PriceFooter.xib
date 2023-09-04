@@ -18,23 +18,23 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qVR-2r-qMw">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="fpQ-wr-jXs">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fpQ-wr-jXs">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JC-If-Bzb">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="EZs-BX-xyI">
-                                            <rect key="frame" x="15" y="10" width="290" height="114"/>
+                                            <rect key="frame" x="15" y="10" width="290" height="129"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="143 000р за групп людей" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrR-pJ-GSs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="55.333333333333336"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="62.666666666666664"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="27"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbW-89-qH4">
-                                                    <rect key="frame" x="0.0" y="55.333333333333329" width="290" height="58.666666666666671"/>
+                                                    <rect key="frame" x="0.0" y="62.666666666666679" width="290" height="66.333333333333314"/>
                                                     <color key="backgroundColor" name="ButtonColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="KTm-jI-8nE"/>
@@ -54,10 +54,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoC-0c-vkP">
-                                    <rect key="frame" x="0.0" y="154" width="320" height="20"/>
+                                    <rect key="frame" x="0.0" y="159" width="320" height="15"/>
                                     <color key="backgroundColor" name="SeparateCollectionView"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="vge-AG-5Pu"/>
+                                        <constraint firstAttribute="height" constant="15" id="vge-AG-5Pu"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -81,10 +81,10 @@
     </objects>
     <resources>
         <namedColor name="ButtonColor">
-            <color red="0.20000001789999999" green="0.43921568989999998" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.20000000298023224" green="0.43900001049041748" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="SeparateCollectionView">
-            <color red="0.96470588450000005" green="0.96470588450000005" blue="0.97647058959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

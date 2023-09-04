@@ -11,15 +11,26 @@ class DescriptionHotelCell: UICollectionViewCell {
 
     static let identifier = "DescriptionHotelCell"
     
-    var descriptionText = UITextView()
+    var descriptionText = UILabel()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        descriptionText.frame = self.bounds
-        descriptionText.font = .systemFont(ofSize: 17)
-        
+        setupConfig()
+    }
+    
+    func setupConfig(){
         self.addSubview(descriptionText)
+        descriptionText.translatesAutoresizingMaskIntoConstraints = false
+        descriptionText.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        descriptionText.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        descriptionText.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        descriptionText.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        descriptionText.font = .systemFont(ofSize: 17)
+        descriptionText.lineBreakMode = .byWordWrapping
+        descriptionText.numberOfLines = 0
+        
     }
     
     required init?(coder: NSCoder) {

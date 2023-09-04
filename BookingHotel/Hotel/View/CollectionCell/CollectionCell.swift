@@ -25,8 +25,14 @@ class CollectionCell: UICollectionViewCell {
         collectionView?.isPagingEnabled = true
         collectionView?.showsHorizontalScrollIndicator = false
         pageControl.backgroundStyle = .prominent
+        
     }
-
+    
+    
+    @IBAction func pageControlTap(_ sender: UIPageControl) {
+        print(sender.currentPage)
+    }
+    
 }
 
 extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
@@ -39,6 +45,7 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipeCell", for: indexPath) as! SwipeCell
         cell.photoHotel.image = imageArr[indexPath.row]
+        cell.label.text = String(indexPath.row)
         return cell
     }
     
@@ -54,7 +61,8 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        pageControl.currentPage = indexPath.row
+//        print(pageControl.currentPage)
+//        pageControl.currentPage = indexPath.row
     }
     
     
