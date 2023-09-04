@@ -12,9 +12,9 @@ import UIKit
 enum SectionsInfoHotel {
     
     case hotelImage([UIImage?])
-    case hotelDescription(HotelDescription)
+    case description(HotelDescription)
     case aboutHotel([String])
-    case descriptionHotelText(String)
+    case detailDescription(String)
     case moreAboutHotel([MoreAboutHotel])
     
     

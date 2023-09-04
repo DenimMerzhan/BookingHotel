@@ -21,29 +21,7 @@ class HotelController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var hotellArr = [UIImage?]()
-        let hotelImage1 = UIImage(named: "Hotel")
-        let hotelImage2 = UIImage(named: "bizFWYcxUsk")
-        let hotelImage3 = UIImage(named: "photo_5418041419760782066_y")
-        
-        hotellArr.append(hotelImage1)
-        hotellArr.append(hotelImage2)
-        hotellArr.append(hotelImage3)
-        
-        let hotelImage = SectionsInfoHotel.hotelImage(hotellArr)
-        let hotelDescription = SectionsInfoHotel.hotelDescription(HotelDescription(grade: 5, descripitonGrade: "5 Превосходно", nameHotel: "Barbaris", adressHotel: "dik My dik", price: "134 00 00 р"))
-        let aboutHotel = SectionsInfoHotel.aboutHotel(["kek","Pek","mokkook","dwdwdw","drop menu left"])
-        
-        let moreAboutHotel = SectionsInfoHotel.moreAboutHotel([.init(description: "Удобства",image: UIImage(named: "FacilitiesMAH")),.init(description: "Что включено",image: UIImage(named: "IncludedMAH")),.init(description: "Что не включено",image: UIImage(named: "NotIncludedMAH"))])
-        
-        let descrHot = SectionsInfoHotel.descriptionHotelText("dwwdw dw dwdw wdw dw dw d wdw w ddw w dwd wd dwd wdw dw dw dw dw dw dw dw  dw dw dw dw dw wd ddw")
-        
-      
-        sections.append(hotelImage)
-        sections.append(hotelDescription)
-        sections.append(aboutHotel)
-        sections.append(descrHot)
-        sections.append(moreAboutHotel)
+        sections = HotelModel.fillSections()
         
         collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
         collectionView.register(UINib(nibName: "InfoHotelCell", bundle: nil), forCellWithReuseIdentifier: "InfoHotelCell")
@@ -70,6 +48,11 @@ class HotelController: UIViewController {
         heightScrollView.constant = collectionView.contentSize.height + 100
     }
     
+    
+    @IBAction func selectNumberPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "goToSelectNumber", sender: self)
+    }
+    
 }
 
 
@@ -86,11 +69,11 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
         switch sections[section] {
         case .hotelImage(_):
             return 1
-        case .hotelDescription(_):
+        case .description(_):
             return 1
         case .aboutHotel(let aboutHotel):
             return aboutHotel.count
-        case .descriptionHotelText(_):
+        case .detailDescription(_):
             return 1
         case .moreAboutHotel(let moreAboutHotel):
             return moreAboutHotel.count
@@ -106,7 +89,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             cell.pageControl.numberOfPages = imageArr.count
             cell.collectionView?.reloadData()
             return cell
-        case .hotelDescription(let descriptionHotel):
+        case .description(let descriptionHotel):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
             cell.descriptionGrade.text = descriptionHotel.descripitonGrade
             return cell
@@ -114,7 +97,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutHotelCell", for: indexPath) as! AboutHotelCell
             cell.descriptionText.text = aboutHotel[indexPath.row]
             return cell
-        case .descriptionHotelText(let descriptionHotel):
+        case .detailDescription(let descriptionHotel):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DescriptionHotelCell.identifier, for: indexPath) as! DescriptionHotelCell
             cell.descriptionText.text = descriptionHotel
             cell.descriptionText.sizeToFit()
@@ -157,7 +140,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
             priceFooter.button.isHidden = true
             switch sections[indexPath.section] {
-            case .hotelDescription(_):
+            case .description(_):
                 priceFooter.updateTextlabel(priceText: " 143 000р ", descriptionText: " за тур с перелетом")
             case .moreAboutHotel(_):
                 priceFooter.priceLabel.isHidden = true
@@ -195,7 +178,7 @@ extension HotelController {
                 
                 return section
                 
-            case .hotelDescription(_):
+            case .description(_):
                 
                 let descriptionItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)))
                 
@@ -219,7 +202,7 @@ extension HotelController {
                 group.interItemSpacing = .fixed(8)
                 
                 let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets.top = 10
+                section.contentInsets.top = 5
                 section.contentInsets.leading = 15
                 section.contentInsets.trailing = 15
                 
@@ -227,7 +210,7 @@ extension HotelController {
                 
                 return section
                 
-            case .descriptionHotelText(_):
+            case .detailDescription(_):
                 
                 let descriptionHotelText = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)))
                 
