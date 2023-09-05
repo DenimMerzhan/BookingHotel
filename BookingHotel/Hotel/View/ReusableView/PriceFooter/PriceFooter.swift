@@ -11,9 +11,8 @@ class PriceFooter: UICollectionReusableView {
   
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var button: UIButton!
-    
     @IBOutlet weak var stackView: UIStackView!
-    
+    @IBOutlet weak var separateView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -12,59 +12,55 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PriceFooter" id="U6b-Vx-4bR" customClass="PriceFooter" customModule="BookingHotel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="348"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qVR-2r-qMw">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="348"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fpQ-wr-jXs">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JC-If-Bzb">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="333"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JC-If-Bzb">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="139"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EZs-BX-xyI">
+                                    <rect key="frame" x="15" y="0.0" width="290" height="318"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="EZs-BX-xyI">
-                                            <rect key="frame" x="15" y="10" width="290" height="129"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="143 000р за групп людей" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrR-pJ-GSs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="84.333333333333329"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="27"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbW-89-qH4">
-                                                    <rect key="frame" x="0.0" y="84.333333333333329" width="290" height="44.666666666666671"/>
-                                                    <color key="backgroundColor" name="ButtonColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="KTm-jI-8nE"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="143 000р за групп людей" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrR-pJ-GSs">
+                                            <rect key="frame" x="0.0" y="0.0" width="290" height="248"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="27"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbW-89-qH4">
+                                            <rect key="frame" x="0.0" y="258" width="290" height="60"/>
+                                            <color key="backgroundColor" name="ButtonColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="9Ys-Yr-Nkb"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="EZs-BX-xyI" firstAttribute="top" secondItem="0JC-If-Bzb" secondAttribute="top" constant="10" id="3Ih-tI-4jO"/>
-                                        <constraint firstAttribute="trailing" secondItem="EZs-BX-xyI" secondAttribute="trailing" constant="15" id="LAg-fx-21C"/>
-                                        <constraint firstItem="EZs-BX-xyI" firstAttribute="leading" secondItem="0JC-If-Bzb" secondAttribute="leading" constant="15" id="Pmt-p2-UrM"/>
-                                        <constraint firstAttribute="bottom" secondItem="EZs-BX-xyI" secondAttribute="bottom" id="me5-cK-iAw"/>
-                                    </constraints>
-                                </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoC-0c-vkP">
-                                    <rect key="frame" x="0.0" y="159" width="320" height="15"/>
-                                    <color key="backgroundColor" name="SeparateCollectionView"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="15" id="vge-AG-5Pu"/>
-                                    </constraints>
-                                </view>
+                                </stackView>
                             </subviews>
-                        </stackView>
+                            <constraints>
+                                <constraint firstItem="EZs-BX-xyI" firstAttribute="top" secondItem="0JC-If-Bzb" secondAttribute="top" id="3Ih-tI-4jO"/>
+                                <constraint firstAttribute="trailing" secondItem="EZs-BX-xyI" secondAttribute="trailing" constant="15" id="LAg-fx-21C"/>
+                                <constraint firstItem="EZs-BX-xyI" firstAttribute="leading" secondItem="0JC-If-Bzb" secondAttribute="leading" constant="15" id="Pmt-p2-UrM"/>
+                                <constraint firstAttribute="bottom" secondItem="EZs-BX-xyI" secondAttribute="bottom" constant="15" id="lD3-5B-oxo"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoC-0c-vkP" userLabel="SeparateView" colorLabel="IBBuiltInLabel-Orange">
+                            <rect key="frame" x="0.0" y="333" width="320" height="15"/>
+                            <color key="backgroundColor" name="SeparateCollectionView"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="vge-AG-5Pu"/>
+                            </constraints>
+                        </view>
                     </subviews>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="qVR-2r-qMw" secondAttribute="trailing" id="37o-pP-nY3"/>
                 <constraint firstItem="qVR-2r-qMw" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="3NJ-D4-R0u"/>
@@ -74,9 +70,9 @@
             <connections>
                 <outlet property="button" destination="GbW-89-qH4" id="dxV-fO-KFY"/>
                 <outlet property="priceLabel" destination="qrR-pJ-GSs" id="foT-Mn-Lnr"/>
-                <outlet property="stackView" destination="fpQ-wr-jXs" id="MQJ-2a-UIL"/>
+                <outlet property="separateView" destination="MoC-0c-vkP" id="K4O-Ac-CPX"/>
             </connections>
-            <point key="canvasLocation" x="255" y="55"/>
+            <point key="canvasLocation" x="268.70229007633588" y="72.535211267605632"/>
         </collectionReusableView>
     </objects>
     <resources>

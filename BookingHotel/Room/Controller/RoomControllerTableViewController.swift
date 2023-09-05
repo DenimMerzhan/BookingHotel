@@ -41,13 +41,15 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
         let room = roomArr[indexPath.section]
         cell.room = room
+        cell.layer.cornerRadius = 15
+        cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let room = roomArr[indexPath.section]
         if let height =  RoomModel.calculateHeightTagCollectionView(tagArr: room.tagRoom, widthCollectionView: collectionView.frame.width) {
-            return CGSize(width: collectionView.frame.width, height: height + 270 + 70) /// 270 высота pageCollection 70 высота лейбла
+            return CGSize(width: collectionView.frame.width, height: height + 310 + 70) /// 270 высота pageCollection 70 высота лейбла
         }
         return CGSize(width: collectionView.frame.width, height: 500)
     }
@@ -69,7 +71,7 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 180)
+        return CGSize(width: collectionView.frame.width, height: 150)
     }
     
 }
