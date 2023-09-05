@@ -14,9 +14,11 @@ class CollectionCell: UICollectionViewCell {
     @IBOutlet weak var pageCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var tagCollectionView: UICollectionView!
+    @IBOutlet weak var heightTagCollection: NSLayoutConstraint!
     
     var imageArr = [UIImage?]()
     var tagArr = [String]()
+    var room: Room?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,9 +32,10 @@ class CollectionCell: UICollectionViewCell {
         pageCollectionView?.showsHorizontalScrollIndicator = false
         pageControl.backgroundStyle = .prominent
         
+        tagCollectionView.isScrollEnabled = false
         tagCollectionView.dataSource = self
         tagCollectionView.delegate = self
-        
+       
         
     }
     
@@ -47,22 +50,24 @@ class CollectionCell: UICollectionViewCell {
 extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let room = room else {return 0}
         if collectionView == pageCollectionView {
-            return imageArr.count
+            return room.imageArr.count
         }else {
-            return tagArr.count
+            return room.tagRoom.count
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let room = room else {return UICollectionViewCell()}
         if collectionView == pageCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipeCell", for: indexPath) as! SwipeCell
-            cell.photoHotel.image = imageArr[indexPath.row]
+            cell.photoHotel.image = room.imageArr[indexPath.row]
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
-            cell.descriptionText.text = tagArr[indexPath.row]
+            cell.descriptionText.text = room.tagRoom[indexPath.row]
             return cell
         }
  
@@ -74,9 +79,8 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
         if collectionView == pageCollectionView {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else {
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))
-            label.text = tagArr[indexPath.row]
-            return CGSize(width: label.intrinsicContentSize.width, height: 40)
+            guard let tag = room?.tagRoom[indexPath.row] else {return CGSize.zero}
+            return CGSize(width: tag.contentSizeString().width, height: 40)
         }
         
     }

@@ -13,5 +13,5 @@ struct Room {
     var imageArr: [UIImage?]
     var description: String
     var tagRoom: [String]
-    
+
 }

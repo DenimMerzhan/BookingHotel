@@ -12,83 +12,82 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="gTV-IL-0wX" customClass="CollectionCell" customModule="BookingHotel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="187" height="599"/>
+            <rect key="frame" x="0.0" y="0.0" width="372" height="599"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="187" height="599"/>
+                <rect key="frame" x="0.0" y="0.0" width="372" height="599"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vkB-py-eZ3">
-                        <rect key="frame" x="0.0" y="0.0" width="187" height="599"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-Zi-LLi" userLabel="PageView">
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="270"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-Zi-LLi">
-                                <rect key="frame" x="0.0" y="0.0" width="187" height="270"/>
-                                <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="765-HA-USx">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="270"/>
-                                        <color key="backgroundColor" red="0.0" green="0.69727096369999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AuX-3A-FJ8">
-                                            <size key="itemSize" width="128" height="128"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                    </collectionView>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="O2D-oo-z1e">
-                                        <rect key="frame" x="20" y="219" width="147" height="26"/>
-                                        <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
-                                        <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
-                                        <connections>
-                                            <action selector="pageControlTap:" destination="gTV-IL-0wX" eventType="valueChanged" id="WTG-vS-8VV"/>
-                                        </connections>
-                                    </pageControl>
-                                </subviews>
-                                <color key="backgroundColor" red="0.98431372640000003" green="0.90196073060000004" blue="0.48235297199999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="765-HA-USx" secondAttribute="bottom" id="3Rw-NF-zbK"/>
-                                    <constraint firstItem="765-HA-USx" firstAttribute="leading" secondItem="Gaj-Zi-LLi" secondAttribute="leading" id="Acg-FU-vfK"/>
-                                    <constraint firstAttribute="trailing" secondItem="765-HA-USx" secondAttribute="trailing" id="Jcz-dw-C19"/>
-                                    <constraint firstAttribute="trailing" secondItem="O2D-oo-z1e" secondAttribute="trailing" constant="20" id="VHd-c5-u4i"/>
-                                    <constraint firstItem="O2D-oo-z1e" firstAttribute="leading" secondItem="Gaj-Zi-LLi" secondAttribute="leading" constant="20" id="XLI-Kf-BW2"/>
-                                    <constraint firstItem="O2D-oo-z1e" firstAttribute="bottom" secondItem="765-HA-USx" secondAttribute="bottom" constant="-25" id="lBH-Ym-EWZ"/>
-                                    <constraint firstItem="765-HA-USx" firstAttribute="top" secondItem="Gaj-Zi-LLi" secondAttribute="top" id="xxN-Kt-c2h"/>
-                                    <constraint firstAttribute="height" constant="270" id="y5q-1i-sYO"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стандартный номер с видом на басейн" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-OZ-r3W">
-                                <rect key="frame" x="0.0" y="290" width="187" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="0Hk-rx-4a8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-5T-xka">
-                                <rect key="frame" x="0.0" y="360" width="187" height="239"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="765-HA-USx">
+                                <rect key="frame" x="0.0" y="0.0" width="372" height="270"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewLayout key="collectionViewLayout" id="oVg-st-YG0" customClass="LeftAligmentCollectionViewLayout" customModule="BookingHotel" customModuleProvider="target"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AuX-3A-FJ8">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
                             </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="O2D-oo-z1e">
+                                <rect key="frame" x="20" y="239" width="332" height="26"/>
+                                <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
+                                <connections>
+                                    <action selector="pageControlTap:" destination="gTV-IL-0wX" eventType="valueChanged" id="WTG-vS-8VV"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.88446849279999995" blue="0.33426339290000001" alpha="1" colorSpace="calibratedRGB"/>
-                    </stackView>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="765-HA-USx" secondAttribute="bottom" id="3Rw-NF-zbK"/>
+                            <constraint firstItem="765-HA-USx" firstAttribute="leading" secondItem="Gaj-Zi-LLi" secondAttribute="leading" id="Acg-FU-vfK"/>
+                            <constraint firstAttribute="height" constant="270" id="Ayu-QH-qH1"/>
+                            <constraint firstAttribute="trailing" secondItem="765-HA-USx" secondAttribute="trailing" id="Jcz-dw-C19"/>
+                            <constraint firstAttribute="trailing" secondItem="O2D-oo-z1e" secondAttribute="trailing" constant="20" id="VHd-c5-u4i"/>
+                            <constraint firstItem="O2D-oo-z1e" firstAttribute="leading" secondItem="Gaj-Zi-LLi" secondAttribute="leading" constant="20" id="XLI-Kf-BW2"/>
+                            <constraint firstItem="O2D-oo-z1e" firstAttribute="bottom" secondItem="765-HA-USx" secondAttribute="bottom" constant="-5" id="lBH-Ym-EWZ"/>
+                            <constraint firstItem="765-HA-USx" firstAttribute="top" secondItem="Gaj-Zi-LLi" secondAttribute="top" id="xxN-Kt-c2h"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стандартный номер с видом на басейн" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-OZ-r3W">
+                        <rect key="frame" x="15" y="275" width="342" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="0Hk-rx-4a8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-5T-xka">
+                        <rect key="frame" x="15" y="345" width="342" height="254"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewLayout key="collectionViewLayout" id="oVg-st-YG0" customClass="LeftAligmentCollectionViewLayout" customModule="BookingHotel" customModuleProvider="target"/>
+                    </collectionView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="vkB-py-eZ3" secondAttribute="trailing" id="B8Y-Fl-Pe9"/>
-                <constraint firstItem="vkB-py-eZ3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BpW-ER-uUd"/>
-                <constraint firstItem="vkB-py-eZ3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KdF-YU-zt0"/>
-                <constraint firstAttribute="bottom" secondItem="vkB-py-eZ3" secondAttribute="bottom" id="UL5-hI-TsJ"/>
+                <constraint firstItem="Gaj-Zi-LLi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2Hc-DB-JTj"/>
+                <constraint firstAttribute="bottom" secondItem="qh2-5T-xka" secondAttribute="bottom" id="DuK-Wt-Ejb"/>
+                <constraint firstItem="Cjb-OZ-r3W" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="Ftd-zG-JTj"/>
+                <constraint firstAttribute="trailing" secondItem="Gaj-Zi-LLi" secondAttribute="trailing" id="LTU-sP-dCA"/>
+                <constraint firstAttribute="trailing" secondItem="qh2-5T-xka" secondAttribute="trailing" constant="15" id="MXu-NM-BAg"/>
+                <constraint firstItem="qh2-5T-xka" firstAttribute="top" secondItem="Cjb-OZ-r3W" secondAttribute="bottom" id="TcM-Ug-wjQ"/>
+                <constraint firstItem="qh2-5T-xka" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="Wzh-xS-yog"/>
+                <constraint firstItem="Cjb-OZ-r3W" firstAttribute="top" secondItem="Gaj-Zi-LLi" secondAttribute="bottom" constant="5" id="dAr-KF-IK4"/>
+                <constraint firstAttribute="trailing" secondItem="Cjb-OZ-r3W" secondAttribute="trailing" constant="15" id="qPA-EL-omt"/>
+                <constraint firstItem="Gaj-Zi-LLi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xeZ-lq-aai"/>
             </constraints>
-            <size key="customSize" width="187" height="599"/>
+            <size key="customSize" width="372" height="599"/>
             <connections>
                 <outlet property="descriptionRoom" destination="Cjb-OZ-r3W" id="ckC-8C-BDi"/>
                 <outlet property="pageCollectionView" destination="765-HA-USx" id="9Fu-bX-oDN"/>
                 <outlet property="pageControl" destination="O2D-oo-z1e" id="6us-3C-KHt"/>
                 <outlet property="tagCollectionView" destination="qh2-5T-xka" id="pJk-fE-jym"/>
             </connections>
-            <point key="canvasLocation" x="170.22900763358777" y="212.32394366197184"/>
+            <point key="canvasLocation" x="311.4503816793893" y="212.32394366197184"/>
         </collectionViewCell>
     </objects>
     <resources>
