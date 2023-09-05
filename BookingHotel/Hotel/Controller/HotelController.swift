@@ -71,11 +71,11 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             return 1
         case .description(_):
             return 1
-        case .aboutHotel(let aboutHotel):
+        case .tagHotel(let aboutHotel):
             return aboutHotel.count
         case .detailDescription(_):
             return 1
-        case .moreAboutHotel(let moreAboutHotel):
+        case .aboutHotel(let moreAboutHotel):
             return moreAboutHotel.count
         }
     }
@@ -85,16 +85,18 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             
         case .hotelImage(let imageArr):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
+            cell.tagCollectionView.isHidden = true
+            cell.descriptionRoom.isHidden = true
             cell.imageArr = imageArr
             cell.pageControl.numberOfPages = imageArr.count
-            cell.collectionView?.reloadData()
+            cell.pageCollectionView?.reloadData()
             return cell
         case .description(let descriptionHotel):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
             cell.descriptionGrade.text = descriptionHotel.descripitonGrade
             return cell
-        case .aboutHotel(let aboutHotel):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutHotelCell", for: indexPath) as! AboutHotelCell
+        case .tagHotel(let aboutHotel):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutHotelCell", for: indexPath) as! TagCell
             cell.descriptionText.text = aboutHotel[indexPath.row]
             return cell
         case .detailDescription(let descriptionHotel):
@@ -102,7 +104,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             cell.descriptionText.text = descriptionHotel
             cell.descriptionText.sizeToFit()
             return cell
-        case .moreAboutHotel(let moreAboutHotel):
+        case .aboutHotel(let moreAboutHotel):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreAboutHotelCell", for: indexPath) as! MoreAboutHotelCell
             cell.descriptionText.text = moreAboutHotel[indexPath.row].description
             cell.image.image = moreAboutHotel[indexPath.row].image
@@ -129,7 +131,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             case .hotelImage(_):
                 upHeader.label.textAlignment = .center
                 upHeader.label.text = "Отель"
-            case .aboutHotel(_):
+            case .tagHotel(_):
                 upHeader.label.textAlignment = .left
                 upHeader.label.text = "Об отеле"
                 upHeader.label.font = .systemFont(ofSize: 25, weight: .medium)
@@ -142,7 +144,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             switch sections[indexPath.section] {
             case .description(_):
                 priceFooter.updateTextlabel(priceText: " 143 000р ", descriptionText: " за тур с перелетом")
-            case .moreAboutHotel(_):
+            case .aboutHotel(_):
                 priceFooter.priceLabel.isHidden = true
                 priceFooter.stackView.spacing = 0
             default: break
@@ -194,7 +196,7 @@ extension HotelController {
                 
                 return section
                 
-            case .aboutHotel(_):
+            case .tagHotel(_):
                 
                 let aboutHotelItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .estimated(100)))
                 
@@ -223,7 +225,7 @@ extension HotelController {
                 
                 return section
                 
-            case .moreAboutHotel(_):
+            case .aboutHotel(_):
                 
                 let aboutHotelItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(85)))
                 

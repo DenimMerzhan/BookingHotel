@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutHotelCell: UICollectionViewCell {
+class TagCell: UICollectionViewCell {
 
     @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var backView: UIView!

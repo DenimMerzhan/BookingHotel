@@ -13,9 +13,9 @@ enum SectionsInfoHotel {
     
     case hotelImage([UIImage?])
     case description(HotelDescription)
-    case aboutHotel([String])
+    case tagHotel([String])
     case detailDescription(String)
-    case moreAboutHotel([MoreAboutHotel])
+    case aboutHotel([MoreAboutHotel])
     
     
 }
