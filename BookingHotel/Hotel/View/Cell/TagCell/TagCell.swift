@@ -11,9 +11,11 @@ class TagCell: UICollectionViewCell {
 
     @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var button: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+//        button.isHidden = true
         backView.layer.cornerRadius = 10
     }
 

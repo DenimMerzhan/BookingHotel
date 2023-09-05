@@ -13,14 +13,17 @@ class RoomController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.contentInsetAdjustmentBehavior = .never
 
         var room1 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на бассейн", tagRoom: ["Все включено", "Кондиционер","Djn", "Подробнее о номере"])
         var room2 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на кухню", tagRoom: ["Все включено", "Кондиционер", "Подробнее о номере"])
         var room3 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на сад", tagRoom: ["Все включено", "Кондиционер", "Подробнее о номере"])
         roomArr = [room1,room2,room3]
         
+       
         collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
         collectionView.register(UINib(nibName: "PriceFooter", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter")
+        collectionView.register(UINib(nibName: "TitleHedear", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear")
         
     }
 
@@ -49,7 +52,7 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let room = roomArr[indexPath.section]
         if let height =  RoomModel.calculateHeightTagCollectionView(tagArr: room.tagRoom, widthCollectionView: collectionView.frame.width) {
-            return CGSize(width: collectionView.frame.width, height: height + 310 + 70) /// 270 высота pageCollection 70 высота лейбла
+            return CGSize(width: collectionView.frame.width, height: height + 310 + 70 + 20) /// 310 высота pageCollection 70 высота лейбла
         }
         return CGSize(width: collectionView.frame.width, height: 500)
     }
@@ -60,8 +63,12 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         if kind == UICollectionView.elementKindSectionHeader {
-            return UICollectionReusableView()
+            let titleHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear", for: indexPath) as! TitleHedear
+            titleHeader.upSeparateView.isHidden = true
+            titleHeader.label.text = "Steigreheber Mainksols"
+            return titleHeader
         }else {
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
             priceFooter.updateTextlabel(additionalText: "", priceText: "186 000р ", descriptionText: "За 7 ночей с перелетом")
@@ -72,6 +79,14 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 150)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return CGSize(width: collectionView.frame.width, height: 150)
+        }else {
+            return .zero
+        }
     }
     
 }

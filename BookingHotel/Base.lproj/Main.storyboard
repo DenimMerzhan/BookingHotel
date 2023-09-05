@@ -141,10 +141,11 @@
                             <outlet property="delegate" destination="7JS-5t-IIG" id="fyE-bJ-UrG"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="lNG-Vd-mio"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3v-T7-LvM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2011" y="15"/>
+            <point key="canvasLocation" x="2155" y="20"/>
         </scene>
     </scenes>
     <resources>
