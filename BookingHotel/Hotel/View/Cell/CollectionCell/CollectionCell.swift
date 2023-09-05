@@ -33,6 +33,7 @@ class CollectionCell: UICollectionViewCell {
         tagCollectionView.dataSource = self
         tagCollectionView.delegate = self
         
+        
     }
     
     
@@ -49,7 +50,6 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
         if collectionView == pageCollectionView {
             return imageArr.count
         }else {
-            print(tagArr.count)
             return tagArr.count
         }
         
@@ -63,7 +63,6 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
             cell.descriptionText.text = tagArr[indexPath.row]
-            print(tagArr[indexPath.row])
             return cell
         }
  
@@ -75,16 +74,15 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
         if collectionView == pageCollectionView {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else {
-            return CGSize(width: 200, height: 50)
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))
+            label.text = tagArr[indexPath.row]
+            return CGSize(width: label.intrinsicContentSize.width, height: 40)
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView == pageCollectionView {
-            return 0
-        }else {return 10}
-        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
