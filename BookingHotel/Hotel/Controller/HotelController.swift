@@ -143,7 +143,7 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             priceFooter.button.isHidden = true
             switch sections[indexPath.section] {
             case .description(_):
-                priceFooter.updateTextlabel(priceText: " 143 000р ", descriptionText: " за тур с перелетом")
+                priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
             case .aboutHotel(_):
                 priceFooter.priceLabel.isHidden = true
                 priceFooter.stackView.spacing = 0

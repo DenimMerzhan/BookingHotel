@@ -20,7 +20,7 @@ class RoomController: UICollectionViewController {
         roomArr = [room1,room2,room3]
         
         collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
-        collectionView.register(UINib(nibName: "PriceFooter", bundle: nil), forCellWithReuseIdentifier: "PriceFooter")
+        collectionView.register(UINib(nibName: "PriceFooter", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter")
         
     }
 
@@ -29,19 +29,23 @@ class RoomController: UICollectionViewController {
 extension RoomController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return roomArr.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
-        let room = roomArr[indexPath.row]
+        let room = roomArr[indexPath.section]
         cell.room = room
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let room = roomArr[indexPath.row]
+        let room = roomArr[indexPath.section]
         if let height =  RoomModel.calculateHeightTagCollectionView(tagArr: room.tagRoom, widthCollectionView: collectionView.frame.width) {
             return CGSize(width: collectionView.frame.width, height: height + 270 + 70) /// 270 высота pageCollection 70 высота лейбла
         }
@@ -58,14 +62,14 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
             return UICollectionReusableView()
         }else {
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
-            priceFooter.updateTextlabel(priceText: "186 000р", descriptionText: "За 7 ночей с перелетом")
+            priceFooter.updateTextlabel(additionalText: "", priceText: "186 000р ", descriptionText: "За 7 ночей с перелетом")
             return priceFooter
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 150)
+        return CGSize(width: collectionView.frame.width, height: 180)
     }
     
 }
