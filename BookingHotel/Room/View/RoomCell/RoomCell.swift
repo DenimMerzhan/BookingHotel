@@ -1,27 +1,24 @@
 //
-//  SwipeCell.swift
+//  RoomCellCollectionViewCell.swift
 //  BookingHotel
 //
-//  Created by Деним Мержан on 31.08.23.
+//  Created by Деним Мержан on 06.09.23.
 //
 
 import UIKit
 
-class CollectionCell: UICollectionViewCell {
+class RoomCell: UICollectionViewCell {
 
-    
-    @IBOutlet weak var descriptionRoom: UILabel!
     @IBOutlet weak var pageCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var descriptionNumber: UILabel!
     @IBOutlet weak var tagCollectionView: UICollectionView!
     
-    var imageArr = [UIImage?]()
     var tagArr = [String]()
     var room: Room?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         pageCollectionView?.register(UINib(nibName: "SwipeCell", bundle: nil), forCellWithReuseIdentifier: "SwipeCell")
         tagCollectionView.register(UINib(nibName: "TagCell", bundle: nil), forCellWithReuseIdentifier: "TagCell")
         
@@ -34,25 +31,15 @@ class CollectionCell: UICollectionViewCell {
         tagCollectionView.isScrollEnabled = false
         tagCollectionView.dataSource = self
         tagCollectionView.delegate = self
-       
-        
     }
-    
-    
-    @IBAction func pageControlTap(_ sender: UIPageControl) {
-        let page = sender.currentPage
-        print(pageCollectionView.numberOfItems(inSection: 0))
-        if page < pageCollectionView.numberOfItems(inSection: 0) {
-            pageCollectionView.scrollToItem(at: IndexPath(row: page, section: 0), at: .centeredHorizontally, animated: true)
-        }
-    }
-    
+
 }
 
-extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+
+extension RoomCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let room = room else {return imageArr.count}
+        guard let room = room else {return 0}
         if collectionView == pageCollectionView {
             return room.imageArr.count
         }else {
@@ -66,8 +53,6 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipeCell", for: indexPath) as! SwipeCell
             if let room = self.room {
                 cell.photoHotel.image = room.imageArr[indexPath.row]
-            }else {
-                cell.photoHotel.image = imageArr[indexPath.row]
             }
             return cell
         }else {

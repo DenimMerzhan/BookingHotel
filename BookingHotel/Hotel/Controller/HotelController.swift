@@ -84,12 +84,9 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
         switch sections[indexPath.section] {
             
         case .hotelImage(let imageArr):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
-            cell.tagCollectionView.isHidden = true
-            cell.descriptionRoom.isHidden = true
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! HotelCollectionCell
             cell.imageArr = imageArr
             cell.pageControl.numberOfPages = imageArr.count
-//            cell.pageCollectionView?.reloadData()
             return cell
         case .description(let descriptionHotel):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
@@ -150,7 +147,6 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
                 priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
             case .aboutHotel(_):
                 priceFooter.priceLabel.isHidden = true
-//                priceFooter.stackView.spacing = 0
             default: break
             }
             return priceFooter
@@ -177,7 +173,7 @@ extension HotelController {
             case .hotelImage(_):
                 
                 let imageItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitems: [imageItem])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300)), subitems: [imageItem])
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)]
