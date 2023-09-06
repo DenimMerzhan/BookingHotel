@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				CF5608392AA5CEAF001A620C /* PriceFooter */,
-				CFAC3FD42AA7753700284369 /* UpHeader */,
+				CFAC3FD42AA7753700284369 /* TitleHedear */,
 			);
 			path = ReusableView;
 			sourceTree = "<group>";
@@ -308,13 +308,13 @@
 			path = Extansion;
 			sourceTree = "<group>";
 		};
-		CFAC3FD42AA7753700284369 /* UpHeader */ = {
+		CFAC3FD42AA7753700284369 /* TitleHedear */ = {
 			isa = PBXGroup;
 			children = (
 				CF1153272AA51D6E00ED824D /* TitleHedear.swift */,
 				CFAC3FD52AA7758B00284369 /* TitleHedear.xib */,
 			);
-			path = UpHeader;
+			path = TitleHedear;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

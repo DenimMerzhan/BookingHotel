@@ -14,7 +14,6 @@ class CollectionCell: UICollectionViewCell {
     @IBOutlet weak var pageCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var tagCollectionView: UICollectionView!
-    @IBOutlet weak var heightTagCollection: NSLayoutConstraint!
     
     var imageArr = [UIImage?]()
     var tagArr = [String]()
@@ -42,7 +41,10 @@ class CollectionCell: UICollectionViewCell {
     
     @IBAction func pageControlTap(_ sender: UIPageControl) {
         let page = sender.currentPage
-        pageCollectionView.scrollToItem(at: IndexPath(row: page, section: 0), at: .centeredHorizontally, animated: true)
+        print(pageCollectionView.numberOfItems(inSection: 0))
+        if page < pageCollectionView.numberOfItems(inSection: 0) {
+            pageCollectionView.scrollToItem(at: IndexPath(row: page, section: 0), at: .centeredHorizontally, animated: true)
+        }
     }
     
 }
@@ -50,7 +52,7 @@ class CollectionCell: UICollectionViewCell {
 extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let room = room else {return 0}
+        guard let room = room else {return imageArr.count}
         if collectionView == pageCollectionView {
             return room.imageArr.count
         }else {
@@ -60,18 +62,24 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let room = room else {return UICollectionViewCell()}
         if collectionView == pageCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipeCell", for: indexPath) as! SwipeCell
-            cell.photoHotel.image = room.imageArr[indexPath.row]
+            if let room = self.room {
+                cell.photoHotel.image = room.imageArr[indexPath.row]
+            }else {
+                cell.photoHotel.image = imageArr[indexPath.row]
+            }
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
-            cell.descriptionText.text = room.tagRoom[indexPath.row]
-            if indexPath.row == room.tagRoom.count - 1 {
-                cell.button.isHidden = false
-                cell.descriptionText.textColor = UIColor(named: "ButtonColor")
-                cell.backView.backgroundColor = UIColor(named: "LastTagColor")
+            
+            if let room = self.room {
+                cell.descriptionText.text = room.tagRoom[indexPath.row]
+                if indexPath.row == room.tagRoom.count - 1 {
+                    cell.button.isHidden = false
+                    cell.descriptionText.textColor = UIColor(named: "ButtonColor")
+                    cell.backView.backgroundColor = UIColor(named: "LastTagColor")
+                }
             }
             return cell
         }

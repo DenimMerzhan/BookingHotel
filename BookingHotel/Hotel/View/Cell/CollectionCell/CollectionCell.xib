@@ -51,7 +51,7 @@
                             <constraint firstItem="765-HA-USx" firstAttribute="top" secondItem="Gaj-Zi-LLi" secondAttribute="top" constant="20" id="xxN-Kt-c2h"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стандартный номер с видом на басейн" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-OZ-r3W">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стандартный номер с видом на басейн" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-OZ-r3W">
                         <rect key="frame" x="15" y="305" width="342" height="70"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="0Hk-rx-4a8"/>
@@ -68,7 +68,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" systemColor="tintColor"/>
             <constraints>
                 <constraint firstItem="Gaj-Zi-LLi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2Hc-DB-JTj"/>
                 <constraint firstAttribute="bottom" secondItem="qh2-5T-xka" secondAttribute="bottom" id="DuK-Wt-Ejb"/>
@@ -100,6 +100,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

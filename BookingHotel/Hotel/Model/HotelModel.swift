@@ -16,9 +16,9 @@ struct HotelModel {
         var sections = [SectionsInfoHotel]()
         
         var hotellArr = [UIImage?]()
-        let hotelImage1 = UIImage(named: "Hotel")
-        let hotelImage2 = UIImage(named: "bizFWYcxUsk")
-        let hotelImage3 = UIImage(named: "photo_5418041419760782066_y")
+        let hotelImage1 = UIImage(named: "Hotel1")
+        let hotelImage2 = UIImage(named: "Hotel2")
+        let hotelImage3 = UIImage(named: "Hotel3")
         
         hotellArr.append(hotelImage1)
         hotellArr.append(hotelImage2)
