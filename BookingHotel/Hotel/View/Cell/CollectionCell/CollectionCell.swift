@@ -69,9 +69,9 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
             cell.descriptionText.text = room.tagRoom[indexPath.row]
             if indexPath.row == room.tagRoom.count - 1 {
-//                cell.button.isHidden = false
+                cell.button.isHidden = false
+                cell.descriptionText.textColor = UIColor(named: "ButtonColor")
                 cell.backView.backgroundColor = UIColor(named: "LastTagColor")
-                cell.tintColor = .blue
             }
             return cell
         }
@@ -85,7 +85,7 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegateFl
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else {
             guard let tag = room?.tagRoom[indexPath.row] else {return CGSize.zero}
-            return CGSize(width: tag.contentSizeString().width, height: 10)
+            return CGSize(width: tag.contentSizeString().width, height: 45)
         }
         
     }

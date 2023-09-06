@@ -15,7 +15,7 @@ class TagCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        button.isHidden = true
+        button.isHidden = true
         backView.layer.cornerRadius = 10
     }
 

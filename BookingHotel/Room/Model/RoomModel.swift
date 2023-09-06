@@ -16,7 +16,7 @@ struct RoomModel {
         let itemSpacingTagCollection: CGFloat = 10
         let indentTagCell: CGFloat = 10 * 2
         let heighTargetCell: CGFloat = 38
-        let spacinStaclViewTagCell: CGFloat = 10
+        let spacinStackViewTagCell: CGFloat = 10
        
         let tagArr = tagArr
         
@@ -27,7 +27,7 @@ struct RoomModel {
         while i <= tagArr.count - 1 {
             
             let tag = tagArr[i]
-            var widthTagCell: CGFloat = indentTagCell + tag.contentSizeString().width + itemSpacingTagCollection + spacinStaclViewTagCell
+            var widthTagCell: CGFloat = indentTagCell + tag.contentSizeString().width + itemSpacingTagCollection + spacinStackViewTagCell
             if i == tagArr.count - 1 {widthTagCell += 20} /// На последнем теге есть кнопка у которой ширина = 20
             
             widthTagCollection -= widthTagCell
