@@ -11,11 +11,40 @@ import Foundation
 enum BookingInfo {
     
     case bookingDetails([BookingDetails])
-    case customerInfo([CustomerInfo])
-    case touristData(TouristData)
+    case customerInfo
+    case touristData(stateButton)
+    
+    mutating func changeSelectedState(){
+        switch self {
+        case .touristData(let state):
+            switch state {
+            case .selected:
+                self = .touristData(.notSelected)
+            case .notSelected:
+                self = .touristData(.selected)
+            case .notTouch:
+                self = .touristData(.selected)
+            }
+        default: break
+        }
+    }
+    
+    func getState() -> stateButton? {
+        switch self {
+        case .touristData(let state): return state
+        default: return nil
+        }
+    }
     
 }
 
+
+enum stateButton {
+    
+    case selected
+    case notSelected
+    case notTouch
+}
 
 struct BookingDetails {
     

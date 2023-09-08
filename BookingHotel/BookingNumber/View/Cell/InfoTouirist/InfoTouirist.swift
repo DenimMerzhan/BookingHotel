@@ -19,6 +19,9 @@ class InfoTouirist: UITableViewCell {
         super.awakeFromNib()
         view.layer.cornerRadius = 10
         textField.borderStyle = .none
+        
+        textField.delegate = self
+        upPlaceHolder.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,5 +29,22 @@ class InfoTouirist: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
     
+    @IBAction func textiFieldDidChanged(_ sender: UITextField) {
+        if sender.text?.count == 0 {
+            upPlaceHolder.isHidden = true
+        }else {
+            upPlaceHolder.isHidden = false
+        }
+    }
+    
+}
+
+
+extension InfoTouirist: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        upPlaceHolder.text = textField.placeholder
+    }
 }

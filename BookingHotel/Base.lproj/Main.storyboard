@@ -176,15 +176,15 @@
             </objects>
             <point key="canvasLocation" x="2915" y="22"/>
         </scene>
-        <!--View Controller-->
+        <!--Booking Controller-->
         <scene sceneID="2TT-Sv-Nf3">
             <objects>
-                <viewController id="Xo7-ak-1mk" sceneMemberID="viewController">
+                <viewController id="Xo7-ak-1mk" customClass="BookingController" customModule="BookingHotel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kK2-0E-bA5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="elw-eA-Jdj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="elw-eA-Jdj">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -198,6 +198,9 @@
                             <constraint firstItem="VSy-B6-Jx8" firstAttribute="bottom" secondItem="elw-eA-Jdj" secondAttribute="bottom" id="x0V-gQ-0QY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="elw-eA-Jdj" id="BfM-eZ-o0r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7te-1v-vuq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

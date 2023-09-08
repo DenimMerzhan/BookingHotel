@@ -7,15 +7,18 @@
 
 import UIKit
 
-class BookingController: UITableViewController {
+class BookingController: UIViewController {
 
     var bookingInfo = [BookingInfo]()
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
-        let fly = BookingDetails(deatails: "Вылет из", descripiton: "Санкт-Петерубрг")
+  
+        
+        let fly = BookingDetails(deatails: "Вылет из", descripiton: "Санкт-Петербург")
        
         
         var details = [BookingDetails]()
@@ -24,10 +27,14 @@ class BookingController: UITableViewController {
         }
         
         bookingInfo.append(.bookingDetails(details))
-        bookingInfo.append(.customerInfo([.phoneNumber("+7 981 755 00 00"),.email("dagn456@mail.ru")]))
+        bookingInfo.append(.customerInfo)
+        bookingInfo.append(.touristData(.notTouch))
+        bookingInfo.append(.touristData(.notTouch))
         
         
-        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.contentInsetAdjustmentBehavior = .never
         tableView.register(UINib(nibName: "BookingDetailesCell", bundle: nil), forCellReuseIdentifier: "BookingDetailesCell")
         tableView.register(UINib(nibName: "InfoTouirist", bundle: nil), forCellReuseIdentifier: "InfoTouirist")
         tableView.contentInsetAdjustmentBehavior = .never
@@ -43,26 +50,31 @@ class BookingController: UITableViewController {
 // MARK: - Table view data source
 
 
-extension BookingController {
+extension BookingController: UITableViewDataSource,UITableViewDelegate {
+
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return bookingInfo.count
     }
+    
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch bookingInfo[section] {
             
         case .bookingDetails(let bookingDetails):
             return bookingDetails.count
-        case .customerInfo(_):
-            return 2
-        case .touristData(_):
-            return 6
+        case .customerInfo:
+            return BookingModel.customerInfo.count
+        case .touristData (let state):
+            switch state {
+            case .selected:
+                return BookingModel.touristData.count
+            default: return 0
+            }
         }
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch bookingInfo[indexPath.section] {
             
         case .bookingDetails(let bookingDetails):
@@ -71,6 +83,7 @@ extension BookingController {
             let details = bookingDetails[indexPath.row]
             cell.details.text = details.deatails
             cell.descriptionDetails.text = details.descripiton
+            cell.selectionStyle = .none
             
             if indexPath.row == 0 {
                 cell.contentView.layer.cornerRadius = 15
@@ -82,60 +95,72 @@ extension BookingController {
             }
             
             return cell
-        case .customerInfo(let customerInfo):
+        case .customerInfo:
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
-            let info = customerInfo[indexPath.row]
-            switch info {
-            case .phoneNumber(let text):
-                cell.textField.text = text
-                cell.upPlaceHolder.text = "Номер телефона"
-            case .email(let text):
-                cell.textField.text = text
-                cell.upPlaceHolder.text = "Почта"
-            }
+            let placeHolderText = BookingModel.customerInfo[indexPath.row]
+            cell.textField.placeholder = placeHolderText
+            cell.selectionStyle = .none
             return cell
-        case .touristData(_):
-            print("wow")
+        case .touristData(let isSelected):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
+            cell.textField.placeholder = BookingModel.touristData[indexPath.row]
+            cell.selectionStyle = .none
+            return cell
         }
-        
-        return UITableViewCell()
-        
-        
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch bookingInfo[section] {
         case .bookingDetails(_):
             return 100
-        default: return 0
+        default: return 70
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch bookingInfo[section] {
         case .bookingDetails(_):
             return 20
-        default: return 0
+        default: return 15
         }
     }
     
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch bookingInfo[section] {
         case .bookingDetails(_):
             let view = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! TitleHedear
             view.upSeparateView.isHidden = true
             return view
-        default: return nil
+        case .customerInfo:
+            let state = bookingInfo[section].getState()
+            let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
+            view.label.text = BookingModel.numberTouirist[section - 1]
+            view.button.isHidden = true
+            view.section = section
+            view.delegate = self
+            return view
+        case .touristData:
+            let state = bookingInfo[section].getState()
+            let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
+            view.label.text = BookingModel.numberTouirist[section - 1]
+            view.section = section
+            view.delegate = self
+            if section == 10 {
+                view.button.isUserInteractionEnabled = false
+            }
+            return view
         }
     }
     
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         switch bookingInfo[section] {
         case .bookingDetails(_):
             let footer = createSeparateFooter()
             return footer
-        default: return nil
+        default: let footer = createSeparateFooter()
+            return footer
         }
     }
     
@@ -146,9 +171,17 @@ extension BookingController {
 extension BookingController {
     
     func createSeparateFooter() -> UIView {
-        let footer = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 15))
         footer.backgroundColor = UIColor(named: "SeparateCollectionView")
         return footer
+    }
+    
+}
+
+extension BookingController: BookingHeaderDelegate {
+    func buttonPressed(section: Int) {
+        bookingInfo[section].changeSelectedState()
+        tableView.reloadData()
     }
     
 }
