@@ -12,7 +12,7 @@ enum BookingInfo {
     
     case bookingDetails([BookingDetails])
     case customerInfo
-    case touristData(stateButton)
+    case touristData(StateButton)
     
     mutating func changeSelectedState(){
         switch self {
@@ -29,7 +29,7 @@ enum BookingInfo {
         }
     }
     
-    func getState() -> stateButton? {
+    func getState() -> StateButton? {
         switch self {
         case .touristData(let state): return state
         default: return nil
@@ -39,7 +39,7 @@ enum BookingInfo {
 }
 
 
-enum stateButton {
+enum StateButton {
     
     case selected
     case notSelected

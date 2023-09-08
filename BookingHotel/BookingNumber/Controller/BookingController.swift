@@ -100,11 +100,19 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             let placeHolderText = BookingModel.customerInfo[indexPath.row]
             cell.textField.placeholder = placeHolderText
             cell.selectionStyle = .none
+            if indexPath.row == 1 {
+                cell.contentView.layer.cornerRadius = 15
+                cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+            }
             return cell
-        case .touristData(let isSelected):
+        case .touristData(_):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
             cell.textField.placeholder = BookingModel.touristData[indexPath.row]
             cell.selectionStyle = .none
+            if indexPath.row == BookingModel.touristData.count - 1 {
+                cell.contentView.layer.cornerRadius = 15
+                cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+            }
             return cell
         }
     }
@@ -122,7 +130,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         switch bookingInfo[section] {
         case .bookingDetails(_):
             return 20
-        default: return 15
+        default: return 10
         }
     }
     
@@ -136,7 +144,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .customerInfo:
             let state = bookingInfo[section].getState()
             let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
-            view.label.text = BookingModel.numberTouirist[section - 1]
+            view.label.text = BookingModel.numberTouirist[section - 1] + " Турист"
             view.button.isHidden = true
             view.section = section
             view.delegate = self
@@ -144,7 +152,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .touristData:
             let state = bookingInfo[section].getState()
             let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
-            view.label.text = BookingModel.numberTouirist[section - 1]
+            view.label.text = BookingModel.numberTouirist[section - 1] + " Турист"
             view.section = section
             view.delegate = self
             if section == 10 {
@@ -171,7 +179,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
 extension BookingController {
     
     func createSeparateFooter() -> UIView {
-        let footer = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 15))
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
         footer.backgroundColor = UIColor(named: "SeparateCollectionView")
         return footer
     }
@@ -182,6 +190,12 @@ extension BookingController: BookingHeaderDelegate {
     func buttonPressed(section: Int) {
         bookingInfo[section].changeSelectedState()
         tableView.reloadData()
+    
+        
+        let row = tableView.numberOfRows(inSection: section)
+        if row > 0 {
+            tableView.scrollToRow(at: IndexPath(row: row - 1, section: section), at: .middle, animated: true)
+        }
     }
     
 }

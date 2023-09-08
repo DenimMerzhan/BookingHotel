@@ -22,14 +22,14 @@ class BookingHeader: UIView {
     
     
     
-    init(frame: CGRect,stateButton: stateButton?) {
+    init(frame: CGRect,stateButton: StateButton?) {
         super.init(frame: frame)
         setupView()
         if let state = stateButton {
             setupButton(stateButton: state)
         }
     }
-    
+        
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -51,9 +51,13 @@ class BookingHeader: UIView {
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(button)
         
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 15
+        self.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        
     }
     
-    func setupButton(stateButton: stateButton){
+    func setupButton(stateButton:StateButton){
         
         button.layer.cornerRadius = 10
         button.widthAnchor.constraint(equalToConstant: 40).isActive = true
@@ -67,9 +71,11 @@ class BookingHeader: UIView {
             button.backgroundColor = UIColor(named: "LastTagColor")
             image = UIImage(systemName: "chevron.up",withConfiguration: largeConfing)
         case .notSelected:
+            self.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner,.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
             button.backgroundColor = UIColor(named: "LastTagColor")
             image = UIImage(systemName: "chevron.down",withConfiguration: largeConfing)
         case .notTouch:
+            self.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner,.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
             image = UIImage(systemName: "plus",withConfiguration: largeConfing)?.withRenderingMode(.alwaysTemplate)
             button.tintColor = .white
             button.backgroundColor = UIColor(named: "ButtonColor")
@@ -77,10 +83,7 @@ class BookingHeader: UIView {
         
         button.setImage(image, for: .normal)
         
-        
     }
-
-    
     
     @objc func buttonPressed(){
         delegate?.buttonPressed(section: section)
