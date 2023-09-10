@@ -7,12 +7,20 @@
 
 import UIKit
 
+protocol InfoTouristDelegate {
+    func textDidChange(text:String?,indexPath: IndexPath)
+}
+
 class InfoTouirist: UITableViewCell {
     
     
     @IBOutlet weak var upPlaceHolder: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var view: UIView!
+    
+    var delegate: InfoTouristDelegate?
+    var isUsedMaskNumber = Bool()
+    var indexPath = IndexPath()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,11 +32,22 @@ class InfoTouirist: UITableViewCell {
     
     override func prepareForReuse() {
         upPlaceHolder.isHidden = true
+        isUsedMaskNumber = false
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+    }
+    
+    
+    @IBAction func textChanged(_ sender: UITextField) {
+        upPlaceHolder.text = textField.placeholder
+        if sender.text?.count == 0 {
+            upPlaceHolder.isHidden = true
+        }else {
+            upPlaceHolder.isHidden = false
+        }
+        delegate?.textDidChange(text: sender.text,indexPath: indexPath)
     }
     
 }
@@ -38,6 +57,7 @@ extension InfoTouirist: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        if isUsedMaskNumber == false {return true}
         guard let text = textField.text else {
             return false
         }
@@ -71,7 +91,7 @@ extension InfoTouirist: UITextFieldDelegate {
         }else {
             upPlaceHolder.isHidden = false
         }
-        
+        delegate?.textDidChange(text: result, indexPath: indexPath)
         return result
     }
 }

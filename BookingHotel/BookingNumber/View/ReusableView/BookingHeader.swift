@@ -22,7 +22,7 @@ class BookingHeader: UIView {
     
     
     
-    init(frame: CGRect,stateButton: StateButton?) {
+    init(frame: CGRect,stateButton: ButtonTouiristState?) {
         super.init(frame: frame)
         setupView()
         if let state = stateButton {
@@ -57,7 +57,7 @@ class BookingHeader: UIView {
         
     }
     
-    func setupButton(stateButton:StateButton){
+    func setupButton(stateButton:ButtonTouiristState){
         
         button.layer.cornerRadius = 10
         button.widthAnchor.constraint(equalToConstant: 40).isActive = true

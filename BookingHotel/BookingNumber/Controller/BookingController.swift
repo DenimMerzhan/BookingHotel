@@ -27,9 +27,9 @@ class BookingController: UIViewController {
         }
         
         bookingInfo.append(.bookingDetails(details))
-        bookingInfo.append(.customerInfo)
-        bookingInfo.append(.touristData(.notTouch))
-        bookingInfo.append(.touristData(.notTouch))
+        bookingInfo.append(.customerInfo(CustomerInfo()))
+        bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
+        bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
         
         
         tableView.dataSource = self
@@ -64,11 +64,11 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .bookingDetails(let bookingDetails):
             return bookingDetails.count
         case .customerInfo:
-            return BookingModel.customerInfo.count
-        case .touristData (let state):
-            switch state {
+            return BookingModel.customerInfoPlaceholder.count
+        case .touristData (let touristData):
+            switch touristData.buttonState {
             case .selected:
-                return BookingModel.touristData.count
+                return BookingModel.touristDataPlaceholder.count
             default: return 0
             }
         }
@@ -88,28 +88,44 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             if indexPath.row == 0 {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-                
             }else if indexPath.row == bookingDetails.count - 1 {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             }
             
             return cell
-        case .customerInfo:
+        case .customerInfo(let customerInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
-            let placeHolderText = BookingModel.customerInfo[indexPath.row]
-            cell.textField.placeholder = placeHolderText
+            cell.textField.placeholder = BookingModel.customerInfoPlaceholder[indexPath.row]
             cell.selectionStyle = .none
-            if indexPath.row == 1 {
+            cell.indexPath = indexPath
+            cell.delegate = self
+            
+            if indexPath.row == 0 {
+                cell.textField.text = customerInfo.phoneNumber
+                cell.isUsedMaskNumber = true
+            }else {
+                cell.textField.text = customerInfo.email
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             }
             return cell
-        case .touristData(_):
+        case .touristData(let touristData):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
-            cell.textField.placeholder = BookingModel.touristData[indexPath.row]
+            cell.textField.placeholder = BookingModel.touristDataPlaceholder[indexPath.row]
             cell.selectionStyle = .none
-            if indexPath.row == BookingModel.touristData.count - 1 {
+            cell.indexPath = indexPath
+            cell.delegate = self
+            
+            switch indexPath.row {
+            case 0:cell.textField.text = touristData.name
+            case 1: cell.textField.text = touristData.family
+            case 2: cell.textField.text = touristData.dateOfBirth
+            case 3: cell.textField.text = touristData.citizenship
+            case 4: cell.textField.text = touristData.numberPassport
+            default:cell.textField.text = touristData.validityPeriodPassport
+            }
+            if indexPath.row == BookingModel.touristDataPlaceholder.count - 1 {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             }
@@ -186,11 +202,10 @@ extension BookingController {
     
 }
 
-extension BookingController: BookingHeaderDelegate {
+extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
     func buttonPressed(section: Int) {
         bookingInfo[section].changeSelectedState()
         tableView.reloadData()
-    
         
         let row = tableView.numberOfRows(inSection: section)
         if row > 0 {
@@ -198,4 +213,12 @@ extension BookingController: BookingHeaderDelegate {
         }
     }
     
+    
+    func textDidChange(text: String?,indexPath:IndexPath) {
+        if indexPath.section == 1 {
+            bookingInfo[indexPath.section].changeCustomerInfoData(newValue: text, row: indexPath.row)
+        }else {
+            bookingInfo[indexPath.section].changeTouristData(newValue: text, row: indexPath.row)
+        }
+    }
 }

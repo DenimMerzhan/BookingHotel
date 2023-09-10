@@ -10,8 +10,8 @@ import Foundation
 
 struct BookingModel {
     
-    static let touristData = ["Имя","Фамилия","Дата рождения","Гражданство","Номер загранпаспорта","Срок действия загран паспорта"]
-    static let customerInfo = ["Номер телефона","Почта"]
+    static let touristDataPlaceholder = ["Имя","Фамилия","Дата рождения","Гражданство","Номер загранпаспорта","Срок действия загран паспорта"]
+    static let customerInfoPlaceholder = ["Номер телефона","Почта"]
     static let numberTouirist = ["Первый","Второй","Третий","Четвертый","Пятый","Шестой","Седьмой","Восьмой","Девятый","Десятый"]
     
 }

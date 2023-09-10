@@ -11,62 +11,112 @@ import Foundation
 enum BookingInfo {
     
     case bookingDetails([BookingDetails])
-    case customerInfo
-    case touristData(StateButton)
+    case customerInfo(CustomerInfo)
+    case touristData(TouristData)
+    
+    func getState() -> ButtonTouiristState? {
+        switch self {
+        case .touristData(let touristData):
+            return touristData.buttonState
+        default: return nil
+        }
+    }
     
     mutating func changeSelectedState(){
+        
         switch self {
-        case .touristData(let state):
-            switch state {
+        case .touristData(var touristData):
+            switch touristData.buttonState {
             case .selected:
-                self = .touristData(.notSelected)
-            case .notSelected:
-                self = .touristData(.selected)
-            case .notTouch:
-                self = .touristData(.selected)
+                touristData.buttonState = .notSelected
+                self = .touristData(touristData)
+            default:
+                touristData.buttonState = .selected
+                self = .touristData(touristData)
             }
         default: break
         }
     }
     
-    func getState() -> StateButton? {
+    mutating func changeTouristData(newValue:String?,row:Int){
+        
         switch self {
-        case .touristData(let state): return state
-        default: return nil
+        case .touristData(var touristData):
+            switch row {
+            case 0: touristData.name = newValue
+                self = .touristData(touristData)
+            case 1: touristData.family = newValue
+                self = .touristData(touristData)
+            case 2: touristData.dateOfBirth = newValue
+                self = .touristData(touristData)
+            case 3: touristData.citizenship = newValue
+                self = .touristData(touristData)
+            case 4: touristData.numberPassport = newValue
+                self = .touristData(touristData)
+            default: touristData.validityPeriodPassport = newValue
+                self = .touristData(touristData)
+            }
+        default: break
+        }
+    }
+    
+    mutating func changeCustomerInfoData(newValue:String?,row:Int){
+        switch self {
+        case.customerInfo(var customerInfo):
+            if row == 0 {
+                customerInfo.phoneNumber = newValue
+            }else {
+                customerInfo.email = newValue
+            }
+            self = .customerInfo(customerInfo)
+        default:break
         }
     }
     
 }
 
-
-enum StateButton {
-    
-    case selected
-    case notSelected
-    case notTouch
-}
-
 struct BookingDetails {
     
-    var deatails: String
-    var descripiton: String
+    var deatails: String?
+    var descripiton: String?
     
 }
 
-enum CustomerInfo {
+struct CustomerInfo {
     
-    case phoneNumber(String)
-    case email(String)
+    var phoneNumber: String?
+    var email: String?
     
 }
 
 struct TouristData {
     
-    var name: String
-    var family: String
-    var dateOfBirth: String
-    var citizenship: String
-    var numberPassport: String
-    var validityPeriodPassport: String
+    var name: String?
+    var family: String?
+    var dateOfBirth: String?
+    var citizenship: String?
+    var numberPassport: String?
+    var validityPeriodPassport: String?
+    
+    var buttonState: ButtonTouiristState
+    
+//    var description: [String?] {
+//        var descriptionArr = [String?]()
+//        let mirror = Mirror(reflecting: self)
+//        
+//        for (_,value) in mirror.children {
+//            if let descriptionText =  value as? String? {
+//                descriptionArr.append(descriptionText)
+//            }
+//        }
+//        return descriptionArr
+//    }
+}
+
+enum ButtonTouiristState {
+    
+    case selected
+    case notSelected
+    case notTouch
     
 }
