@@ -35,6 +35,9 @@
                                 <rect key="frame" x="20" y="269" width="234" height="26"/>
                                 <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
+                                <connections>
+                                    <action selector="pageControllTapped:" destination="gTV-IL-0wX" eventType="valueChanged" id="QSb-bY-jJd"/>
+                                </connections>
                             </pageControl>
                         </subviews>
                         <constraints>
@@ -50,10 +53,10 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aG7-N8-tPt">
-                        <rect key="frame" x="10" y="300" width="254" height="237"/>
+                        <rect key="frame" x="15" y="300" width="244" height="237"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стандартный вид на номер бла бла бла" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzN-UT-P4p">
-                                <rect key="frame" x="0.0" y="0.0" width="254" height="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стандартный вид на номер бла бла бла" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzN-UT-P4p" userLabel="Description Room">
+                                <rect key="frame" x="0.0" y="0.0" width="244" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="6J2-cS-keI"/>
                                 </constraints>
@@ -62,7 +65,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lCw-E5-JV5">
-                                <rect key="frame" x="0.0" y="70" width="254" height="167"/>
+                                <rect key="frame" x="0.0" y="70" width="244" height="167"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="Nyo-7a-sqY" customClass="LeftAligmentCollectionViewLayout" customModule="BookingHotel" customModuleProvider="target"/>
                             </collectionView>
@@ -74,8 +77,8 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="yJn-rF-oae" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="PMr-fB-TsR"/>
-                <constraint firstAttribute="trailing" secondItem="aG7-N8-tPt" secondAttribute="trailing" constant="10" id="Pzf-GT-NkX"/>
-                <constraint firstItem="aG7-N8-tPt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="dvV-eb-Eio"/>
+                <constraint firstAttribute="trailing" secondItem="aG7-N8-tPt" secondAttribute="trailing" constant="15" id="Pzf-GT-NkX"/>
+                <constraint firstItem="aG7-N8-tPt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="dvV-eb-Eio"/>
                 <constraint firstItem="yJn-rF-oae" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lC4-qV-P3n"/>
                 <constraint firstItem="aG7-N8-tPt" firstAttribute="top" secondItem="yJn-rF-oae" secondAttribute="bottom" id="lO5-lB-XPy"/>
                 <constraint firstAttribute="bottom" secondItem="aG7-N8-tPt" secondAttribute="bottom" id="wOg-Gc-mRh"/>
@@ -84,9 +87,9 @@
             <size key="customSize" width="274" height="537"/>
             <connections>
                 <outlet property="descriptionNumber" destination="DzN-UT-P4p" id="ffr-TK-iHb"/>
-                <outlet property="pageCollection" destination="LS1-g5-N5t" id="YTU-Dr-mza"/>
+                <outlet property="pageCollectionView" destination="LS1-g5-N5t" id="hKF-Nj-tMK"/>
                 <outlet property="pageControl" destination="lEV-Se-S2p" id="mLk-1W-l3H"/>
-                <outlet property="tagCollection" destination="lCw-E5-JV5" id="PB8-zb-jwc"/>
+                <outlet property="tagCollectionView" destination="lCw-E5-JV5" id="gee-bt-ye3"/>
             </connections>
             <point key="canvasLocation" x="135.87786259541986" y="110.21126760563381"/>
         </collectionViewCell>

@@ -182,7 +182,6 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .customerInfo(_):
             footer.descriptionText.isHidden = false
             footer.descriptionView.layer.cornerRadius = 15
-//            footer.clipsToBounds = true
             footer.descriptionView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
         default: break
         }

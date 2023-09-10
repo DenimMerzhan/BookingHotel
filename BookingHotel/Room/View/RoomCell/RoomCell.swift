@@ -9,6 +9,7 @@ import UIKit
 
 class RoomCell: UICollectionViewCell {
 
+    
     @IBOutlet weak var pageCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var descriptionNumber: UILabel!
@@ -32,7 +33,16 @@ class RoomCell: UICollectionViewCell {
         tagCollectionView.dataSource = self
         tagCollectionView.delegate = self
     }
-
+    
+    
+    @IBAction func pageControllTapped(_ sender: UIPageControl) {
+        let page = sender.currentPage
+        print(pageCollectionView.numberOfItems(inSection: 0))
+        if page < pageCollectionView.numberOfItems(inSection: 0) {
+            pageCollectionView.scrollToItem(at: IndexPath(row: page, section: 0), at: .centeredHorizontally, animated: true)
+        }
+    }
+    
 }
 
 
