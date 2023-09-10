@@ -7,12 +7,13 @@
 
 import UIKit
 
-class InfoHotelCell: UICollectionViewCell {
+class InfoHotelCell: UITableViewCell {
 
 
-    @IBOutlet weak var descriptionGrade: UILabel!  
-    @IBOutlet weak var perfectView: UIView!
-    
+    @IBOutlet weak var addresHotel: UILabel!
+    @IBOutlet weak var nameHotel: UILabel!
+    @IBOutlet weak var descriptionGrade: UILabel!
+    @IBOutlet weak var perfectView: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

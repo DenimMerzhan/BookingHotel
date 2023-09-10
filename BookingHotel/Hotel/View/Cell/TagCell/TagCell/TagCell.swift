@@ -1,17 +1,18 @@
 //
-//  AboutHotelCell.swift
+//  Tag.swift
 //  BookingHotel
 //
-//  Created by Деним Мержан on 31.08.23.
+//  Created by Деним Мержан on 10.09.23.
 //
 
 import UIKit
 
 class TagCell: UICollectionViewCell {
 
-    @IBOutlet weak var descriptionText: UILabel!
-    @IBOutlet weak var backView: UIView!
+    
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var descriptionText: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

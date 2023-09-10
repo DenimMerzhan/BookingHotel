@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HotelController: UIViewController {
+class HotelController: UITableViewController {
     
     var sections = [SectionsInfoHotel]()
 
@@ -23,24 +23,13 @@ class HotelController: UIViewController {
         
         sections = HotelModel.fillSections()
         
-        collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
-        collectionView.register(UINib(nibName: "InfoHotelCell", bundle: nil), forCellWithReuseIdentifier: "InfoHotelCell")
-        collectionView.register(UINib(nibName: "TagCell", bundle: nil), forCellWithReuseIdentifier: "TagCell")
-        collectionView.register(DescriptionHotelCell.self, forCellWithReuseIdentifier: DescriptionHotelCell.identifier)
-        collectionView.register(UINib(nibName: "MoreAboutHotelCell", bundle: nil), forCellWithReuseIdentifier: "MoreAboutHotelCell")
+        tableView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellReuseIdentifier: "CollectionCell")
+        tableView.register(UINib(nibName: "InfoHotelCell", bundle: nil), forCellReuseIdentifier: "InfoHotelCell")
+        tableView.register(UINib(nibName: "TagCell", bundle: nil), forCellReuseIdentifier: "TagCell")
+        tableView.register(DescriptionHotelCell.self, forCellReuseIdentifier: "DescriptionHotelCell")
+        tableView.register(UINib(nibName: "MoreAboutHotelCell", bundle: nil), forCellReuseIdentifier: "MoreAboutHotelCell")
         
-        collectionView.register(UINib(nibName: "TitleHedear", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear")
-        collectionView.register(UINib(nibName: "PriceFooter", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter")
-        
-        scrollView.contentInsetAdjustmentBehavior = .never
-        collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.isScrollEnabled = false
-        collectionView.collectionViewLayout = createLayout()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        selectNumberButton.layer.cornerRadius = 20
-        separateViewSelectNumber.alpha = 0.2
+        tableView.contentInsetAdjustmentBehavior = .never
     }
     
     override func viewWillLayoutSubviews() {
@@ -58,14 +47,13 @@ class HotelController: UIViewController {
 
 //MARK: - DataSource,Delegate
 
-extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate {
+extension HotelController {
     
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sections[section] {
         case .hotelImage(_):
             return 1
@@ -80,31 +68,32 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sections[indexPath.section] {
             
         case .hotelImage(let imageArr):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! HotelCollectionCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! HotelCollectionCell
             cell.imageArr = imageArr
             cell.pageControl.numberOfPages = imageArr.count
             return cell
         case .description(let descriptionHotel):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
             cell.descriptionGrade.text = descriptionHotel.descripitonGrade
             return cell
         case .tagHotel(let aboutHotel):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
-            cell.descriptionText.text = aboutHotel[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath) as! TagCell
+           
             return cell
         case .detailDescription(let descriptionHotel):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DescriptionHotelCell.identifier, for: indexPath) as! DescriptionHotelCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionHotelCell.identifier, for: indexPath) as! DescriptionHotelCell
             cell.descriptionText.text = descriptionHotel
             cell.descriptionText.sizeToFit()
             return cell
         case .aboutHotel(let moreAboutHotel):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreAboutHotelCell", for: indexPath) as! MoreAboutHotelCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MoreAboutHotelCell", for: indexPath) as! MoreAboutHotelCell
             cell.descriptionText.text = moreAboutHotel[indexPath.row].description
-            cell.image.image = moreAboutHotel[indexPath.row].image
+            cell.imageDescription.image = moreAboutHotel[indexPath.row].image
             
             if indexPath.row == 0 {
                 cell.layer.cornerRadius = 10
@@ -118,6 +107,34 @@ extension HotelController: UICollectionViewDelegateFlowLayout, UICollectionViewD
             return cell
         }
     }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch sections[indexPath.section] {
+            
+        case .hotelImage(_):
+            <#code#>
+        case .description(_):
+            <#code#>
+        case .tagHotel(_):
+            <#code#>
+        case .detailDescription(_):
+            <#code#>
+        case .aboutHotel(_):
+            <#code#>
+        }
+    }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {

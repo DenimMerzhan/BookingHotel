@@ -12,31 +12,31 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InfoHotelCell" id="gTV-IL-0wX" customClass="InfoHotelCell" customModule="BookingHotel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="338" height="162"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="338" height="162"/>
-                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="127" id="KGk-i7-Jjw" customClass="InfoHotelCell" customModule="BookingHotel" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tqh-15-1bA">
-                        <rect key="frame" x="0.0" y="0.0" width="338" height="162"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="syY-XA-ZW8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lq2-fC-VP9">
-                                <rect key="frame" x="0.0" y="0.0" width="218.33333333333334" height="98.333333333333329"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEk-xV-4SL">
+                                <rect key="frame" x="0.0" y="0.0" width="218.33333333333334" height="45"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4uG-nC-SxZ" userLabel="PefectStackView">
-                                        <rect key="frame" x="10" y="0.0" width="198.33333333333334" height="98.333333333333329"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="o6A-oc-HdD" userLabel="PefectStackView">
+                                        <rect key="frame" x="10" y="0.0" width="198.33333333333334" height="45"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Fr-mw-W6e">
-                                                <rect key="frame" x="0.0" y="-0.3333333333333286" width="22" height="98"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0nP-31-lbo">
+                                                <rect key="frame" x="0.0" y="-0.33333333333333215" width="22" height="44.666666666666657"/>
                                                 <color key="tintColor" name="PerfectColorInfoHotel"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="22" id="cWV-bz-DYo"/>
+                                                    <constraint firstAttribute="width" constant="22" id="aGh-hO-rMl"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Превосходно" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-49-k4K">
-                                                <rect key="frame" x="27" y="0.0" width="171.33333333333334" height="98.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Превосходно" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDx-D3-RDR">
+                                                <rect key="frame" x="27" y="0.0" width="171.33333333333334" height="45"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
                                                 <color key="textColor" name="PerfectColorInfoHotel"/>
                                                 <nil key="highlightedColor"/>
@@ -47,21 +47,21 @@
                                 </subviews>
                                 <color key="backgroundColor" name="InfoHotelColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="DIa-BX-3zn"/>
-                                    <constraint firstItem="4uG-nC-SxZ" firstAttribute="leading" secondItem="Lq2-fC-VP9" secondAttribute="leading" constant="10" id="IWZ-Nq-Tbo"/>
-                                    <constraint firstAttribute="trailing" secondItem="4uG-nC-SxZ" secondAttribute="trailing" constant="10" id="eA1-5E-L1h"/>
-                                    <constraint firstItem="4uG-nC-SxZ" firstAttribute="top" secondItem="Lq2-fC-VP9" secondAttribute="top" id="rB2-9p-0Jd"/>
-                                    <constraint firstAttribute="bottom" secondItem="4uG-nC-SxZ" secondAttribute="bottom" id="tP3-zb-HV5"/>
+                                    <constraint firstAttribute="trailing" secondItem="o6A-oc-HdD" secondAttribute="trailing" constant="10" id="9Wv-4N-BCO"/>
+                                    <constraint firstAttribute="bottom" secondItem="o6A-oc-HdD" secondAttribute="bottom" id="Lt5-mJ-aXU"/>
+                                    <constraint firstItem="o6A-oc-HdD" firstAttribute="leading" secondItem="nEk-xV-4SL" secondAttribute="leading" constant="10" id="S8t-2K-jTX"/>
+                                    <constraint firstAttribute="height" constant="45" id="cd3-0d-Ndm"/>
+                                    <constraint firstItem="o6A-oc-HdD" firstAttribute="top" secondItem="nEk-xV-4SL" secondAttribute="top" id="vEq-x5-T1H"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streitger bbbebe " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScZ-nw-rGi">
-                                <rect key="frame" x="0.0" y="106.33333333333333" width="201.66666666666666" height="28.999999999999986"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streitger bbbebe " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tP-hd-4Ne">
+                                <rect key="frame" x="0.0" y="53" width="201.66666666666666" height="32.666666666666657"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ww eew ew  ew d dwdw dw dwdw " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzN-pd-Mtm">
-                                <rect key="frame" x="0.0" y="143.33333333333334" width="263.33333333333331" height="18.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ww eew ew  ew d dwdw dw dwdw " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boq-iF-WxS">
+                                <rect key="frame" x="0.0" y="93.666666666666671" width="263.33333333333331" height="33.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="tintColor"/>
                                 <nil key="highlightedColor"/>
@@ -70,22 +70,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
                 </subviews>
-            </view>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="Tqh-15-1bA" secondAttribute="trailing" id="3Lx-0y-rrd"/>
-                <constraint firstItem="Tqh-15-1bA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DDp-4K-bOt"/>
-                <constraint firstAttribute="bottom" secondItem="Tqh-15-1bA" secondAttribute="bottom" id="Ju3-eX-XjF"/>
-                <constraint firstItem="Tqh-15-1bA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="db0-aJ-ft3"/>
-            </constraints>
-            <size key="customSize" width="338" height="162"/>
+                <constraints>
+                    <constraint firstItem="syY-XA-ZW8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5ve-1S-oNP"/>
+                    <constraint firstAttribute="trailing" secondItem="syY-XA-ZW8" secondAttribute="trailing" id="7pX-Ws-6qM"/>
+                    <constraint firstAttribute="bottom" secondItem="syY-XA-ZW8" secondAttribute="bottom" id="mGf-hU-q45"/>
+                    <constraint firstItem="syY-XA-ZW8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rhF-Rm-hYV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="descriptionGrade" destination="e2v-49-k4K" id="RWS-pt-zXy"/>
-                <outlet property="perfectView" destination="Lq2-fC-VP9" id="Ese-fa-U5C"/>
+                <outlet property="addresHotel" destination="Boq-iF-WxS" id="AlH-Xv-gMp"/>
+                <outlet property="descriptionGrade" destination="ZDx-D3-RDR" id="qMD-aF-5OF"/>
+                <outlet property="nameHotel" destination="2tP-hd-4Ne" id="GZh-QX-DG6"/>
+                <outlet property="perfectView" destination="o6A-oc-HdD" id="0iD-FZ-3OG"/>
             </connections>
-            <point key="canvasLocation" x="248.85496183206106" y="116.19718309859155"/>
-        </collectionViewCell>
+            <point key="canvasLocation" x="51.908396946564885" y="49.647887323943664"/>
+        </tableViewCell>
     </objects>
     <resources>
         <image name="star.fill" catalog="system" width="128" height="116"/>

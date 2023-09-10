@@ -7,11 +7,11 @@
 
 import UIKit
 
-class MoreAboutHotelCell: UICollectionViewCell {
+class MoreAboutHotelCell: UITableViewCell {
 
     
     @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imageDescription: UIImageView!
     @IBOutlet weak var descriptionText: UILabel!
     
     override func awakeFromNib() {
