@@ -106,8 +106,6 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 cell.isUsedMaskNumber = true
             }else {
                 cell.textField.text = customerInfo.email
-                cell.contentView.layer.cornerRadius = 15
-                cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             }
             return cell
         case .touristData(let touristData):
@@ -144,8 +142,8 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch bookingInfo[section] {
-        case .bookingDetails(_):
-            return 20
+        case .bookingDetails(_):return 20
+        case .customerInfo(_): return 70
         default: return 10
         }
     }
@@ -179,28 +177,21 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = UINib(nibName: "BookingFooter", bundle: nil).instantiate(withOwner: nil).first as! BookingFooter
         switch bookingInfo[section] {
-        case .bookingDetails(_):
-            let footer = createSeparateFooter()
-            return footer
-        default: let footer = createSeparateFooter()
-            return footer
+        case .customerInfo(_):
+            footer.descriptionText.isHidden = false
+            footer.descriptionView.layer.cornerRadius = 15
+//            footer.clipsToBounds = true
+            footer.descriptionView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+        default: break
         }
-    }
-    
-    
-}
-
-
-extension BookingController {
-    
-    func createSeparateFooter() -> UIView {
-        let footer = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 10))
-        footer.backgroundColor = UIColor(named: "SeparateCollectionView")
         return footer
     }
     
+    
 }
+
 
 extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
     func buttonPressed(section: Int) {

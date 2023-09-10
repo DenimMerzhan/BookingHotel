@@ -12,6 +12,8 @@
 		CF0D89C42AA34A8200FB2787 /* SwipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF0D89C22AA34A8200FB2787 /* SwipeCell.xib */; };
 		CF1153262AA5156D00ED824D /* PriceFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF1153242AA5156D00ED824D /* PriceFooter.xib */; };
 		CF1153282AA51D6E00ED824D /* TitleHedear.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1153272AA51D6E00ED824D /* TitleHedear.swift */; };
+		CF34ED3E2AAD942800CA2D95 /* BookingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF34ED3C2AAD942800CA2D95 /* BookingFooter.swift */; };
+		CF34ED3F2AAD942800CA2D95 /* BookingFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF34ED3D2AAD942800CA2D95 /* BookingFooter.xib */; };
 		CF56083F2AA61991001A620C /* HotelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56083E2AA61991001A620C /* HotelModel.swift */; };
 		CF6FB7512AA9B47A00794E70 /* BookingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6FB7502AA9B47A00794E70 /* BookingInfo.swift */; };
 		CF6FB7552AA9BFAC00794E70 /* InfoTouirist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6FB7532AA9BFAC00794E70 /* InfoTouirist.swift */; };
@@ -55,6 +57,8 @@
 		CF0D89C22AA34A8200FB2787 /* SwipeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeCell.xib; sourceTree = "<group>"; };
 		CF1153242AA5156D00ED824D /* PriceFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriceFooter.xib; sourceTree = "<group>"; };
 		CF1153272AA51D6E00ED824D /* TitleHedear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHedear.swift; sourceTree = "<group>"; };
+		CF34ED3C2AAD942800CA2D95 /* BookingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingFooter.swift; sourceTree = "<group>"; };
+		CF34ED3D2AAD942800CA2D95 /* BookingFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingFooter.xib; sourceTree = "<group>"; };
 		CF56083E2AA61991001A620C /* HotelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelModel.swift; sourceTree = "<group>"; };
 		CF6FB7502AA9B47A00794E70 /* BookingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingInfo.swift; sourceTree = "<group>"; };
 		CF6FB7532AA9BFAC00794E70 /* InfoTouirist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTouirist.swift; sourceTree = "<group>"; };
@@ -130,6 +134,15 @@
 				CF0D89C22AA34A8200FB2787 /* SwipeCell.xib */,
 			);
 			path = SwipeCell;
+			sourceTree = "<group>";
+		};
+		CF34ED402AAD982F00CA2D95 /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				CF34ED3C2AAD942800CA2D95 /* BookingFooter.swift */,
+				CF34ED3D2AAD942800CA2D95 /* BookingFooter.xib */,
+			);
+			path = Footer;
 			sourceTree = "<group>";
 		};
 		CF5608392AA5CEAF001A620C /* PriceFooter */ = {
@@ -438,6 +451,7 @@
 		CFF016612AAAF8BC009BB3E8 /* ReusableView */ = {
 			isa = PBXGroup;
 			children = (
+				CF34ED402AAD982F00CA2D95 /* Footer */,
 				CF81CDB82AAA2F5900E5AAC0 /* BookingHeader.swift */,
 			);
 			path = ReusableView;
@@ -511,6 +525,7 @@
 				CFAC3FD62AA7758B00284369 /* TitleHedear.xib in Resources */,
 				CF1153262AA5156D00ED824D /* PriceFooter.xib in Resources */,
 				CF6FB7562AA9BFAC00794E70 /* InfoTouirist.xib in Resources */,
+				CF34ED3F2AAD942800CA2D95 /* BookingFooter.xib in Resources */,
 				CF969D392AA05E8700CD75F9 /* Main.storyboard in Resources */,
 				CF8056EF2AA889D300B81176 /* BookingDetailesCell.xib in Resources */,
 				CF995A582AA87622004706F5 /* RoomCell.xib in Resources */,
@@ -584,6 +599,7 @@
 				CF8056EE2AA889D300B81176 /* BookingDetailesCell.swift in Sources */,
 				CFF016642AAAFA99009BB3E8 /* BookingModel.swift in Sources */,
 				CF969D7A2AA09A4D00CD75F9 /* InfoHotelCell.swift in Sources */,
+				CF34ED3E2AAD942800CA2D95 /* BookingFooter.swift in Sources */,
 				CF969D762AA09A2A00CD75F9 /* TagCell.swift in Sources */,
 				CFAC3FCD2AA71C1E00284369 /* LeftAligmentCollectionViewLayout.swift in Sources */,
 				CF969D722AA099F800CD75F9 /* DescriptionHotelCell.swift in Sources */,
