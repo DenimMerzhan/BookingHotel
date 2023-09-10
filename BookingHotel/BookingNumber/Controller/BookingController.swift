@@ -10,16 +10,16 @@ import UIKit
 class BookingController: UIViewController {
 
     var bookingInfo = [BookingInfo]()
+    var detailInfo = [BookingDetails]()
+    var indexPath: IndexPath?
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-  
-        
         let fly = BookingDetails(deatails: "Вылет из", descripiton: "Санкт-Петербург")
-       
+        print(indexPath)
         
         var details = [BookingDetails]()
         for _ in 0...8 {
@@ -154,6 +154,10 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .bookingDetails(_):
             let view = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! TitleHedear
             view.upSeparateView.isHidden = true
+            let titleAction = UIAction { [weak self] action in
+                self?.dismiss(animated: true)
+            }
+            view.backButton.addAction(titleAction, for: .touchUpInside)
             return view
         case .customerInfo:
             let state = bookingInfo[section].getState()

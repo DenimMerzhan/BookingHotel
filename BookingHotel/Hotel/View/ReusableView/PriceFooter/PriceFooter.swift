@@ -14,7 +14,7 @@ class PriceFooter: UICollectionReusableView {
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var backgroundView: UIView!
     
-    
+    var indexPath = IndexPath()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,6 +42,5 @@ class PriceFooter: UICollectionReusableView {
         priceLabel.attributedText = attributedString1
         
         
-    }
-    
+    }    
 }

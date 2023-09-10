@@ -10,6 +10,7 @@ import UIKit
 class RoomController: UICollectionViewController {
 
     var roomArr = [Room]()
+    var currentIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,11 @@ class RoomController: UICollectionViewController {
         collectionView.register(UINib(nibName: "PriceFooter", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter")
         collectionView.register(UINib(nibName: "TitleHedear", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear")
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destanationVC = segue.destination as? BookingController else {return}
+        destanationVC.indexPath =  currentIndexPath
     }
 
 }
@@ -72,6 +78,12 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
         }else {
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
             priceFooter.updateTextlabel(additionalText: "", priceText: "186 000р ", descriptionText: "За 7 ночей с перелетом")
+            priceFooter.indexPath = indexPath
+            let buttonAction = UIAction { [weak self] action in
+                self?.currentIndexPath = indexPath
+                self?.performSegue(withIdentifier: "roomToBooking", sender: self)
+            }
+            priceFooter.button.addAction(buttonAction, for: .touchUpInside)
             priceFooter.backgroundView.layer.cornerRadius = 15
             priceFooter.backgroundView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             return priceFooter

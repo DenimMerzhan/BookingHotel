@@ -99,18 +99,6 @@ struct TouristData {
     var validityPeriodPassport: String?
     
     var buttonState: ButtonTouiristState
-    
-//    var description: [String?] {
-//        var descriptionArr = [String?]()
-//        let mirror = Mirror(reflecting: self)
-//        
-//        for (_,value) in mirror.children {
-//            if let descriptionText =  value as? String? {
-//                descriptionArr.append(descriptionText)
-//            }
-//        }
-//        return descriptionArr
-//    }
 }
 
 enum ButtonTouiristState {

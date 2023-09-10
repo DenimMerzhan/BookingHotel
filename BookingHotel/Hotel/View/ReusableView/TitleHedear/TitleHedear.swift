@@ -16,6 +16,7 @@ class TitleHedear: UICollectionReusableView {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var backButton: UIButton!
     
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
     }

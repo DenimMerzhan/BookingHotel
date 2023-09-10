@@ -144,7 +144,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="lNG-Vd-mio"/>
                     <connections>
-                        <segue destination="Xo7-ak-1mk" kind="presentation" modalPresentationStyle="fullScreen" id="gg1-ea-KXZ"/>
+                        <segue destination="Xo7-ak-1mk" kind="presentation" identifier="roomToBooking" modalPresentationStyle="fullScreen" id="gg1-ea-KXZ"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3v-T7-LvM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
