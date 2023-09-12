@@ -30,7 +30,7 @@ struct HotelModel {
         
         let moreAboutHotel = SectionsInfoHotel.aboutHotel([.init(description: "Удобства",image: UIImage(named: "FacilitiesMAH")),.init(description: "Что включено",image: UIImage(named: "IncludedMAH")),.init(description: "Что не включено",image: UIImage(named: "NotIncludedMAH"))])
         
-        let descrHot = SectionsInfoHotel.detailDescription("dwwdw dw dwdw wdw dw dw d wdw w ddw w dwd wd dwd wdw dw dw dw dw dw dw dw  dw dw dw dw dw wd ddw")
+        let descrHot = SectionsInfoHotel.detailDescription("dwwdw dw dwdw wdw dw dw d wdw w ddw w dwd wd dwd wdw dw dw dw dw dw dw dw  dw dw dw dw dw wd ddw эй тыы в вывы ")
         
       
         sections.append(hotelImage)

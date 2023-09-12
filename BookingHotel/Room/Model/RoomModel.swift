@@ -6,17 +6,18 @@
 //
 
 import Foundation
-
+import UIKit
 
 struct RoomModel {
     
-    static func calculateHeightTagCollectionView(tagArr: [String],widthCollectionView: CGFloat) -> CGFloat? {
+    static func calculateHeightTagCollectionView(tagArr: [String],widthCollectionView: CGFloat,font: UIFont) -> CGFloat? {
         
         let indentTagCollectionView: CGFloat = 15 * 2
         let itemSpacingTagCollection: CGFloat = 10
-        let indentTagCell: CGFloat = 10 * 2
-        let heighTargetCell: CGFloat = 38
-        let spacinStackViewTagCell: CGFloat = 10
+//        let indentTagCell: CGFloat = 10 * 2
+//        let spacinStackViewTagCell: CGFloat = 10
+        let heighTargetCell: CGFloat = 45
+
        
         let tagArr = tagArr
         
@@ -27,7 +28,7 @@ struct RoomModel {
         while i <= tagArr.count - 1 {
             
             let tag = tagArr[i]
-            var widthTagCell: CGFloat = indentTagCell + tag.contentSizeString().width + itemSpacingTagCollection + spacinStackViewTagCell
+            var widthTagCell: CGFloat = tag.contentSizeString(font: font).width + itemSpacingTagCollection /// + spacingTagView
             if i == tagArr.count - 1 {widthTagCell += 20} /// На последнем теге есть кнопка у которой ширина = 20
             
             widthTagCollection -= widthTagCell

@@ -46,7 +46,6 @@
                             <constraint firstItem="lEV-Se-S2p" firstAttribute="bottom" secondItem="LS1-g5-N5t" secondAttribute="bottom" constant="-5" id="P0R-IC-w6q"/>
                             <constraint firstItem="lEV-Se-S2p" firstAttribute="leading" secondItem="yJn-rF-oae" secondAttribute="leading" constant="20" id="YCH-D2-h7S"/>
                             <constraint firstAttribute="bottom" secondItem="LS1-g5-N5t" secondAttribute="bottom" id="bH9-NK-nOM"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="p89-Y6-f7S"/>
                             <constraint firstItem="LS1-g5-N5t" firstAttribute="leading" secondItem="yJn-rF-oae" secondAttribute="leading" id="vjn-td-e4l"/>
                             <constraint firstAttribute="height" constant="300" id="wVk-RR-zfh"/>
                             <constraint firstAttribute="trailing" secondItem="LS1-g5-N5t" secondAttribute="trailing" id="yuQ-px-WQX"/>

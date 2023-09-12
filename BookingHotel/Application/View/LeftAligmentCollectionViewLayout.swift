@@ -14,7 +14,7 @@ class LeftAligmentCollectionViewLayout: UICollectionViewFlowLayout {
     required init?(coder aDecoder: NSCoder) {super.init(coder: aDecoder); common()}
     
     private func common() {
-        estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        itemSize = itemSize
         minimumLineSpacing = 0
         minimumInteritemSpacing = 10
     }

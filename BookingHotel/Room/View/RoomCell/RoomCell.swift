@@ -88,7 +88,7 @@ extension RoomCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else {
             guard let tag = room?.tagRoom[indexPath.row] else {return CGSize.zero}
-            return CGSize(width: tag.contentSizeString().width, height: 45)
+            return CGSize(width: tag.contentSizeString(font: .systemFont(ofSize: 18, weight: .medium)).width, height: 38)
         }
         
     }

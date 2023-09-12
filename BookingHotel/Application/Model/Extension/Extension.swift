@@ -11,9 +11,10 @@ import UIKit
 
 extension String {
     
-    func contentSizeString() -> CGSize {
+    func contentSizeString(font: UIFont) -> CGSize {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         label.text = self
+        label.font = font
         return label.intrinsicContentSize
     }
     

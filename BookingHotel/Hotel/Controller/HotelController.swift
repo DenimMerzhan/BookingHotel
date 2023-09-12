@@ -23,23 +23,19 @@ class HotelController: UITableViewController {
         
         sections = HotelModel.fillSections()
         
-        tableView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellReuseIdentifier: "CollectionCell")
+        tableView.register(UINib(nibName: "HotelCollectionCell", bundle: nil), forCellReuseIdentifier: "HotelCollectionCell")
         tableView.register(UINib(nibName: "InfoHotelCell", bundle: nil), forCellReuseIdentifier: "InfoHotelCell")
-        tableView.register(UINib(nibName: "TagCell", bundle: nil), forCellReuseIdentifier: "TagCell")
-        tableView.register(DescriptionHotelCell.self, forCellReuseIdentifier: "DescriptionHotelCell")
+        tableView.register(UINib(nibName: "TagCollectionCell", bundle: nil), forCellReuseIdentifier: "TagCollectionCell")
+        tableView.register(DescriptionHotelCell.self, forCellReuseIdentifier: DescriptionHotelCell.identifier)
         tableView.register(UINib(nibName: "MoreAboutHotelCell", bundle: nil), forCellReuseIdentifier: "MoreAboutHotelCell")
         
         tableView.contentInsetAdjustmentBehavior = .never
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        heightScrollView.constant = collectionView.contentSize.height + 100
+        tableView.separatorStyle = .none
     }
     
     
     @IBAction func selectNumberPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "goToSelectRoomNumber", sender: self)
+//        self.performSegue(withIdentifier: "goToSelectRoomNumber", sender: self)
     }
     
 }
@@ -55,16 +51,9 @@ extension HotelController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sections[section] {
-        case .hotelImage(_):
-            return 1
-        case .description(_):
-            return 1
-        case .tagHotel(let aboutHotel):
-            return aboutHotel.count
-        case .detailDescription(_):
-            return 1
         case .aboutHotel(let moreAboutHotel):
             return moreAboutHotel.count
+        default: return 1
         }
     }
     
@@ -73,7 +62,7 @@ extension HotelController {
         switch sections[indexPath.section] {
             
         case .hotelImage(let imageArr):
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionCell", for: indexPath) as! HotelCollectionCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HotelCollectionCell", for: indexPath) as! HotelCollectionCell
             cell.imageArr = imageArr
             cell.pageControl.numberOfPages = imageArr.count
             return cell
@@ -82,13 +71,13 @@ extension HotelController {
             cell.descriptionGrade.text = descriptionHotel.descripitonGrade
             return cell
         case .tagHotel(let aboutHotel):
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath) as! TagCell
-           
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TagCollectionCell", for: indexPath) as! TagCollectionCell
+            cell.tagArr = aboutHotel
             return cell
         case .detailDescription(let descriptionHotel):
             let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionHotelCell.identifier, for: indexPath) as! DescriptionHotelCell
             cell.descriptionText.text = descriptionHotel
-            cell.descriptionText.sizeToFit()
+//            cell.descriptionText.sizeToFit()
             return cell
         case .aboutHotel(let moreAboutHotel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "MoreAboutHotelCell", for: indexPath) as! MoreAboutHotelCell
@@ -109,7 +98,6 @@ extension HotelController {
     }
     
     
-    
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
     }
@@ -122,15 +110,21 @@ extension HotelController {
         switch sections[indexPath.section] {
             
         case .hotelImage(_):
-            <#code#>
+            return 300
         case .description(_):
-            <#code#>
-        case .tagHotel(_):
-            <#code#>
-        case .detailDescription(_):
-            <#code#>
+            return 100
+        case .tagHotel(let tagHotel):
+            if let height = RoomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {return height}
+            return 0
+        case .detailDescription(let descriptionText):
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width - 30, height: 50))
+            label.text = descriptionText
+            label.font = .systemFont(ofSize: 17)
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+            return label.sizeThatFits(CGSize(width: tableView.frame.width, height: 50)).height + 15
         case .aboutHotel(_):
-            <#code#>
+            return 100
         }
     }
     
@@ -172,98 +166,5 @@ extension HotelController {
     
 }
 
-//MARK: - UICollectionViewCompositionalLayout
-
-extension HotelController {
-    
-    func createLayout() -> UICollectionViewCompositionalLayout {
-        
-        let configuration = UICollectionViewCompositionalLayoutConfiguration()
-        configuration.scrollDirection = .vertical
-        
-        let layout = UICollectionViewCompositionalLayout { sectionNumber, env in
-            
-            let section = self.sections[sectionNumber]
-            
-            switch section {
-                
-            case .hotelImage(_):
-                
-                let imageItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300)), subitems: [imageItem])
-                
-                let section = NSCollectionLayoutSection(group: group)
-                section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)]
-                
-                return section
-                
-            case .description(_):
-                
-                let descriptionItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)))
-                
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitems: [descriptionItem])
-                group.contentInsets.leading = 15
-                group.contentInsets.trailing = 15
-                
-                
-                let section = NSCollectionLayoutSection(group: group)
-                section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottomLeading)]
-                section.contentInsets.top = 15
-                section.contentInsets.bottom = 10
-                
-                return section
-                
-            case .tagHotel(_):
-                
-                let aboutHotelItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .estimated(100)))
-                
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitems: [aboutHotelItem])
-                group.interItemSpacing = .fixed(8)
-                
-                let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets.top = 5
-                section.contentInsets.leading = 15
-                section.contentInsets.trailing = 15
-                
-                section.boundarySupplementaryItems = [.init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)]
-                
-                return section
-                
-            case .detailDescription(_):
-                
-                let descriptionHotelText = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)))
-                
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitems: [descriptionHotelText])
-                
-                let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets.leading = 15
-                section.contentInsets.trailing = 15
-                section.contentInsets.top = 15
-                
-                return section
-                
-            case .aboutHotel(_):
-                
-                let aboutHotelItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(85)))
-                
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(85)), subitems: [aboutHotelItem])
-                group.contentInsets.leading = 15
-                group.contentInsets.trailing = 15
-                
-                let section = NSCollectionLayoutSection(group: group)
-              
-                section.contentInsets.top = 20
-                section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottomLeading)]
-                
-                return section
-                
-            }
-        }
-        
-        layout.configuration = configuration
-        return layout
-    }
-    
-}
 
 
