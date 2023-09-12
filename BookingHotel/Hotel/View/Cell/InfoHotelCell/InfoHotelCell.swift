@@ -13,7 +13,8 @@ class InfoHotelCell: UITableViewCell {
     @IBOutlet weak var addresHotel: UILabel!
     @IBOutlet weak var nameHotel: UILabel!
     @IBOutlet weak var descriptionGrade: UILabel!
-    @IBOutlet weak var perfectView: UIStackView!
+    @IBOutlet weak var perfectView: UIView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

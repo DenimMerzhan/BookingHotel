@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -41,7 +42,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="SeparateCollectionView"/>
+                        <color key="backgroundColor" name="TagColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="NmI-XZ-vFb" secondAttribute="bottom" constant="8" id="6kb-XO-jnh"/>
                             <constraint firstAttribute="trailing" secondItem="NmI-XZ-vFb" secondAttribute="trailing" constant="10" id="CzC-d0-8QL"/>
@@ -72,8 +73,8 @@
         <namedColor name="ButtonColor">
             <color red="0.20000000298023224" green="0.43900001049041748" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="SeparateCollectionView">
-            <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="TagColor">
+            <color red="0.98431372549019602" green="0.98431372549019602" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TintAboutHotel">
             <color red="0.51372549019607838" green="0.52941176470588236" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

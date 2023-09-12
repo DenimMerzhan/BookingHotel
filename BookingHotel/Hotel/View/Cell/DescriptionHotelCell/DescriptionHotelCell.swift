@@ -27,7 +27,7 @@ class DescriptionHotelCell: UITableViewCell {
         descriptionText.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 15).isActive = true
         descriptionText.topAnchor.constraint(equalTo: self.topAnchor,constant: 15).isActive = true
         descriptionText.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -15).isActive = true
-        descriptionText.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        descriptionText.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -15).isActive = true
         
         descriptionText.font = .systemFont(ofSize: 17)
         descriptionText.lineBreakMode = .byWordWrapping

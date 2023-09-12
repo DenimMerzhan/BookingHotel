@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HotelCollectionCell" rowHeight="407" id="KGk-i7-Jjw" customClass="HotelCollectionCell" customModule="BookingHotel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="407"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HotelCollectionCell" rowHeight="317" id="KGk-i7-Jjw" customClass="HotelCollectionCell" customModule="BookingHotel" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="317"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="407"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="317"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tqM-ma-nXM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="407"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="302"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TqJ-VL-bHe">
                             <size key="itemSize" width="128" height="128"/>
@@ -29,20 +29,20 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="LzU-lk-OYa">
-                        <rect key="frame" x="16" y="350" width="288" height="26"/>
+                        <rect key="frame" x="16" y="256" width="288" height="26"/>
                         <connections>
                             <action selector="pageControlTapped:" destination="KGk-i7-Jjw" eventType="valueChanged" id="rqe-yo-1Qx"/>
                         </connections>
                     </pageControl>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="tqM-ma-nXM" secondAttribute="bottom" id="AAB-s6-FFa"/>
+                    <constraint firstAttribute="bottom" secondItem="tqM-ma-nXM" secondAttribute="bottom" constant="15" id="AAB-s6-FFa"/>
                     <constraint firstAttribute="trailing" secondItem="tqM-ma-nXM" secondAttribute="trailing" id="DKd-dc-WHg"/>
                     <constraint firstItem="tqM-ma-nXM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ZMl-7K-vaR"/>
                     <constraint firstItem="LzU-lk-OYa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="cml-ab-5wA"/>
+                    <constraint firstItem="LzU-lk-OYa" firstAttribute="bottom" secondItem="tqM-ma-nXM" secondAttribute="bottom" constant="-20" id="mG4-J9-Jok"/>
                     <constraint firstItem="tqM-ma-nXM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wQm-pc-J1s"/>
                     <constraint firstAttribute="trailingMargin" secondItem="LzU-lk-OYa" secondAttribute="trailing" id="xP3-pY-yAF"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="LzU-lk-OYa" secondAttribute="bottom" constant="20" id="yqj-GA-RDL"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -50,7 +50,7 @@
                 <outlet property="pageCollectionView" destination="tqM-ma-nXM" id="2Nl-jp-bdC"/>
                 <outlet property="pageControl" destination="LzU-lk-OYa" id="5G1-u5-S04"/>
             </connections>
-            <point key="canvasLocation" x="77.862595419847324" y="157.3943661971831"/>
+            <point key="canvasLocation" x="77.862595419847324" y="125.70422535211269"/>
         </tableViewCell>
     </objects>
     <resources>

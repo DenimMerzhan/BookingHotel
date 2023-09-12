@@ -29,7 +29,6 @@ class HotelController: UITableViewController {
         tableView.register(DescriptionHotelCell.self, forCellReuseIdentifier: DescriptionHotelCell.identifier)
         tableView.register(UINib(nibName: "MoreAboutHotelCell", bundle: nil), forCellReuseIdentifier: "MoreAboutHotelCell")
         
-        tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
     }
     
@@ -85,12 +84,12 @@ extension HotelController {
             cell.imageDescription.image = moreAboutHotel[indexPath.row].image
             
             if indexPath.row == 0 {
-                cell.layer.cornerRadius = 10
-                cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+                cell.view.layer.cornerRadius = 10
+                cell.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             }else if indexPath.row == 2 {
-                cell.layer.cornerRadius = 10
-                cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-                cell.separatorView.isHidden = true
+                cell.view.layer.cornerRadius = 10
+                cell.view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+                cell.separateView.isHidden = true
             }
             
             return cell
@@ -99,20 +98,63 @@ extension HotelController {
     
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
+        
+        let priceFooter = UINib(nibName: "PriceFooter", bundle: nil).instantiate(withOwner: self).first as! PriceFooter
+        switch sections[section] {
+        case .description(_):
+            priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
+            priceFooter.layer.cornerRadius = 15
+            priceFooter.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+            priceFooter.separateView.isHidden = true
+        default: return nil
+        }
+        return priceFooter
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 130
+        }else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
+        let hedearView = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: self).first as! TitleHedear
+        hedearView.upSeparateView.isHidden = true
+        hedearView.downSeparateView.isHidden = true
+        hedearView.backButton.isHidden = true
+        
+        switch sections[section] {
+        case .hotelImage(_):
+            hedearView.label.textAlignment = .center
+            hedearView.label.text = "Отель"
+            return hedearView
+        case .tagHotel(_):
+            hedearView.label.textAlignment = .left
+            hedearView.label.text = "Об отеле"
+            hedearView.label.font = .systemFont(ofSize: 25, weight: .medium)
+            hedearView.layer.cornerRadius = 15
+            hedearView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            return hedearView
+        default: return nil
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 100
+        }else if section == 2 {return 70}
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch sections[indexPath.section] {
             
         case .hotelImage(_):
-            return 300
+            return 315
         case .description(_):
-            return 100
+            return 120
         case .tagHotel(let tagHotel):
             if let height = RoomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {return height}
             return 0
@@ -122,48 +164,11 @@ extension HotelController {
             label.font = .systemFont(ofSize: 17)
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
-            return label.sizeThatFits(CGSize(width: tableView.frame.width, height: 50)).height + 15
+            return label.sizeThatFits(CGSize(width: tableView.frame.width, height: 50)).height + 30
         case .aboutHotel(_):
             return 100
         }
     }
-    
-    
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let titleHedear = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear", for: indexPath) as! TitleHedear
-            
-            titleHedear.upSeparateView.isHidden = true
-            titleHedear.downSeparateView.isHidden = true
-            titleHedear.backButton.isHidden = true
-            
-            switch sections[indexPath.section] {
-                
-            case .hotelImage(_):
-                titleHedear.label.textAlignment = .center
-                titleHedear.label.text = "Отель"
-            case .tagHotel(_):
-                titleHedear.label.textAlignment = .left
-                titleHedear.label.text = "Об отеле"
-                titleHedear.label.font = .systemFont(ofSize: 25, weight: .medium)
-            default: break
-            }
-            return titleHedear
-        }else {
-            let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
-            priceFooter.button.isHidden = true
-            switch sections[indexPath.section] {
-            case .description(_):
-                priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
-            case .aboutHotel(_):
-                priceFooter.priceLabel.isHidden = true
-            default: break
-            }
-            return priceFooter
-        }
-    }
-    
 }
 
 
