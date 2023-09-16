@@ -15,6 +15,7 @@ enum BookingInfo {
     case customerInfo(CustomerInfo)
     case touristData(TouristData)
     case result([BookingDetails])
+    case pay
     
     func getState() -> ButtonTouiristState? {
         switch self {

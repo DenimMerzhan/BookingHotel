@@ -34,19 +34,20 @@ class BookingController: UIViewController {
         bookingInfo.append(.bookingDetails(details))
         bookingInfo.append(.customerInfo(CustomerInfo()))
         bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
+        bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
         bookingInfo.append(.result(resultArr))
+        bookingInfo.append(.pay)
         
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.contentInsetAdjustmentBehavior = .never
+        tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "BookingDetailesCell", bundle: nil), forCellReuseIdentifier: "BookingDetailesCell")
         tableView.register(UINib(nibName: "InfoTouirist", bundle: nil), forCellReuseIdentifier: "InfoTouirist")
         tableView.register(UINib(nibName: "InfoHotelCell", bundle: nil), forCellReuseIdentifier: "InfoHotelCell")
-        tableView.contentInsetAdjustmentBehavior = .never
-        tableView.separatorStyle = .none
+        tableView.register(UINib(nibName: "ActionCell", bundle: nil), forCellReuseIdentifier: "ActionCell")
 
-        
     }
 
     
@@ -66,7 +67,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch bookingInfo[section] {
-        case .aboutHotel(_): return 1
+        case .aboutHotel(_),.pay: return 1
         case .bookingDetails(let bookingDetails):
             return bookingDetails.count
         case .customerInfo:
@@ -85,7 +86,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         switch bookingInfo[indexPath.section] {
         case .aboutHotel(let hotelDescription):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
-            cell.descriptionGrade.text = hotelDescription.descripitonGrade
+            cell.descriptionGrade.text = String(hotelDescription.grade) +  hotelDescription.descripitonGrade
             cell.contentView.layer.cornerRadius = 15
             return cell
         case .bookingDetails(let bookingDetails):
@@ -155,7 +156,11 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             }else if indexPath.row == bookingDetails.count - 1 {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+                cell.descriptionDetails.textColor = UIColor(named: "ButtonColor")
             }
+            return cell
+        case .pay:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath) as! ActionCell
             return cell
         }
     }
@@ -173,6 +178,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch bookingInfo[section] {
         case .customerInfo(_): return 70
+        case .pay: return .leastNormalMagnitude
         default: return 10
         }
     }
@@ -211,9 +217,8 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 }
             }
             
-  
             return view
-        case .result(_):
+        case .result(_),.pay:
             return nil
         }
     }
@@ -242,7 +247,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
 extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
     func buttonPressed(section: Int,isAddTourist: Bool) {
         if isAddTourist {
-            let index = bookingInfo.count - 2
+            let index = bookingInfo.count - 3
             bookingInfo.insert((.touristData(.init(buttonState: .notTouch))), at: index)
             tableView.reloadData()
             return

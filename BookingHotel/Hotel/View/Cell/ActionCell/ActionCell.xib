@@ -14,15 +14,15 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="90" id="KGk-i7-Jjw" customClass="ActionCell" customModule="BookingHotel" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mP3-0S-Mlr">
-                        <rect key="frame" x="15" y="15" width="290" height="60"/>
+                        <rect key="frame" x="15" y="15" width="290" height="50"/>
                         <color key="backgroundColor" name="ButtonColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="9xC-Oi-eJD"/>
+                            <constraint firstAttribute="height" constant="50" id="Est-YH-UCa"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="К выбору номеру">
@@ -39,6 +39,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="el6-o1-vI6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="I2J-wg-O6R"/>
+                    <constraint firstAttribute="bottom" secondItem="mP3-0S-Mlr" secondAttribute="bottom" constant="30" id="Wx9-Cs-VZ9"/>
                     <constraint firstItem="mP3-0S-Mlr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="X5n-7v-fQb"/>
                     <constraint firstAttribute="trailing" secondItem="el6-o1-vI6" secondAttribute="trailing" id="afJ-87-cY5"/>
                     <constraint firstAttribute="trailing" secondItem="mP3-0S-Mlr" secondAttribute="trailing" constant="15" id="gX3-r7-CP0"/>
