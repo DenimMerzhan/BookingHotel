@@ -67,7 +67,6 @@ extension RoomCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
-            
             if let room = self.room {
                 cell.descriptionText.text = room.tagRoom[indexPath.row]
                 if indexPath.row == room.tagRoom.count - 1 {
@@ -87,8 +86,13 @@ extension RoomCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         if collectionView == pageCollectionView {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else {
-            guard let tag = room?.tagRoom[indexPath.row] else {return CGSize.zero}
-            return CGSize(width: tag.contentSizeString(font: .systemFont(ofSize: 18, weight: .medium)).width, height: 38)
+            guard let tagArr = room?.tagRoom else {return CGSize.zero}
+            var marginsOnTheSides: CGFloat = 20
+            if indexPath.row == tagArr.count - 1 {
+                marginsOnTheSides += 25 /// 20 размер кнопки, 5 расстояние внутри стэка
+            }
+            let tag = tagArr[indexPath.row]
+            return CGSize(width: tag.contentSizeString(font: .systemFont(ofSize: 18, weight: .medium)).width + marginsOnTheSides, height: 45)
         }
         
     }

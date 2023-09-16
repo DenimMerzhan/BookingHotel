@@ -58,7 +58,7 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let room = roomArr[indexPath.section]
         if let height =  RoomModel.calculateHeightTagCollectionView(tagArr: room.tagRoom, widthCollectionView: collectionView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {
-            return CGSize(width: collectionView.frame.width, height: height + 310 + 70 + 20) /// 300 высота pageCollection 70 высота лейбла
+            return CGSize(width: collectionView.frame.width, height: height + 300 + 70 + 20) /// 300 высота pageCollection 70 высота лейбла, 20 отступ от верха
         }
         return CGSize(width: collectionView.frame.width, height: 500)
     }
@@ -74,6 +74,10 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
             let titleHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear", for: indexPath) as! TitleHedear
             titleHeader.upSeparateView.isHidden = true
             titleHeader.label.text = "Steigreheber Mainksols"
+            let action = UIAction { [weak self] action in
+                self?.dismiss(animated: true)
+            }
+            titleHeader.backButton.addAction(action, for: .touchUpInside)
             return titleHeader
         }else {
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
