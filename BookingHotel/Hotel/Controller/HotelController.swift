@@ -105,7 +105,7 @@ extension HotelController {
             priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
             priceFooter.layer.cornerRadius = 15
             priceFooter.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-            priceFooter.separateView.isHidden = true
+            priceFooter.separateView.isHidden = false
         default: return nil
         }
         return priceFooter
@@ -115,7 +115,7 @@ extension HotelController {
         if section == 1 {
             return 130
         }else {
-            return 0
+            return .leastNormalMagnitude
         }
     }
     
@@ -145,7 +145,7 @@ extension HotelController {
         if section == 0 {
             return 100
         }else if section == 2 {return 70}
-        return 0
+        return .leastNormalMagnitude
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
