@@ -9,7 +9,6 @@ import UIKit
 
 class BookingFooter: UICollectionReusableView {
 
-    @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var descriptionView: UIView!
     

@@ -34,7 +34,6 @@ class BookingController: UIViewController {
         bookingInfo.append(.bookingDetails(details))
         bookingInfo.append(.customerInfo(CustomerInfo()))
         bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
-        bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
         bookingInfo.append(.result(resultArr))
         
         
@@ -87,6 +86,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .aboutHotel(let hotelDescription):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
             cell.descriptionGrade.text = hotelDescription.descripitonGrade
+            cell.contentView.layer.cornerRadius = 15
             return cell
         case .bookingDetails(let bookingDetails):
             
@@ -95,6 +95,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             cell.details.text = details.deatails
             cell.descriptionDetails.text = details.descripiton
             cell.selectionStyle = .none
+            cell.descriptionDetails.textAlignment = .left
             
             if indexPath.row == 0 {
                 cell.contentView.layer.cornerRadius = 15
@@ -146,6 +147,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             cell.details.text = details.deatails
             cell.descriptionDetails.text = details.descripiton
             cell.selectionStyle = .none
+            cell.descriptionDetails.textAlignment = .right
             
             if indexPath.row == 0 {
                 cell.contentView.layer.cornerRadius = 15
@@ -160,9 +162,10 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch bookingInfo[section] {
-        case .bookingDetails(_):
+        case .aboutHotel(_):
             return 100
-        default: return 70
+        case .customerInfo(_),.touristData(_): return 70
+        default: return .leastNormalMagnitude
         }
     }
     
@@ -170,7 +173,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch bookingInfo[section] {
         case .customerInfo(_): return 70
-        default: return 20
+        default: return 10
         }
     }
     
@@ -179,19 +182,17 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         switch bookingInfo[section] {
         case .aboutHotel(_):
             let view = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! TitleHedear
-            view.upSeparateView.isHidden = true
             let titleAction = UIAction { [weak self] action in
                 self?.dismiss(animated: true)
             }
             view.backButton.addAction(titleAction, for: .touchUpInside)
             return view
-            
         case .bookingDetails(_):
             return nil
         case .customerInfo:
             let state = bookingInfo[section].getState()
             let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
-            view.label.text = BookingModel.numberTouirist[section - 1] + " Турист"
+            view.label.text = "Информация о покупателе"
             view.button.isHidden = true
             view.section = section
             view.delegate = self
@@ -199,12 +200,18 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .touristData:
             let state = bookingInfo[section].getState()
             let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
-            view.label.text = BookingModel.numberTouirist[section - 1] + " Турист"
+            view.label.text = BookingModel.numberTouirist[section - 3] + " Турист"
             view.section = section
             view.delegate = self
-            if section == 10 {
-                view.button.isUserInteractionEnabled = false
+            if section == tableView.numberOfSections - 2  {
+                view.isAddTourist = true
+                view.label.text = "Добавить туриста"
+                if section - 3 == BookingModel.numberTouirist.count - 1 {
+                    view.button.isUserInteractionEnabled = false
+                }
             }
+            
+  
             return view
         case .result(_):
             return nil
@@ -215,10 +222,10 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         let footer = UINib(nibName: "BookingFooter", bundle: nil).instantiate(withOwner: nil).first as! BookingFooter
         switch bookingInfo[section] {
         case .customerInfo(_):
-            footer.descriptionText.isHidden = false
             footer.descriptionView.layer.cornerRadius = 15
             footer.descriptionView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-        default: break
+        default:
+            footer.descriptionView.isHidden = true
         }
         return footer
     }
@@ -227,11 +234,21 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
 }
 
 
+
+
+
+//MARK: -  BookingHeaderDelegate, InfoTouristDelegate
+
 extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
-    func buttonPressed(section: Int) {
+    func buttonPressed(section: Int,isAddTourist: Bool) {
+        if isAddTourist {
+            let index = bookingInfo.count - 2
+            bookingInfo.insert((.touristData(.init(buttonState: .notTouch))), at: index)
+            tableView.reloadData()
+            return
+        }
         bookingInfo[section].changeSelectedState()
         tableView.reloadData()
-        
         let row = tableView.numberOfRows(inSection: section)
         if row > 0 {
             tableView.scrollToRow(at: IndexPath(row: row - 1, section: section), at: .middle, animated: true)

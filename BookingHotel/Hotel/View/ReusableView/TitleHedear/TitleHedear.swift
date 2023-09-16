@@ -12,7 +12,6 @@ class TitleHedear: UICollectionReusableView {
     
     
     @IBOutlet weak var downSeparateView: UIView!
-    @IBOutlet weak var upSeparateView: UIView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var backButton: UIButton!
     

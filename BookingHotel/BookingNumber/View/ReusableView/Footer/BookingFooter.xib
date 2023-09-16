@@ -16,10 +16,10 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tr3-DS-VSP" userLabel="DescriptionView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                     <subviews>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Эта информация чисто для проверки. И не в какие плохие руки не попадет!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfU-8W-ONF">
-                            <rect key="frame" x="15" y="0.0" width="290" height="63"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Эта информация чисто для проверки. И не в какие плохие руки не попадет!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfU-8W-ONF">
+                            <rect key="frame" x="15" y="0.0" width="290" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -33,28 +33,18 @@
                         <constraint firstItem="jfU-8W-ONF" firstAttribute="leading" secondItem="Tr3-DS-VSP" secondAttribute="leading" constant="15" id="hMy-6z-fdq"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iP-q8-CaA" userLabel="SeparateView">
-                    <rect key="frame" x="0.0" y="63" width="320" height="10"/>
-                    <color key="backgroundColor" name="SeparateCollectionView"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="10" id="Cuo-vQ-SPW"/>
-                    </constraints>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <color key="backgroundColor" name="SeparateCollectionView"/>
             <constraints>
-                <constraint firstItem="8iP-q8-CaA" firstAttribute="top" secondItem="Tr3-DS-VSP" secondAttribute="bottom" id="BLT-Bv-bCF"/>
-                <constraint firstAttribute="bottom" secondItem="8iP-q8-CaA" secondAttribute="bottom" id="e7i-0Z-t4b"/>
-                <constraint firstItem="Tr3-DS-VSP" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="kYx-4e-8Uq"/>
-                <constraint firstAttribute="trailing" secondItem="Tr3-DS-VSP" secondAttribute="trailing" id="rg9-3g-wVy"/>
-                <constraint firstItem="8iP-q8-CaA" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="tUy-CM-5pZ"/>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="8iP-q8-CaA" secondAttribute="trailing" id="ttC-N4-CwX"/>
-                <constraint firstItem="Tr3-DS-VSP" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="uis-Fr-dUl"/>
+                <constraint firstItem="Tr3-DS-VSP" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="7gs-R4-4fn"/>
+                <constraint firstAttribute="trailing" secondItem="Tr3-DS-VSP" secondAttribute="trailing" id="N3K-xM-MK3"/>
+                <constraint firstItem="Tr3-DS-VSP" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="hUP-kf-0jl"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="Tr3-DS-VSP" secondAttribute="bottom" constant="10" id="jgd-Fa-bc5"/>
             </constraints>
             <connections>
                 <outlet property="descriptionText" destination="jfU-8W-ONF" id="I0N-4z-XOQ"/>
                 <outlet property="descriptionView" destination="Tr3-DS-VSP" id="hGs-JK-Tbx"/>
-                <outlet property="separateView" destination="8iP-q8-CaA" id="KQ5-yE-VUN"/>
             </connections>
             <point key="canvasLocation" x="51.908396946564885" y="27.816901408450704"/>
         </collectionReusableView>

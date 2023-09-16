@@ -10,7 +10,7 @@ import UIKit
 
 protocol BookingHeaderDelegate {
     
-    func buttonPressed(section: Int)
+    func buttonPressed(section: Int, isAddTourist: Bool)
 }
 
 class BookingHeader: UIView {
@@ -19,6 +19,7 @@ class BookingHeader: UIView {
     var label = UILabel()
     var section =  Int()
     var delegate: BookingHeaderDelegate?
+    var isAddTourist = false
     
     
     
@@ -86,7 +87,7 @@ class BookingHeader: UIView {
     }
     
     @objc func buttonPressed(){
-        delegate?.buttonPressed(section: section)
+        delegate?.buttonPressed(section: section,isAddTourist: isAddTourist)
     }
     
 }

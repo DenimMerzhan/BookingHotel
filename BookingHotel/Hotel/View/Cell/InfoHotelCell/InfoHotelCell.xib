@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="syY-XA-ZW8">
-                        <rect key="frame" x="15" y="0.0" width="290" height="117"/>
+                        <rect key="frame" x="15" y="15" width="290" height="102"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEk-xV-4SL">
                                 <rect key="frame" x="0.0" y="0.0" width="218.33333333333334" height="45"/>
@@ -54,13 +54,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streitger bbbebe " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tP-hd-4Ne">
-                                <rect key="frame" x="0.0" y="53.000000000000007" width="201.66666666666666" height="30.333333333333336"/>
+                                <rect key="frame" x="0.0" y="53.000000000000007" width="201.66666666666666" height="26.333333333333336"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ww eew ew  ew d dwdw dw dwdw " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boq-iF-WxS">
-                                <rect key="frame" x="0.0" y="91.333333333333329" width="263.33333333333331" height="25.666666666666671"/>
+                                <rect key="frame" x="0.0" y="87.333333333333329" width="263.33333333333331" height="14.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="tintColor"/>
                                 <nil key="highlightedColor"/>
@@ -69,14 +69,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="syY-XA-ZW8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5ve-1S-oNP"/>
+                    <constraint firstItem="syY-XA-ZW8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="5ve-1S-oNP"/>
                     <constraint firstAttribute="trailing" secondItem="syY-XA-ZW8" secondAttribute="trailing" constant="15" id="7pX-Ws-6qM"/>
                     <constraint firstAttribute="bottom" secondItem="syY-XA-ZW8" secondAttribute="bottom" constant="10" id="mGf-hU-q45"/>
                     <constraint firstItem="syY-XA-ZW8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="rhF-Rm-hYV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="SeparateCollectionView"/>
             <connections>
                 <outlet property="addresHotel" destination="Boq-iF-WxS" id="AlH-Xv-gMp"/>
                 <outlet property="descriptionGrade" destination="ZDx-D3-RDR" id="qMD-aF-5OF"/>
@@ -93,6 +95,9 @@
         </namedColor>
         <namedColor name="PerfectColorInfoHotel">
             <color red="0.94901960784313721" green="0.67450980392156867" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="SeparateCollectionView">
+            <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

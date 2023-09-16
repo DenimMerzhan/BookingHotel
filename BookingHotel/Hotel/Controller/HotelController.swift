@@ -127,7 +127,6 @@ extension HotelController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let hedearView = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: self).first as! TitleHedear
-        hedearView.upSeparateView.isHidden = true
         hedearView.downSeparateView.isHidden = true
         hedearView.backButton.isHidden = true
         

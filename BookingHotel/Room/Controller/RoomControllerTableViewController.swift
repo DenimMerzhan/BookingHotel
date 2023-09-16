@@ -72,7 +72,6 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
         
         if kind == UICollectionView.elementKindSectionHeader {
             let titleHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear", for: indexPath) as! TitleHedear
-            titleHeader.upSeparateView.isHidden = true
             titleHeader.label.text = "Steigreheber Mainksols"
             let action = UIAction { [weak self] action in
                 self?.dismiss(animated: true)
