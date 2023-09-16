@@ -15,7 +15,8 @@ enum SectionsInfoHotel {
     case description(HotelDescription)
     case tagHotel([String])
     case detailDescription(String)
-    case aboutHotel([MoreAboutHotel])
+    case moreAboutHotel([MoreAboutHotel])
+    case selectNumber
     
     
 }

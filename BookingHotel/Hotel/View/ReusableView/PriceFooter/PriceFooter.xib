@@ -61,6 +61,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <color key="backgroundColor" name="SeparateCollectionView"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="qVR-2r-qMw" secondAttribute="trailing" id="37o-pP-nY3"/>
                 <constraint firstItem="qVR-2r-qMw" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="3NJ-D4-R0u"/>

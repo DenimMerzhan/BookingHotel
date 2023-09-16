@@ -49,6 +49,8 @@
 		CFAC3FCD2AA71C1E00284369 /* LeftAligmentCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC3FCC2AA71C1E00284369 /* LeftAligmentCollectionViewLayout.swift */; };
 		CFAC3FD32AA72C9400284369 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC3FD22AA72C9400284369 /* Extension.swift */; };
 		CFAC3FD62AA7758B00284369 /* TitleHedear.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFAC3FD52AA7758B00284369 /* TitleHedear.xib */; };
+		CFDF055B2AB5F3A40016252C /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDF05592AB5F3A40016252C /* ActionCell.swift */; };
+		CFDF055C2AB5F3A40016252C /* ActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDF055A2AB5F3A40016252C /* ActionCell.xib */; };
 		CFF016642AAAFA99009BB3E8 /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF016632AAAFA99009BB3E8 /* BookingModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +100,8 @@
 		CFAC3FCC2AA71C1E00284369 /* LeftAligmentCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAligmentCollectionViewLayout.swift; sourceTree = "<group>"; };
 		CFAC3FD22AA72C9400284369 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CFAC3FD52AA7758B00284369 /* TitleHedear.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleHedear.xib; sourceTree = "<group>"; };
+		CFDF05592AB5F3A40016252C /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		CFDF055A2AB5F3A40016252C /* ActionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionCell.xib; sourceTree = "<group>"; };
 		CFF016632AAAFA99009BB3E8 /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
 		FDAF84C2AF7559CD063EA4BA /* Pods-BookingHotel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookingHotel.debug.xcconfig"; path = "Target Support Files/Pods-BookingHotel/Pods-BookingHotel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +179,7 @@
 				CF969D592AA06B5100CD75F9 /* TagCell */,
 				CF969D5A2AA06B6100CD75F9 /* DescriptionHotelCell */,
 				CF969D5B2AA06B7B00CD75F9 /* MoreAboutHotelCell */,
+				CFDF055D2AB5F3A90016252C /* ActionCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -462,6 +467,15 @@
 			path = TitleHedear;
 			sourceTree = "<group>";
 		};
+		CFDF055D2AB5F3A90016252C /* ActionCell */ = {
+			isa = PBXGroup;
+			children = (
+				CFDF05592AB5F3A40016252C /* ActionCell.swift */,
+				CFDF055A2AB5F3A40016252C /* ActionCell.xib */,
+			);
+			path = ActionCell;
+			sourceTree = "<group>";
+		};
 		CFF016612AAAF8BC009BB3E8 /* ReusableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,6 +558,7 @@
 				CF34ED3F2AAD942800CA2D95 /* BookingFooter.xib in Resources */,
 				CF969D392AA05E8700CD75F9 /* Main.storyboard in Resources */,
 				CF8056EF2AA889D300B81176 /* BookingDetailesCell.xib in Resources */,
+				CFDF055C2AB5F3A40016252C /* ActionCell.xib in Resources */,
 				CF995A582AA87622004706F5 /* RoomCell.xib in Resources */,
 				CF34ED552AADA9F100CA2D95 /* TagCollectionCell.xib in Resources */,
 			);
@@ -611,6 +626,7 @@
 				CF969D362AA05E8700CD75F9 /* HotelController.swift in Sources */,
 				CF0D89C32AA34A8200FB2787 /* SwipeCell.swift in Sources */,
 				CFAC3FC52AA7137D00284369 /* RoomControllerTableViewController.swift in Sources */,
+				CFDF055B2AB5F3A40016252C /* ActionCell.swift in Sources */,
 				CF969D7E2AA09A8700CD75F9 /* HotelCollectionCell.swift in Sources */,
 				CF8056EE2AA889D300B81176 /* BookingDetailesCell.swift in Sources */,
 				CFF016642AAAFA99009BB3E8 /* BookingModel.swift in Sources */,

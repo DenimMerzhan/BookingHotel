@@ -28,16 +28,16 @@ struct HotelModel {
         let hotelDescription = SectionsInfoHotel.description(HotelDescription(grade: 5, descripitonGrade: "5 Превосходно", nameHotel: "Barbaris", adressHotel: "dik My dik", price: "134 00 00 р"))
         let aboutHotel = SectionsInfoHotel.tagHotel(["kek","Pek","mokkook","dwdwdw","drop menu left"])
         
-        let moreAboutHotel = SectionsInfoHotel.aboutHotel([.init(description: "Удобства",image: UIImage(named: "FacilitiesMAH")),.init(description: "Что включено",image: UIImage(named: "IncludedMAH")),.init(description: "Что не включено",image: UIImage(named: "NotIncludedMAH"))])
+        let moreAboutHotel = SectionsInfoHotel.moreAboutHotel([.init(description: "Удобства",image: UIImage(named: "FacilitiesMAH")),.init(description: "Что включено",image: UIImage(named: "IncludedMAH")),.init(description: "Что не включено",image: UIImage(named: "NotIncludedMAH"))])
         
         let descrHot = SectionsInfoHotel.detailDescription("dwwdw dw dwdw wdw dw dw d wdw w ddw w dwd wd dwd wdw dw dw dw dw dw dw dw  dw dw dw dw dw wd ddw эй тыы в вывы ")
         
-      
         sections.append(hotelImage)
         sections.append(hotelDescription)
         sections.append(aboutHotel)
         sections.append(descrHot)
         sections.append(moreAboutHotel)
+        sections.append(SectionsInfoHotel.selectNumber)
         
         return sections
         

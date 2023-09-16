@@ -10,13 +10,6 @@ import UIKit
 class HotelController: UITableViewController {
     
     var sections = [SectionsInfoHotel]()
-
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var heightScrollView: NSLayoutConstraint!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var selectNumberButton: UIButton!
-    @IBOutlet weak var separateViewSelectNumber: UIView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +21,9 @@ class HotelController: UITableViewController {
         tableView.register(UINib(nibName: "TagCollectionCell", bundle: nil), forCellReuseIdentifier: "TagCollectionCell")
         tableView.register(DescriptionHotelCell.self, forCellReuseIdentifier: DescriptionHotelCell.identifier)
         tableView.register(UINib(nibName: "MoreAboutHotelCell", bundle: nil), forCellReuseIdentifier: "MoreAboutHotelCell")
+        tableView.register(UINib(nibName: "ActionCell", bundle: nil), forCellReuseIdentifier: "ActionCell")
         
-        tableView.separatorStyle = .none
+        tableView.layoutMargins = .zero
     }
     
     
@@ -50,7 +44,7 @@ extension HotelController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sections[section] {
-        case .aboutHotel(let moreAboutHotel):
+        case .moreAboutHotel(let moreAboutHotel):
             return moreAboutHotel.count
         default: return 1
         }
@@ -76,9 +70,8 @@ extension HotelController {
         case .detailDescription(let descriptionHotel):
             let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionHotelCell.identifier, for: indexPath) as! DescriptionHotelCell
             cell.descriptionText.text = descriptionHotel
-//            cell.descriptionText.sizeToFit()
             return cell
-        case .aboutHotel(let moreAboutHotel):
+        case .moreAboutHotel(let moreAboutHotel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "MoreAboutHotelCell", for: indexPath) as! MoreAboutHotelCell
             cell.descriptionText.text = moreAboutHotel[indexPath.row].description
             cell.imageDescription.image = moreAboutHotel[indexPath.row].image
@@ -91,7 +84,13 @@ extension HotelController {
                 cell.view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
                 cell.separateView.isHidden = true
             }
-            
+            return cell
+        case .selectNumber:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell") as! ActionCell
+            let action = UIAction { [weak self] action in
+                self?.performSegue(withIdentifier: "goToSelectNumber", sender: self)
+            }
+            cell.button.addAction(action, for: .touchUpInside)
             return cell
         }
     }
@@ -99,23 +98,30 @@ extension HotelController {
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        let priceFooter = UINib(nibName: "PriceFooter", bundle: nil).instantiate(withOwner: self).first as! PriceFooter
+        
         switch sections[section] {
         case .description(_):
+            let priceFooter = UINib(nibName: "PriceFooter", bundle: nil).instantiate(withOwner: self).first as! PriceFooter
             priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
-            priceFooter.layer.cornerRadius = 15
-            priceFooter.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+            priceFooter.button.isHidden = true
+            priceFooter.backgroundView.layer.cornerRadius = 15
+            priceFooter.backgroundView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             priceFooter.separateView.isHidden = false
+            return priceFooter
+        case .moreAboutHotel(_):
+            let separateView = createSepareteView()
+            return separateView
         default: return nil
         }
-        return priceFooter
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 130
-        }else {
-            return .leastNormalMagnitude
+        switch sections[section] {
+        case .description(_):
+            return 80
+        case .moreAboutHotel(_):
+            return 35
+        default: return .leastNormalMagnitude
         }
     }
     
@@ -165,11 +171,30 @@ extension HotelController {
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
             return label.sizeThatFits(CGSize(width: tableView.frame.width, height: 50)).height + 30
-        case .aboutHotel(_):
+        case .moreAboutHotel(_):
+            return 90
+        case .selectNumber:
             return 100
         }
     }
 }
 
+
+extension HotelController {
+    
+    func createSepareteView() -> UIView{
+        let backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
+        backView.backgroundColor = UIColor(named: "SeparateCollectionView")
+        let whiteView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
+        whiteView.layer.cornerRadius = 15
+        whiteView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+        whiteView.backgroundColor = .white
+        
+        backView.addSubview(whiteView)
+        
+        return backView
+    }
+    
+}
 
 
