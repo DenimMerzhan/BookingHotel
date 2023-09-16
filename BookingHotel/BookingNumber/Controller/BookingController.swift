@@ -19,17 +19,23 @@ class BookingController: UIViewController {
         super.viewDidLoad()
 
         let fly = BookingDetails(deatails: "Вылет из", descripiton: "Санкт-Петербург")
-        print(indexPath)
-        
         var details = [BookingDetails]()
         for _ in 0...8 {
             details.append(fly)
         }
         
+        var resultArr = [BookingDetails]()
+        let detail = BookingDetails(deatails: "Тур", descripiton: "186 000р")
+        for _ in 0...3 {
+            resultArr.append(detail)
+        }
+        
+        bookingInfo.append(.aboutHotel(HotelDescription(grade: 5, descripitonGrade: "Класс", nameHotel: "Осень", adressHotel: "dwwddw")))
         bookingInfo.append(.bookingDetails(details))
         bookingInfo.append(.customerInfo(CustomerInfo()))
         bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
         bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
+        bookingInfo.append(.result(resultArr))
         
         
         tableView.dataSource = self
@@ -37,6 +43,7 @@ class BookingController: UIViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.register(UINib(nibName: "BookingDetailesCell", bundle: nil), forCellReuseIdentifier: "BookingDetailesCell")
         tableView.register(UINib(nibName: "InfoTouirist", bundle: nil), forCellReuseIdentifier: "InfoTouirist")
+        tableView.register(UINib(nibName: "InfoHotelCell", bundle: nil), forCellReuseIdentifier: "InfoHotelCell")
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
 
@@ -60,7 +67,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch bookingInfo[section] {
-            
+        case .aboutHotel(_): return 1
         case .bookingDetails(let bookingDetails):
             return bookingDetails.count
         case .customerInfo:
@@ -71,12 +78,16 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 return BookingModel.touristDataPlaceholder.count
             default: return 0
             }
+        case .result(let bookingDetails): return bookingDetails.count
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch bookingInfo[indexPath.section] {
-            
+        case .aboutHotel(let hotelDescription):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
+            cell.descriptionGrade.text = hotelDescription.descripitonGrade
+            return cell
         case .bookingDetails(let bookingDetails):
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailesCell") as! BookingDetailesCell
@@ -128,6 +139,22 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             }
             return cell
+        case .result(let bookingDetails):
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailesCell") as! BookingDetailesCell
+            let details = bookingDetails[indexPath.row]
+            cell.details.text = details.deatails
+            cell.descriptionDetails.text = details.descripiton
+            cell.selectionStyle = .none
+            
+            if indexPath.row == 0 {
+                cell.contentView.layer.cornerRadius = 15
+                cell.contentView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            }else if indexPath.row == bookingDetails.count - 1 {
+                cell.contentView.layer.cornerRadius = 15
+                cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+            }
+            return cell
         }
     }
     
@@ -142,16 +169,15 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch bookingInfo[section] {
-        case .bookingDetails(_):return 20
         case .customerInfo(_): return 70
-        default: return 10
+        default: return 20
         }
     }
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch bookingInfo[section] {
-        case .bookingDetails(_):
+        case .aboutHotel(_):
             let view = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! TitleHedear
             view.upSeparateView.isHidden = true
             let titleAction = UIAction { [weak self] action in
@@ -159,6 +185,9 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             }
             view.backButton.addAction(titleAction, for: .touchUpInside)
             return view
+            
+        case .bookingDetails(_):
+            return nil
         case .customerInfo:
             let state = bookingInfo[section].getState()
             let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
@@ -177,6 +206,8 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 view.button.isUserInteractionEnabled = false
             }
             return view
+        case .result(_):
+            return nil
         }
     }
     

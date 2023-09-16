@@ -10,9 +10,11 @@ import Foundation
 
 enum BookingInfo {
     
+    case aboutHotel(HotelDescription)
     case bookingDetails([BookingDetails])
     case customerInfo(CustomerInfo)
     case touristData(TouristData)
+    case result([BookingDetails])
     
     func getState() -> ButtonTouiristState? {
         switch self {

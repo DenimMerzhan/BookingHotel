@@ -25,7 +25,7 @@ struct HotelModel {
         hotellArr.append(hotelImage3)
         
         let hotelImage = SectionsInfoHotel.hotelImage(hotellArr)
-        let hotelDescription = SectionsInfoHotel.description(HotelDescription(grade: 5, descripitonGrade: "5 Превосходно", nameHotel: "Barbaris", adressHotel: "dik My dik", price: "134 00 00 р"))
+        let hotelDescription = SectionsInfoHotel.description(HotelDescription(grade: 5, descripitonGrade: "5 Превосходно", nameHotel: "Barbaris", adressHotel: "dik My dik"))
         let aboutHotel = SectionsInfoHotel.tagHotel(["kek","Pek","mokkook","dwdwdw","drop menu left"])
         
         let moreAboutHotel = SectionsInfoHotel.moreAboutHotel([.init(description: "Удобства",image: UIImage(named: "FacilitiesMAH")),.init(description: "Что включено",image: UIImage(named: "IncludedMAH")),.init(description: "Что не включено",image: UIImage(named: "NotIncludedMAH"))])
