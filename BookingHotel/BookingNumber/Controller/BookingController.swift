@@ -11,6 +11,7 @@ class BookingController: UIViewController {
 
     var bookingInfo = [BookingInfo]()
     var detailInfo = [BookingDetails]()
+    var isVerificationBegan = Bool()
     var indexPath: IndexPath?
     
     @IBOutlet weak var tableView: UITableView!
@@ -49,7 +50,14 @@ class BookingController: UIViewController {
         tableView.register(UINib(nibName: "ActionCell", bundle: nil), forCellReuseIdentifier: "ActionCell")
 
     }
+    
+    @objc func backButtonPressed(){
+        self.dismiss(animated: true)
+    }
 
+    @objc func payPressed(){
+        isVerificationBegan = true
+    }
     
 
 }
@@ -105,7 +113,6 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             }
-            
             return cell
         case .customerInfo(let customerInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
@@ -115,8 +122,13 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             cell.delegate = self
             
             if indexPath.row == 0 {
-                cell.textField.text = customerInfo.phoneNumber
                 cell.isUsedMaskNumber = true
+                if let phoneNumber = customerInfo.phoneNumber {
+                    cell.textField.text = phoneNumber
+                    if phoneNumber.count < 18 && isVerificationBegan {
+                        cell.view.backgroundColor = UIColor(named: "WrongDataColor")?.withAlphaComponent(0.15)
+                    }
+                }
             }else {
                 cell.textField.text = customerInfo.email
             }
@@ -161,6 +173,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             return cell
         case .pay:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath) as! ActionCell
+            cell.button.addTarget(self, action: #selector(payPressed), for: .touchUpInside)
             return cell
         }
     }
@@ -188,10 +201,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         switch bookingInfo[section] {
         case .aboutHotel(_):
             let view = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! TitleHedear
-            let titleAction = UIAction { [weak self] action in
-                self?.dismiss(animated: true)
-            }
-            view.backButton.addAction(titleAction, for: .touchUpInside)
+            view.backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
             return view
         case .bookingDetails(_):
             return nil
@@ -209,14 +219,13 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             view.label.text = BookingModel.numberTouirist[section - 3] + " Турист"
             view.section = section
             view.delegate = self
-            if section == tableView.numberOfSections - 2  {
+            if section == tableView.numberOfSections - 3  {
                 view.isAddTourist = true
                 view.label.text = "Добавить туриста"
                 if section - 3 == BookingModel.numberTouirist.count - 1 {
                     view.button.isUserInteractionEnabled = false
                 }
             }
-            
             return view
         case .result(_),.pay:
             return nil
@@ -238,10 +247,6 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     
 }
 
-
-
-
-
 //MARK: -  BookingHeaderDelegate, InfoTouristDelegate
 
 extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
@@ -262,10 +267,12 @@ extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
     
     
     func textDidChange(text: String?,indexPath:IndexPath) {
-        if indexPath.section == 1 {
+        switch bookingInfo[indexPath.section] {
+        case .customerInfo(_):
             bookingInfo[indexPath.section].changeCustomerInfoData(newValue: text, row: indexPath.row)
-        }else {
+        case .touristData(_):
             bookingInfo[indexPath.section].changeTouristData(newValue: text, row: indexPath.row)
+        default: break
         }
     }
 }
