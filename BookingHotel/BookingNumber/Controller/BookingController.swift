@@ -34,8 +34,8 @@ class BookingController: UIViewController {
         bookingInfo.append(.aboutHotel(HotelDescription(grade: 5, descripitonGrade: "Класс", nameHotel: "Осень", adressHotel: "dwwddw")))
         bookingInfo.append(.bookingDetails(details))
         bookingInfo.append(.customerInfo(CustomerInfo()))
-        bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
-        bookingInfo.append(.touristData(.init(buttonState: .notTouch)))
+        bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
+        bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
         bookingInfo.append(.result(resultArr))
         bookingInfo.append(.pay)
         
@@ -81,7 +81,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             return bookingDetails.count
         case .customerInfo:
             return BookingModel.customerInfoPlaceholder.count
-        case .touristData (let touristData):
+        case .tourist (let touristData):
             switch touristData.buttonState {
             case .selected:
                 return BookingModel.touristDataPlaceholder.count
@@ -124,29 +124,27 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 cell.isUsedMaskNumber = true
                 cell.textField.text = customerInfo.phoneNumber
                 if customerInfo.phoneNumber.isValidNumber() == false && isVerificationBegan {
-                    cell.view.backgroundColor = UIColor(named: "WrongDataColor")?.withAlphaComponent(0.15)
+                    cell.view.backgroundColor = K.color.wrongDataColor?.withAlphaComponent(0.15)
                 }
             }else {
                 if customerInfo.email.isValidEmail() == false && isVerificationBegan {
-                    cell.view.backgroundColor = UIColor(named: "WrongDataColor")?.withAlphaComponent(0.15)
+                    cell.view.backgroundColor = K.color.wrongDataColor?.withAlphaComponent(0.15)
                 }
                 cell.textField.text = customerInfo.email
             }
             return cell
-        case .touristData(let touristData):
+        case .tourist(let tourist):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
+            let descriptionStatus = BookingModel.getDescriptionStatus(tourist: tourist, row: indexPath.row)
             cell.textField.placeholder = BookingModel.touristDataPlaceholder[indexPath.row]
+            cell.textField.text = descriptionStatus.description
             cell.indexPath = indexPath
             cell.delegate = self
-            
-            switch indexPath.row {
-            case 0:cell.textField.text = touristData.name
-            case 1: cell.textField.text = touristData.family
-            case 2: cell.textField.text = touristData.dateOfBirth
-            case 3: cell.textField.text = touristData.citizenship
-            case 4: cell.textField.text = touristData.numberPassport
-            default:cell.textField.text = touristData.validityPeriodPassport
+           
+            if descriptionStatus.isValid == false && isVerificationBegan {
+                cell.view.backgroundColor =  K.color.wrongDataColor?.withAlphaComponent(0.15)
             }
+            
             if indexPath.row == BookingModel.touristDataPlaceholder.count - 1 {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
@@ -166,7 +164,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             }else if indexPath.row == bookingDetails.count - 1 {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-                cell.descriptionDetails.textColor = UIColor(named: "ButtonColor")
+                cell.descriptionDetails.textColor = K.color.buttonColor
             }
             return cell
         case .pay:
@@ -180,7 +178,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         switch bookingInfo[section] {
         case .aboutHotel(_):
             return 100
-        case .customerInfo(_),.touristData(_): return 70
+        case .customerInfo(_),.tourist(_): return 70
         default: return .leastNormalMagnitude
         }
     }
@@ -211,7 +209,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             view.section = section
             view.delegate = self
             return view
-        case .touristData:
+        case .tourist:
             let state = bookingInfo[section].getState()
             let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
             view.label.text = BookingModel.numberTouirist[section - 3] + " Турист"
@@ -251,7 +249,7 @@ extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
     func buttonPressed(section: Int,isAddTourist: Bool) {
         if isAddTourist {
             let index = bookingInfo.count - 3
-            bookingInfo.insert((.touristData(.init(buttonState: .notTouch))), at: index)
+            bookingInfo.insert((.tourist(.init(buttonState: .notTouch))), at: index)
             tableView.reloadData()
             return
         }
@@ -268,7 +266,7 @@ extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
         switch bookingInfo[indexPath.section] {
         case .customerInfo(_):
             bookingInfo[indexPath.section].changeCustomerInfoData(newValue: text, row: indexPath.row)
-        case .touristData(_):
+        case .tourist(_):
             bookingInfo[indexPath.section].changeTouristData(newValue: text, row: indexPath.row)
         default: break
         }

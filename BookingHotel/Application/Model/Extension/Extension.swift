@@ -22,10 +22,9 @@ extension String {
 
 extension String? {
     func isValidEmail() -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         guard let email = self else {return false}
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
     
@@ -34,5 +33,12 @@ extension String? {
         if number.count < 18 {
             return false
         }else {return true}
+    }
+    
+    func isValidName() -> Bool {
+        guard let name = self else {return false}
+        let nameRegax = "[a-zA-Z\\_]{1,35}"
+        let namePred = NSPredicate(format: "SELF MATCHES %@",nameRegax )
+        return namePred.evaluate(with: name)
     }
 }

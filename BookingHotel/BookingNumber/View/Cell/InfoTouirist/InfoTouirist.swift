@@ -35,7 +35,7 @@ class InfoTouirist: UITableViewCell {
         upPlaceHolder.isHidden = true
         textField.text = ""
         isUsedMaskNumber = false
-        view.backgroundColor = UIColor(named: "SeparateCollectionView")
+        view.backgroundColor = K.color.separateColor
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

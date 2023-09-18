@@ -16,6 +16,24 @@ struct BookingModel {
     static let descriptionPlacheholder = ["Вылет из","Cтрана,город","Даты","Кол-во ночей","Отель","Номер","Питание"]
     
     
-
-    
+    static func getDescriptionStatus(tourist: Tourist,row: Int) -> (description:String?,isValid: Bool) {
+        var description: String?
+        var isValid = Bool()
+        switch row {
+        case 0:
+            description = tourist.name
+            isValid = description.isValidName()
+        case 1:
+            description = tourist.family
+        case 2:
+            description = tourist.dateOfBirth
+        case 3:
+            description = tourist.citizenship
+        case 4:
+            description = tourist.numberPassport
+        default:
+            description = tourist.validityPeriodPassport
+        }
+        return (description,isValid)
+    }
 }

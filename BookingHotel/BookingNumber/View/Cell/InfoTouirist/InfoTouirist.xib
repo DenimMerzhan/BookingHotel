@@ -45,7 +45,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="SeparateCollectionView"/>
+                        <color key="backgroundColor" name="SeparateColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="JoB-te-3dV" secondAttribute="bottom" constant="13" id="3jZ-7m-LEe"/>
                             <constraint firstItem="JoB-te-3dV" firstAttribute="leading" secondItem="4Ag-b1-yQp" secondAttribute="leading" constant="13" id="8lb-Km-2QN"/>
@@ -75,6 +75,9 @@
     </objects>
     <resources>
         <namedColor name="SeparateCollectionView">
+            <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="SeparateColor">
             <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TintAboutHotel">

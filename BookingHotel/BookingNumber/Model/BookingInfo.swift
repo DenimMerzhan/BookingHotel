@@ -13,13 +13,13 @@ enum BookingInfo {
     case aboutHotel(HotelDescription)
     case bookingDetails([BookingDetails])
     case customerInfo(CustomerInfo)
-    case touristData(TouristData)
+    case tourist(Tourist)
     case result([BookingDetails])
     case pay
     
     func getState() -> ButtonTouiristState? {
         switch self {
-        case .touristData(let touristData):
+        case .tourist(let touristData):
             return touristData.buttonState
         default: return nil
         }
@@ -28,14 +28,14 @@ enum BookingInfo {
     mutating func changeSelectedState(){
         
         switch self {
-        case .touristData(var touristData):
+        case .tourist(var touristData):
             switch touristData.buttonState {
             case .selected:
                 touristData.buttonState = .notSelected
-                self = .touristData(touristData)
+                self = .tourist(touristData)
             default:
                 touristData.buttonState = .selected
-                self = .touristData(touristData)
+                self = .tourist(touristData)
             }
         default: break
         }
@@ -44,20 +44,20 @@ enum BookingInfo {
     mutating func changeTouristData(newValue:String?,row:Int){
         
         switch self {
-        case .touristData(var touristData):
+        case .tourist(var touristData):
             switch row {
             case 0: touristData.name = newValue
-                self = .touristData(touristData)
+                self = .tourist(touristData)
             case 1: touristData.family = newValue
-                self = .touristData(touristData)
+                self = .tourist(touristData)
             case 2: touristData.dateOfBirth = newValue
-                self = .touristData(touristData)
+                self = .tourist(touristData)
             case 3: touristData.citizenship = newValue
-                self = .touristData(touristData)
+                self = .tourist(touristData)
             case 4: touristData.numberPassport = newValue
-                self = .touristData(touristData)
+                self = .tourist(touristData)
             default: touristData.validityPeriodPassport = newValue
-                self = .touristData(touristData)
+                self = .tourist(touristData)
             }
         default: break
         }
@@ -92,7 +92,7 @@ struct CustomerInfo {
     
 }
 
-struct TouristData {
+struct Tourist {
     
     var name: String?
     var family: String?
