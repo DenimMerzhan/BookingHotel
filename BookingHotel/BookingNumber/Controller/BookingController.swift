@@ -239,8 +239,6 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         }
         return footer
     }
-    
-    
 }
 
 //MARK: -  BookingHeaderDelegate, InfoTouristDelegate

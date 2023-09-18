@@ -41,4 +41,21 @@ extension String? {
         let namePred = NSPredicate(format: "SELF MATCHES %@",nameRegax )
         return namePred.evaluate(with: name)
     }
+    
+    func isValidPassword() -> Bool {
+        guard let password = self else {return false}
+        let passwordRegax = "[0-9\\_]{10,10}"
+        let passwordPred = NSPredicate(format: "SELF MATCHES %@",passwordRegax )
+        return passwordPred.evaluate(with: password)
+    }
+    
+    func isValidDateOfBirth() -> Bool {
+        guard let dateOfBirth = self else {return false}
+        let dateOfBirthRegax = "[0-9]{2}+.[0-9]{2}.[0-9]{4}"
+        let dateOfBirthPred = NSPredicate(format: "SELF MATCHES %@",dateOfBirthRegax )
+        return dateOfBirthPred.evaluate(with: dateOfBirth)
+    }
+    
+    
+    
 }
