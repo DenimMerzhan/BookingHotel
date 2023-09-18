@@ -24,6 +24,7 @@ class InfoTouirist: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
         view.layer.cornerRadius = 10
         textField.borderStyle = .none
         textField.delegate = self
@@ -32,7 +33,9 @@ class InfoTouirist: UITableViewCell {
     
     override func prepareForReuse() {
         upPlaceHolder.isHidden = true
+        textField.text = ""
         isUsedMaskNumber = false
+        view.backgroundColor = UIColor(named: "SeparateCollectionView")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -57,6 +57,7 @@ class BookingController: UIViewController {
 
     @objc func payPressed(){
         isVerificationBegan = true
+        tableView.reloadData()
     }
     
 
@@ -103,7 +104,6 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             let details = bookingDetails[indexPath.row]
             cell.details.text = details.deatails
             cell.descriptionDetails.text = details.descripiton
-            cell.selectionStyle = .none
             cell.descriptionDetails.textAlignment = .left
             
             if indexPath.row == 0 {
@@ -117,26 +117,25 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .customerInfo(let customerInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
             cell.textField.placeholder = BookingModel.customerInfoPlaceholder[indexPath.row]
-            cell.selectionStyle = .none
             cell.indexPath = indexPath
             cell.delegate = self
             
             if indexPath.row == 0 {
                 cell.isUsedMaskNumber = true
-                if let phoneNumber = customerInfo.phoneNumber {
-                    cell.textField.text = phoneNumber
-                    if phoneNumber.count < 18 && isVerificationBegan {
-                        cell.view.backgroundColor = UIColor(named: "WrongDataColor")?.withAlphaComponent(0.15)
-                    }
+                cell.textField.text = customerInfo.phoneNumber
+                if customerInfo.phoneNumber.isValidNumber() == false && isVerificationBegan {
+                    cell.view.backgroundColor = UIColor(named: "WrongDataColor")?.withAlphaComponent(0.15)
                 }
             }else {
+                if customerInfo.email.isValidEmail() == false && isVerificationBegan {
+                    cell.view.backgroundColor = UIColor(named: "WrongDataColor")?.withAlphaComponent(0.15)
+                }
                 cell.textField.text = customerInfo.email
             }
             return cell
         case .touristData(let touristData):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
             cell.textField.placeholder = BookingModel.touristDataPlaceholder[indexPath.row]
-            cell.selectionStyle = .none
             cell.indexPath = indexPath
             cell.delegate = self
             
@@ -159,7 +158,6 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             let details = bookingDetails[indexPath.row]
             cell.details.text = details.deatails
             cell.descriptionDetails.text = details.descripiton
-            cell.selectionStyle = .none
             cell.descriptionDetails.textAlignment = .right
             
             if indexPath.row == 0 {
