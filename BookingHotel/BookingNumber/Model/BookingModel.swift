@@ -34,7 +34,7 @@ struct BookingModel {
             isValid =  description.isValidName()
         case 4:
             description = tourist.numberPassport
-            isValid = description.isValidPassword()
+            isValid = description.isValidPassport()
         default:
             description = tourist.validityPeriodPassport
             isValid = description.isValidDateOfBirth()
