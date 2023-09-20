@@ -40,7 +40,7 @@ class BookingController: UIViewController {
         bookingInfo.append(.result(resultArr))
         bookingInfo.append(.pay)
         
-        
+        tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.contentInsetAdjustmentBehavior = .never

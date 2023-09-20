@@ -18,6 +18,7 @@ class HotelController: UIViewController {
         
         sections = HotelModel.fillSections()
         
+        tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "HotelCollectionCell", bundle: nil), forCellReuseIdentifier: "HotelCollectionCell")

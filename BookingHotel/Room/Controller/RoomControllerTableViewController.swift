@@ -18,6 +18,7 @@ class RoomController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -27,6 +28,7 @@ class RoomController: UIViewController {
         roomArr = [room1,room2,room3]
         self.title = "Steingber Mask"
         
+        collectionView.allowsSelection = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "RoomCell", bundle: nil), forCellWithReuseIdentifier: "RoomCell")

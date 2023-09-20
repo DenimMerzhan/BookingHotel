@@ -29,7 +29,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="LzU-lk-OYa">
-                        <rect key="frame" x="16" y="256" width="288" height="26"/>
+                        <rect key="frame" x="16" y="266" width="288" height="26"/>
                         <connections>
                             <action selector="pageControlTapped:" destination="KGk-i7-Jjw" eventType="valueChanged" id="rqe-yo-1Qx"/>
                         </connections>
@@ -40,7 +40,7 @@
                     <constraint firstAttribute="trailing" secondItem="tqM-ma-nXM" secondAttribute="trailing" id="DKd-dc-WHg"/>
                     <constraint firstItem="tqM-ma-nXM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ZMl-7K-vaR"/>
                     <constraint firstItem="LzU-lk-OYa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="cml-ab-5wA"/>
-                    <constraint firstItem="LzU-lk-OYa" firstAttribute="bottom" secondItem="tqM-ma-nXM" secondAttribute="bottom" constant="-20" id="mG4-J9-Jok"/>
+                    <constraint firstItem="LzU-lk-OYa" firstAttribute="bottom" secondItem="tqM-ma-nXM" secondAttribute="bottom" constant="-10" id="mG4-J9-Jok"/>
                     <constraint firstItem="tqM-ma-nXM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wQm-pc-J1s"/>
                     <constraint firstAttribute="trailingMargin" secondItem="LzU-lk-OYa" secondAttribute="trailing" id="xP3-pY-yAF"/>
                 </constraints>

@@ -32,7 +32,7 @@
                                 </collectionViewFlowLayout>
                             </collectionView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="lEV-Se-S2p">
-                                <rect key="frame" x="20" y="269" width="234" height="26"/>
+                                <rect key="frame" x="20" y="264" width="234" height="26"/>
                                 <color key="pageIndicatorTintColor" systemColor="opaqueSeparatorColor"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
                                 <connections>
@@ -43,7 +43,7 @@
                         <constraints>
                             <constraint firstItem="LS1-g5-N5t" firstAttribute="top" secondItem="yJn-rF-oae" secondAttribute="top" constant="20" id="1rH-0u-Pd8"/>
                             <constraint firstAttribute="trailing" secondItem="lEV-Se-S2p" secondAttribute="trailing" constant="20" id="FNJ-cJ-GoP"/>
-                            <constraint firstItem="lEV-Se-S2p" firstAttribute="bottom" secondItem="LS1-g5-N5t" secondAttribute="bottom" constant="-5" id="P0R-IC-w6q"/>
+                            <constraint firstItem="lEV-Se-S2p" firstAttribute="bottom" secondItem="LS1-g5-N5t" secondAttribute="bottom" constant="-10" id="P0R-IC-w6q"/>
                             <constraint firstItem="lEV-Se-S2p" firstAttribute="leading" secondItem="yJn-rF-oae" secondAttribute="leading" constant="20" id="YCH-D2-h7S"/>
                             <constraint firstAttribute="bottom" secondItem="LS1-g5-N5t" secondAttribute="bottom" id="bH9-NK-nOM"/>
                             <constraint firstItem="LS1-g5-N5t" firstAttribute="leading" secondItem="yJn-rF-oae" secondAttribute="leading" id="vjn-td-e4l"/>
