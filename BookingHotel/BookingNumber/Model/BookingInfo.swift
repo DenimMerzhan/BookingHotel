@@ -86,10 +86,8 @@ struct BookingDetails {
 }
 
 struct CustomerInfo {
-    
     var phoneNumber: String?
     var email: String?
-    
 }
 
 struct Tourist {
@@ -110,4 +108,20 @@ enum ButtonTouiristState {
     case notSelected
     case notTouch
     
+}
+
+
+extension Tourist {
+    
+    func isTouristEmpty() -> Bool {
+        let mirror = Mirror(reflecting: self)
+        for (_,value) in mirror.children {
+            if let value = value as? String {
+                if value.isEmpty ==  false {
+                    return false
+                }
+            }
+        }
+        return true
+    }
 }

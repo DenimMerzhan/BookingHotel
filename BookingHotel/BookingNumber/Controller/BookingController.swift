@@ -57,7 +57,20 @@ class BookingController: UIViewController {
 
     @objc func payPressed(){
         isVerificationBegan = true
-        tableView.reloadData()
+        
+        switch bookingInfo[2] {
+        case .customerInfo(let customerInfo):
+            switch bookingInfo[3] {
+            case .tourist(let tourist):
+                if validateUser(tourist: tourist, customerInfo: customerInfo) {
+                    
+                }else {
+                    tableView.reloadData()
+                }
+            default: break
+            }
+        default: break
+        }
     }
     
 
@@ -123,7 +136,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             if indexPath.row == 0 {
                 cell.isUsedMaskNumber = true
                 cell.textField.text = customerInfo.phoneNumber
-                if customerInfo.phoneNumber.isValidNumber() == false && isVerificationBegan {
+                if customerInfo.phoneNumber.isValidPhoneNumber() == false && isVerificationBegan {
                     cell.view.backgroundColor = K.color.wrongDataColor?.withAlphaComponent(0.15)
                 }
             }else {
@@ -143,6 +156,9 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
            
             if descriptionStatus.isValid == false && isVerificationBegan {
                 cell.view.backgroundColor =  K.color.wrongDataColor?.withAlphaComponent(0.15)
+            }
+            if tourist.isTouristEmpty() && indexPath.section != 3 {
+                cell.view.backgroundColor = K.color.separateColor
             }
             
             if indexPath.row == BookingModel.touristDataPlaceholder.count - 1 {
@@ -269,4 +285,36 @@ extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
         default: break
         }
     }
+}
+
+extension BookingController {
+    
+    func validateUser(tourist: Tourist,customerInfo: CustomerInfo) -> Bool {
+        
+        for i in 0...bookingInfo.count - 1 {
+            switch bookingInfo[i] {
+            case .tourist(let tourist):
+                if validateTourist(tourist: tourist, indexTourist: i) == false {return false}
+            default: break
+            }
+        }
+        
+        if customerInfo.email.isValidEmail() == false || customerInfo.phoneNumber.isValidPhoneNumber() == false {return false}
+        
+        return true
+    }
+    
+    func validateTourist(tourist: Tourist,indexTourist: Int) -> Bool {
+        if tourist.isTouristEmpty() && indexTourist != 3 {
+            return true
+        }
+        for i in 0...5 {
+            let isValidDescription = BookingModel.getDescriptionStatus(tourist: tourist, row: i).isValid
+            if isValidDescription == false {
+                return false
+            }
+        }
+        return true
+    }
+    
 }

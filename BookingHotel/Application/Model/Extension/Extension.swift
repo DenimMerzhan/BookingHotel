@@ -38,7 +38,7 @@ extension String? {
         return emailPred.evaluate(with: email)
     }
     
-    func isValidNumber() -> Bool {
+    func isValidPhoneNumber() -> Bool {
         guard var number = self else {return false}
         if number.count < 18 {
             return false
