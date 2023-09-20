@@ -7,45 +7,50 @@
 
 import UIKit
 
-class RoomController: UICollectionViewController {
-
+class RoomController: UIViewController {
+    
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var roomArr = [Room]()
     var currentIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.contentInsetAdjustmentBehavior = .never
-
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         var room1 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на бассейн", tagRoom: ["Все включено", "Кондиционер","Djn", "Подробнее о номере"])
         var room2 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на кухню", tagRoom: ["Все включено", "Кондиционер", "Подробнее о номере"])
         var room3 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на сад", tagRoom: ["Все включено", "Кондиционер", "Подробнее о номере"])
         roomArr = [room1,room2,room3]
+        self.title = "Steingber Mask"
         
-       
+        collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(UINib(nibName: "RoomCell", bundle: nil), forCellWithReuseIdentifier: "RoomCell")
         collectionView.register(UINib(nibName: "PriceFooter", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter")
         collectionView.register(UINib(nibName: "TitleHedear", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear")
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destanationVC = segue.destination as? BookingController else {return}
         destanationVC.indexPath =  currentIndexPath
     }
-
+    
 }
 
-extension RoomController: UICollectionViewDelegateFlowLayout {
+extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return roomArr.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomCell", for: indexPath) as! RoomCell
         let room = roomArr[indexPath.section]
@@ -62,36 +67,32 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
         }
         return CGSize(width: collectionView.frame.width, height: 500)
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionView.elementKindSectionHeader {
-            let titleHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear", for: indexPath) as! TitleHedear
-            titleHeader.label.text = "Steigreheber Mainksols"
-            let action = UIAction { [weak self] action in
-                self?.dismiss(animated: true)
-            }
-            titleHeader.backButton.addAction(action, for: .touchUpInside)
-            return titleHeader
+            let headear = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear", for: indexPath) as! TitleHedear
+            headear.label.isHidden = true
+            return headear
         }else {
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
             priceFooter.updateTextlabel(additionalText: "", priceText: "186 000р ", descriptionText: "За 7 ночей с перелетом")
             priceFooter.indexPath = indexPath
+            priceFooter.button.removeTarget(nil, action: nil, for: .allEvents)
             let buttonAction = UIAction { [weak self] action in
                 self?.currentIndexPath = indexPath
-                self?.performSegue(withIdentifier: "roomToBooking", sender: self)
+                self?.performSegue(withIdentifier: "goToBooking", sender: self)
             }
             priceFooter.button.addAction(buttonAction, for: .touchUpInside)
             priceFooter.backgroundView.layer.cornerRadius = 15
             priceFooter.backgroundView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             return priceFooter
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -100,10 +101,9 @@ extension RoomController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-            return CGSize(width: collectionView.frame.width, height: 120)
-        }else {
-            return .zero
+            return CGSize(width: collectionView.frame.width, height: 10)
         }
+        return .zero
     }
     
 }

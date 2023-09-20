@@ -19,8 +19,8 @@ class HotelCollectionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.selectionStyle = .none
         pageCollectionView?.register(UINib(nibName: "SwipeCell", bundle: nil), forCellWithReuseIdentifier: "SwipeCell")
-        
         pageCollectionView?.dataSource = self
         pageCollectionView?.delegate = self
         pageCollectionView?.isPagingEnabled = true

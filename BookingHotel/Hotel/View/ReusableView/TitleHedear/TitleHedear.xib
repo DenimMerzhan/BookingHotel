@@ -12,70 +12,45 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TitleHedear" id="5iz-Cg-Dez" userLabel="TitleHedear" customClass="TitleHedear" customModule="BookingHotel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="485" height="222"/>
+            <rect key="frame" x="0.0" y="0.0" width="485" height="152"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SNN-qa-c3t" userLabel="DonwSeparateView">
-                    <rect key="frame" x="0.0" y="207" width="485" height="15"/>
-                    <color key="backgroundColor" name="SeparateCollectionView"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="hZV-54-9Y0"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Nr-Sq-k95" userLabel="LabelView">
-                    <rect key="frame" x="0.0" y="0.0" width="485" height="207"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="daI-uu-lJ3">
+                    <rect key="frame" x="0.0" y="59" width="485" height="59"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daI-uu-lJ3">
-                            <rect key="frame" x="15" y="0.0" width="455" height="207"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i32-6b-BeV">
-                                    <rect key="frame" x="0.0" y="0.0" width="30" height="207"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="GaQ-sU-BO1"/>
-                                    </constraints>
-                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
-                                </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ip-bV-Ufr">
-                                    <rect key="frame" x="30" y="0.0" width="425" height="207"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7G-ST-QoJ">
+                            <rect key="frame" x="0.0" y="0.0" width="485" height="10"/>
+                            <color key="backgroundColor" name="SeparateColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="10" id="lHR-OZ-DYa"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ip-bV-Ufr">
+                            <rect key="frame" x="0.0" y="10" width="485" height="49"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
-                    <constraints>
-                        <constraint firstItem="daI-uu-lJ3" firstAttribute="top" secondItem="3Nr-Sq-k95" secondAttribute="top" id="Dzx-Vq-wZQ"/>
-                        <constraint firstAttribute="bottom" secondItem="daI-uu-lJ3" secondAttribute="bottom" id="RDw-TM-wpV"/>
-                        <constraint firstItem="daI-uu-lJ3" firstAttribute="leading" secondItem="3Nr-Sq-k95" secondAttribute="leading" constant="15" id="Rwp-OV-kTX"/>
-                        <constraint firstAttribute="trailing" secondItem="daI-uu-lJ3" secondAttribute="trailing" constant="15" id="i9k-St-i3L"/>
-                    </constraints>
-                </view>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Yz2-5M-lH2"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="SNN-qa-c3t" firstAttribute="top" secondItem="3Nr-Sq-k95" secondAttribute="bottom" id="2WZ-PP-wDS"/>
-                <constraint firstItem="3Nr-Sq-k95" firstAttribute="leading" secondItem="5iz-Cg-Dez" secondAttribute="leading" id="Fzw-db-6MM"/>
-                <constraint firstItem="Yz2-5M-lH2" firstAttribute="trailing" secondItem="SNN-qa-c3t" secondAttribute="trailing" id="Hnc-0a-DWV"/>
-                <constraint firstItem="3Nr-Sq-k95" firstAttribute="top" secondItem="5iz-Cg-Dez" secondAttribute="top" id="T6P-y7-mxX"/>
-                <constraint firstAttribute="trailing" secondItem="3Nr-Sq-k95" secondAttribute="trailing" id="cPD-Iy-kdW"/>
-                <constraint firstAttribute="bottom" secondItem="SNN-qa-c3t" secondAttribute="bottom" id="j1N-4p-EhL"/>
-                <constraint firstItem="SNN-qa-c3t" firstAttribute="leading" secondItem="Yz2-5M-lH2" secondAttribute="leading" id="wRr-wx-gI5"/>
+                <constraint firstItem="daI-uu-lJ3" firstAttribute="top" secondItem="Yz2-5M-lH2" secondAttribute="top" id="TMm-2f-RBt"/>
+                <constraint firstItem="Yz2-5M-lH2" firstAttribute="trailing" secondItem="daI-uu-lJ3" secondAttribute="trailing" id="hrD-fx-iok"/>
+                <constraint firstItem="daI-uu-lJ3" firstAttribute="leading" secondItem="Yz2-5M-lH2" secondAttribute="leading" id="quG-jG-LnE"/>
+                <constraint firstItem="Yz2-5M-lH2" firstAttribute="bottom" secondItem="daI-uu-lJ3" secondAttribute="bottom" id="tUV-rq-BnE"/>
             </constraints>
             <connections>
-                <outlet property="backButton" destination="i32-6b-BeV" id="OLl-d8-Cpz"/>
-                <outlet property="downSeparateView" destination="SNN-qa-c3t" id="x5R-hX-DfD"/>
                 <outlet property="label" destination="5ip-bV-Ufr" id="jvS-ek-zyA"/>
+                <outlet property="separateView" destination="X7G-ST-QoJ" id="3Tn-eM-l18"/>
             </connections>
-            <point key="canvasLocation" x="264.8854961832061" y="24.647887323943664"/>
+            <point key="canvasLocation" x="264.8854961832061" y="0.0"/>
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="chevron.backward" catalog="system" width="97" height="128"/>
-        <namedColor name="SeparateCollectionView">
+        <namedColor name="SeparateColor">
             <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>

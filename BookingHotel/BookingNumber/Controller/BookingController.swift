@@ -18,7 +18,8 @@ class BookingController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Бронирование"
+        
         let fly = BookingDetails(deatails: "Вылет из", descripiton: "Санкт-Петербург")
         var details = [BookingDetails]()
         for _ in 0...8 {
@@ -193,7 +194,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch bookingInfo[section] {
         case .aboutHotel(_):
-            return 100
+            return 10
         case .customerInfo(_),.tourist(_): return 70
         default: return .leastNormalMagnitude
         }
@@ -213,33 +214,31 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         switch bookingInfo[section] {
         case .aboutHotel(_):
             let view = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! TitleHedear
-            view.backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+            view.label.isHidden = true
             return view
-        case .bookingDetails(_):
-            return nil
         case .customerInfo:
             let state = bookingInfo[section].getState()
-            let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
-            view.label.text = "Информация о покупателе"
-            view.button.isHidden = true
-            view.section = section
-            view.delegate = self
-            return view
+            let bookingHeader = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
+            bookingHeader.label.text = "Информация о покупателе"
+            bookingHeader.button.isHidden = true
+            bookingHeader.section = section
+            bookingHeader.delegate = self
+            return bookingHeader
         case .tourist:
             let state = bookingInfo[section].getState()
-            let view = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
-            view.label.text = BookingModel.numberTouirist[section - 3] + " Турист"
-            view.section = section
-            view.delegate = self
+            let bookingHeader = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
+            bookingHeader.label.text = BookingModel.numberTouirist[section - 3] + " Турист"
+            bookingHeader.section = section
+            bookingHeader.delegate = self
             if section == tableView.numberOfSections - 3  {
-                view.isAddTourist = true
-                view.label.text = "Добавить туриста"
+                bookingHeader.isAddTourist = true
+                bookingHeader.label.text = "Добавить туриста"
                 if section - 3 == BookingModel.numberTouirist.count - 1 {
-                    view.button.isUserInteractionEnabled = false
+                    bookingHeader.button.isUserInteractionEnabled = false
                 }
             }
-            return view
-        case .result(_),.pay:
+            return bookingHeader
+        case .result(_),.pay,.bookingDetails(_):
             return nil
         }
     }

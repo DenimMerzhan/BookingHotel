@@ -10,11 +10,8 @@ import UIKit
 
 class TitleHedear: UICollectionReusableView {
     
-    
-    @IBOutlet weak var downSeparateView: UIView!
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var backButton: UIButton!
-    
+    @IBOutlet weak var separateView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
