@@ -59,21 +59,19 @@ class BookingController: UIViewController {
     @objc func payPressed(){
         isVerificationBegan = true
         
-        self.performSegue(withIdentifier: "goToDoneScreen", sender: self)
-        
-//        switch bookingInfo[2] {
-//        case .customerInfo(let customerInfo):
-//            switch bookingInfo[3] {
-//            case .tourist(let tourist):
-//                if validateUser(tourist: tourist, customerInfo: customerInfo) {
-//
-//                }else {
-//                    tableView.reloadData()
-//                }
-//            default: break
-//            }
-//        default: break
-//        }
+        switch bookingInfo[2] {
+        case .customerInfo(let customerInfo):
+            switch bookingInfo[3] {
+            case .tourist(let tourist):
+                if validateUser(tourist: tourist, customerInfo: customerInfo) {
+                    self.performSegue(withIdentifier: "goToDoneScreen", sender: self)
+                }else {
+                    tableView.reloadData()
+                }
+            default: break
+            }
+        default: break
+        }
     }
 }
 
@@ -113,7 +111,6 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             cell.contentView.layer.cornerRadius = 15
             return cell
         case .bookingDetails(let bookingDetails):
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailesCell") as! BookingDetailesCell
             let details = bookingDetails[indexPath.row]
             cell.details.text = details.deatails
@@ -131,9 +128,10 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .customerInfo(let customerInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
             cell.textField.placeholder = BookingModel.customerInfoPlaceholder[indexPath.row]
+            cell.upPlaceHolder.text = BookingModel.customerInfoPlaceholder[indexPath.row]
             cell.indexPath = indexPath
             cell.delegate = self
-            
+
             if indexPath.row == 0 {
                 cell.isUsedMaskNumber = true
                 cell.textField.text = customerInfo.phoneNumber
@@ -146,11 +144,19 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 }
                 cell.textField.text = customerInfo.email
             }
+            
+            if let text = cell.textField.text {
+                if text.isEmpty == false {
+                    cell.upPlaceHolder.isHidden = false
+                }
+            }
+            
             return cell
         case .tourist(let tourist):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
             let descriptionStatus = BookingModel.getDescriptionStatus(tourist: tourist, row: indexPath.row)
             cell.textField.placeholder = BookingModel.touristDataPlaceholder[indexPath.row]
+            cell.upPlaceHolder.text = BookingModel.touristDataPlaceholder[indexPath.row]
             cell.textField.text = descriptionStatus.description
             cell.indexPath = indexPath
             cell.delegate = self
@@ -165,6 +171,12 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             if indexPath.row == BookingModel.touristDataPlaceholder.count - 1 {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+            }
+            
+            if let text = cell.textField.text {
+                if text.isEmpty == false {
+                    cell.upPlaceHolder.isHidden = false
+                }
             }
             return cell
         case .result(let bookingDetails):

@@ -164,7 +164,7 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
         case .moreAboutHotel(_):
             return 90
         case .selectNumber:
-            return 100
+            return 85
         }
     }
 }

@@ -23,12 +23,6 @@ class DoneController: UIViewController {
     
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-//        let main = UIStoryboard(name: "Main", bundle: nil)
-//        let hotelController = main.instantiateViewController(withIdentifier: "HotelController") as! HotelController
-//        self.navigationController?.pushViewController(hotelController, animated: true)
-
-        
-        
         guard let navigationController = self.navigationController else { return }
         let navigationArray = navigationController.viewControllers
         guard let hotelController = navigationArray.first else {return}

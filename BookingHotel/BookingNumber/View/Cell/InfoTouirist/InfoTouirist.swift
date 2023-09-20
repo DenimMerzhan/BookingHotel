@@ -44,7 +44,6 @@ class InfoTouirist: UITableViewCell {
     
     
     @IBAction func textChanged(_ sender: UITextField) {
-        upPlaceHolder.text = textField.placeholder
         if sender.text?.count == 0 {
             upPlaceHolder.isHidden = true
         }else {

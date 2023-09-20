@@ -91,7 +91,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="elw-eA-Jdj">
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="SeparateColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VSy-B6-Jx8"/>
@@ -146,10 +146,10 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaS-iR-t5N">
-                                <rect key="frame" x="15" y="762" width="363" height="60"/>
+                                <rect key="frame" x="15" y="772" width="363" height="50"/>
                                 <color key="backgroundColor" name="ButtonColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="72d-A1-Fth"/>
+                                    <constraint firstAttribute="height" constant="50" id="72d-A1-Fth"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Супер!">
@@ -161,7 +161,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUd-uc-EiW">
-                                <rect key="frame" x="0.0" y="741" width="393" height="1"/>
+                                <rect key="frame" x="0.0" y="751" width="393" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="DFw-oL-cvv"/>
