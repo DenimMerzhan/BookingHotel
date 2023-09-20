@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,12 +26,24 @@
                                 <constraint firstAttribute="height" constant="10" id="lHR-OZ-DYa"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ip-bV-Ufr">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="187-2V-DpQ">
                             <rect key="frame" x="0.0" y="10" width="485" height="49"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ip-bV-Ufr">
+                                    <rect key="frame" x="15" y="0.0" width="455" height="49"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="5ip-bV-Ufr" secondAttribute="trailing" constant="15" id="ANE-FC-0Yd"/>
+                                <constraint firstItem="5ip-bV-Ufr" firstAttribute="leading" secondItem="187-2V-DpQ" secondAttribute="leading" constant="15" id="NkZ-c2-dfc"/>
+                                <constraint firstAttribute="bottom" secondItem="5ip-bV-Ufr" secondAttribute="bottom" id="axC-ac-Ygp"/>
+                                <constraint firstItem="5ip-bV-Ufr" firstAttribute="top" secondItem="187-2V-DpQ" secondAttribute="top" id="in6-xT-ASI"/>
+                            </constraints>
+                        </view>
                     </subviews>
                 </stackView>
             </subviews>
@@ -53,5 +66,8 @@
         <namedColor name="SeparateColor">
             <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

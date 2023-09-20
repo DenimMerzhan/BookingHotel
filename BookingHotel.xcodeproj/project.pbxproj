@@ -31,6 +31,7 @@
 		CF808DF62AA49F0600418D72 /* PriceFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF808DF52AA49F0600418D72 /* PriceFooter.swift */; };
 		CF81CDB92AAA2F5900E5AAC0 /* BookingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF81CDB82AAA2F5900E5AAC0 /* BookingHeader.swift */; };
 		CF8A21D12ABAEA7D00735923 /* NoneSelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8A21D02ABAEA7D00735923 /* NoneSelectedCell.swift */; };
+		CF8A21D32ABAF08700735923 /* DoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8A21D22ABAF08700735923 /* DoneController.swift */; };
 		CF969D322AA05E8700CD75F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D312AA05E8700CD75F9 /* AppDelegate.swift */; };
 		CF969D342AA05E8700CD75F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D332AA05E8700CD75F9 /* SceneDelegate.swift */; };
 		CF969D362AA05E8700CD75F9 /* HotelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF969D352AA05E8700CD75F9 /* HotelController.swift */; };
@@ -82,6 +83,7 @@
 		CF808DF52AA49F0600418D72 /* PriceFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFooter.swift; sourceTree = "<group>"; };
 		CF81CDB82AAA2F5900E5AAC0 /* BookingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHeader.swift; sourceTree = "<group>"; };
 		CF8A21D02ABAEA7D00735923 /* NoneSelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoneSelectedCell.swift; sourceTree = "<group>"; };
+		CF8A21D22ABAF08700735923 /* DoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneController.swift; sourceTree = "<group>"; };
 		CF969D2E2AA05E8700CD75F9 /* BookingHotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookingHotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF969D312AA05E8700CD75F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF969D332AA05E8700CD75F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -260,6 +262,14 @@
 			path = ReusableView;
 			sourceTree = "<group>";
 		};
+		CF8A21D42ABAF09900735923 /* DoneController */ = {
+			isa = PBXGroup;
+			children = (
+				CF8A21D22ABAF08700735923 /* DoneController.swift */,
+			);
+			path = DoneController;
+			sourceTree = "<group>";
+		};
 		CF969D252AA05E8700CD75F9 = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +295,7 @@
 				CF969D4C2AA0627800CD75F9 /* Hotel */,
 				CFAC3FC32AA7130700284369 /* Room */,
 				CF8056E62AA887BA00B81176 /* BookingNumber */,
+				CF8A21D42ABAF09900735923 /* DoneController */,
 				CF969D372AA05E8700CD75F9 /* Main.storyboard */,
 				CF969D3A2AA05E8900CD75F9 /* Assets.xcassets */,
 				CF969D3C2AA05E8900CD75F9 /* LaunchScreen.storyboard */,
@@ -647,6 +658,7 @@
 				CF969D342AA05E8700CD75F9 /* SceneDelegate.swift in Sources */,
 				CF34ED582AADAAAB00CA2D95 /* TagCell.swift in Sources */,
 				CFAC3FC92AA713A800284369 /* Room.swift in Sources */,
+				CF8A21D32ABAF08700735923 /* DoneController.swift in Sources */,
 				CF81CDB92AAA2F5900E5AAC0 /* BookingHeader.swift in Sources */,
 				CF969D692AA06FE300CD75F9 /* SectionsInfoHotel.swift in Sources */,
 			);

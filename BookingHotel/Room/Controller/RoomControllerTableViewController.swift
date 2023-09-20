@@ -18,6 +18,7 @@ class RoomController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         var room1 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на бассейн", tagRoom: ["Все включено", "Кондиционер","Djn", "Подробнее о номере"])

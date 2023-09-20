@@ -13,12 +13,12 @@
         <!--Отель-->
         <scene sceneID="60F-qQ-TLe">
             <objects>
-                <viewController id="sZX-Kg-aLr" customClass="HotelController" customModule="BookingHotel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HotelController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sZX-Kg-aLr" customClass="HotelController" customModule="BookingHotel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wg0-bN-SDJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZR0-xW-j2h">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZR0-xW-j2h" userLabel="TableView">
                                 <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <color key="backgroundColor" name="SeparateColor"/>
                             </tableView>
@@ -81,7 +81,7 @@
             </objects>
             <point key="canvasLocation" x="3938" y="30"/>
         </scene>
-        <!--Booking Controller-->
+        <!--Бронирование-->
         <scene sceneID="2TT-Sv-Nf3">
             <objects>
                 <viewController id="Xo7-ak-1mk" customClass="BookingController" customModule="BookingHotel" customModuleProvider="target" sceneMemberID="viewController">
@@ -103,14 +103,94 @@
                             <constraint firstItem="VSy-B6-Jx8" firstAttribute="bottom" secondItem="elw-eA-Jdj" secondAttribute="bottom" id="x0V-gQ-0QY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="eyq-Z8-6Mf"/>
+                    <navigationItem key="navigationItem" title="Бронирование" id="eyq-Z8-6Mf"/>
                     <connections>
                         <outlet property="tableView" destination="elw-eA-Jdj" id="BfM-eZ-o0r"/>
+                        <segue destination="gxC-5S-Pvr" kind="show" identifier="goToDoneScreen" id="pHR-VM-xUB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7te-1v-vuq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4845.0381679389311" y="19.718309859154932"/>
+        </scene>
+        <!--DoneController-->
+        <scene sceneID="UxC-QX-MbL">
+            <objects>
+                <viewController id="gxC-5S-Pvr" userLabel="DoneController" customClass="DoneController" customModule="BookingHotel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sM0-Tk-xM8" userLabel="View">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="syA-WT-JC0">
+                                <rect key="frame" x="25" y="293" width="343" height="266.33333333333326"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrderPaid" translatesAutoresizingMaskIntoConstraints="NO" id="Uqw-Vx-7h6">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="5O4-zZ-bgQ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш заказ принят в работу" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GX1-Th-604">
+                                        <rect key="frame" x="0.0" y="115.00000000000001" width="343" height="28.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNC-Gj-k9D">
+                                        <rect key="frame" x="0.0" y="158.66666666666669" width="343" height="107.66666666666669"/>
+                                        <string key="text">Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <color key="textColor" name="TintAboutHotel"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaS-iR-t5N">
+                                <rect key="frame" x="15" y="762" width="363" height="60"/>
+                                <color key="backgroundColor" name="ButtonColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="72d-A1-Fth"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Супер!">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="20"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="gxC-5S-Pvr" eventType="touchUpInside" id="WTu-Ah-fM5"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUd-uc-EiW">
+                                <rect key="frame" x="0.0" y="741" width="393" height="1"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="DFw-oL-cvv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aZn-Q5-fFF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aZn-Q5-fFF" firstAttribute="trailing" secondItem="IaS-iR-t5N" secondAttribute="trailing" constant="15" id="4Ea-Yb-NTd"/>
+                            <constraint firstItem="syA-WT-JC0" firstAttribute="leading" secondItem="sM0-Tk-xM8" secondAttribute="leading" constant="25" id="51G-Pj-YSo"/>
+                            <constraint firstItem="IaS-iR-t5N" firstAttribute="leading" secondItem="aZn-Q5-fFF" secondAttribute="leading" constant="15" id="Ekf-NW-sap"/>
+                            <constraint firstAttribute="trailing" secondItem="syA-WT-JC0" secondAttribute="trailing" constant="25" id="Fbt-JR-pEZ"/>
+                            <constraint firstAttribute="bottom" secondItem="IaS-iR-t5N" secondAttribute="bottom" constant="30" id="GXE-kT-Lvp"/>
+                            <constraint firstItem="syA-WT-JC0" firstAttribute="centerY" secondItem="sM0-Tk-xM8" secondAttribute="centerY" id="Vie-rr-2mh"/>
+                            <constraint firstItem="aZn-Q5-fFF" firstAttribute="trailing" secondItem="hUd-uc-EiW" secondAttribute="trailing" id="gxY-zj-wmm"/>
+                            <constraint firstItem="IaS-iR-t5N" firstAttribute="top" secondItem="hUd-uc-EiW" secondAttribute="bottom" constant="20" id="jBt-Ep-COl"/>
+                            <constraint firstItem="hUd-uc-EiW" firstAttribute="leading" secondItem="aZn-Q5-fFF" secondAttribute="leading" id="obL-zl-AxZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Заказ оплачен" id="1YR-fn-EqK"/>
+                    <connections>
+                        <outlet property="doneButton" destination="IaS-iR-t5N" id="y3O-TH-RCs"/>
+                        <outlet property="separateView" destination="hUd-uc-EiW" id="qLe-Ts-lNA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ja1-A8-Ezy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5696.9465648854957" y="4.9295774647887329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wbh-te-pua">
@@ -136,8 +216,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="OrderPaid" width="31.333333969116211" height="31.333333969116211"/>
+        <namedColor name="ButtonColor">
+            <color red="0.20000000298023224" green="0.43900001049041748" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="SeparateColor">
             <color red="0.9649999737739563" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TintAboutHotel">
+            <color red="0.51372549019607838" green="0.52941176470588236" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

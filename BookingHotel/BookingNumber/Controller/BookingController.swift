@@ -59,22 +59,22 @@ class BookingController: UIViewController {
     @objc func payPressed(){
         isVerificationBegan = true
         
-        switch bookingInfo[2] {
-        case .customerInfo(let customerInfo):
-            switch bookingInfo[3] {
-            case .tourist(let tourist):
-                if validateUser(tourist: tourist, customerInfo: customerInfo) {
-                    
-                }else {
-                    tableView.reloadData()
-                }
-            default: break
-            }
-        default: break
-        }
+        self.performSegue(withIdentifier: "goToDoneScreen", sender: self)
+        
+//        switch bookingInfo[2] {
+//        case .customerInfo(let customerInfo):
+//            switch bookingInfo[3] {
+//            case .tourist(let tourist):
+//                if validateUser(tourist: tourist, customerInfo: customerInfo) {
+//
+//                }else {
+//                    tableView.reloadData()
+//                }
+//            default: break
+//            }
+//        default: break
+//        }
     }
-    
-
 }
 
 // MARK: - Table view data source
