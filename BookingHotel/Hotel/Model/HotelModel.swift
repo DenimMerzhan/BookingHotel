@@ -11,9 +11,36 @@ import UIKit
 
 struct HotelModel {
     
-    static func fillSections() -> [SectionsInfoHotel] {
-        
-        var sections = [SectionsInfoHotel]()
+    var sections = [SectionsInfoHotel]()
+    
+    var numberOfsections : Int {
+        get {
+            return sections.count
+        }
+    }
+    
+    func numberOfRowsInsection(section: Int) -> Int {
+        switch sections[section] {
+        case .moreAboutHotel(let moreAboutHotel):
+            return moreAboutHotel.count
+        default: return 1
+        }
+    }
+    
+    func estimatedHeightForTagCell(widthTableView: CGFloat,withDescription description: String) -> CGFloat { 
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: widthTableView, height: 50))
+        label.text = description
+        label.font = .systemFont(ofSize: 17)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        return label.sizeThatFits(CGSize(width: widthTableView, height: 50)).height
+    }
+    
+    init() {
+        fillSections()
+    }
+    
+    mutating func fillSections() {
         
         var hotellArr = [UIImage?]()
         let hotelImage1 = UIImage(named: "Hotel1")
@@ -39,8 +66,19 @@ struct HotelModel {
         sections.append(moreAboutHotel)
         sections.append(SectionsInfoHotel.selectNumber)
         
-        return sections
+    }
+    
+    func createSeparateView(width: CGFloat) -> UIView {
         
+        let backView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 35))
+        backView.backgroundColor = UIColor(named: "SeparateCollectionView")
+        let whiteView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 20))
+        whiteView.layer.cornerRadius = 15
+        whiteView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+        whiteView.backgroundColor = .white
+        backView.addSubview(whiteView)
+        
+        return backView
     }
     
 }

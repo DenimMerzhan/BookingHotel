@@ -8,37 +8,18 @@
 import UIKit
 
 class BookingController: UIViewController {
-
-    var bookingInfo = [BookingInfo]()
-    var detailInfo = [BookingDetails]()
-    var isVerificationBegan = Bool()
-    var indexPath: IndexPath?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var bookingInfo = [BookingInfo]()
+    var bookingModel = BookingModel()
+    var isVerificationBegan = Bool()
+    var indexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Бронирование"
-        
-        let fly = BookingDetails(deatails: "Вылет из", descripiton: "Санкт-Петербург")
-        var details = [BookingDetails]()
-        for _ in 0...8 {
-            details.append(fly)
-        }
-        
-        var resultArr = [BookingDetails]()
-        let detail = BookingDetails(deatails: "Тур", descripiton: "186 000р")
-        for _ in 0...3 {
-            resultArr.append(detail)
-        }
-        
-        bookingInfo.append(.aboutHotel(HotelDescription(grade: 5, descripitonGrade: "Класс", nameHotel: "Осень", adressHotel: "dwwddw")))
-        bookingInfo.append(.bookingDetails(details))
-        bookingInfo.append(.customerInfo(CustomerInfo()))
-        bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
-        bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
-        bookingInfo.append(.result(resultArr))
-        bookingInfo.append(.pay)
+        bookingInfo = bookingModel.bookingInfo
         
         tableView.allowsSelection = false
         tableView.dataSource = self
@@ -63,7 +44,7 @@ class BookingController: UIViewController {
         case .customerInfo(let customerInfo):
             switch bookingInfo[3] {
             case .tourist(let tourist):
-                if validateUser(tourist: tourist, customerInfo: customerInfo) {
+                if bookingModel.validateBooking(tourist: tourist, customerInfo: customerInfo) {
                     self.performSegue(withIdentifier: "goToDoneScreen", sender: self)
                 }else {
                     tableView.reloadData()
@@ -92,11 +73,11 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .bookingDetails(let bookingDetails):
             return bookingDetails.count
         case .customerInfo:
-            return BookingModel.customerInfoPlaceholder.count
+            return bookingModel.customerInfoPlaceholder.count
         case .tourist (let touristData):
             switch touristData.buttonState {
             case .selected:
-                return BookingModel.touristDataPlaceholder.count
+                return bookingModel.touristDataPlaceholder.count
             default: return 0
             }
         case .result(let bookingDetails): return bookingDetails.count
@@ -127,8 +108,8 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             return cell
         case .customerInfo(let customerInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
-            cell.textField.placeholder = BookingModel.customerInfoPlaceholder[indexPath.row]
-            cell.upPlaceHolder.text = BookingModel.customerInfoPlaceholder[indexPath.row]
+            cell.textField.placeholder = bookingModel.customerInfoPlaceholder[indexPath.row]
+            cell.upPlaceHolder.text = bookingModel.customerInfoPlaceholder[indexPath.row]
             cell.indexPath = indexPath
             cell.delegate = self
 
@@ -154,9 +135,9 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             return cell
         case .tourist(let tourist):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTouirist") as! InfoTouirist
-            let descriptionStatus = BookingModel.getDescriptionStatus(tourist: tourist, row: indexPath.row)
-            cell.textField.placeholder = BookingModel.touristDataPlaceholder[indexPath.row]
-            cell.upPlaceHolder.text = BookingModel.touristDataPlaceholder[indexPath.row]
+            let descriptionStatus = bookingModel.getDescriptionStatus(tourist: tourist, row: indexPath.row)
+            cell.textField.placeholder = bookingModel.touristDataPlaceholder[indexPath.row]
+            cell.upPlaceHolder.text = bookingModel.touristDataPlaceholder[indexPath.row]
             cell.textField.text = descriptionStatus.description
             cell.indexPath = indexPath
             cell.delegate = self
@@ -168,7 +149,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 cell.view.backgroundColor = K.color.separateColor
             }
             
-            if indexPath.row == BookingModel.touristDataPlaceholder.count - 1 {
+            if indexPath.row == bookingModel.touristDataPlaceholder.count - 1 {
                 cell.contentView.layer.cornerRadius = 15
                 cell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
             }
@@ -239,13 +220,13 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         case .tourist:
             let state = bookingInfo[section].getState()
             let bookingHeader = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
-            bookingHeader.label.text = BookingModel.numberTouirist[section - 3] + " Турист"
+            bookingHeader.label.text = bookingModel.numberTouirist[section - 3] + " Турист"
             bookingHeader.section = section
             bookingHeader.delegate = self
             if section == tableView.numberOfSections - 3  {
                 bookingHeader.isAddTourist = true
                 bookingHeader.label.text = "Добавить туриста"
-                if section - 3 == BookingModel.numberTouirist.count - 1 {
+                if section - 3 == bookingModel.numberTouirist.count - 1 {
                     bookingHeader.button.isUserInteractionEnabled = false
                 }
             }
@@ -271,6 +252,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
 //MARK: -  BookingHeaderDelegate, InfoTouristDelegate
 
 extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
+    
     func buttonPressed(section: Int,isAddTourist: Bool) {
         if isAddTourist {
             let index = bookingInfo.count - 3
@@ -298,34 +280,3 @@ extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
     }
 }
 
-extension BookingController {
-    
-    func validateUser(tourist: Tourist,customerInfo: CustomerInfo) -> Bool {
-        
-        for i in 0...bookingInfo.count - 1 {
-            switch bookingInfo[i] {
-            case .tourist(let tourist):
-                if validateTourist(tourist: tourist, indexTourist: i) == false {return false}
-            default: break
-            }
-        }
-        
-        if customerInfo.email.isValidEmail() == false || customerInfo.phoneNumber.isValidPhoneNumber() == false {return false}
-        
-        return true
-    }
-    
-    func validateTourist(tourist: Tourist,indexTourist: Int) -> Bool {
-        if tourist.isTouristEmpty() && indexTourist != 3 {
-            return true
-        }
-        for i in 0...5 {
-            let isValidDescription = BookingModel.getDescriptionStatus(tourist: tourist, row: i).isValid
-            if isValidDescription == false {
-                return false
-            }
-        }
-        return true
-    }
-    
-}

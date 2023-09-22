@@ -11,12 +11,13 @@ class HotelController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var hotelModel = HotelModel()
     var sections = [SectionsInfoHotel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sections = HotelModel.fillSections()
+        sections = hotelModel.sections
         
         tableView.allowsSelection = false
         tableView.dataSource = self
@@ -43,20 +44,16 @@ class HotelController: UIViewController {
 extension HotelController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return hotelModel.numberOfsections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch sections[section] {
-        case .moreAboutHotel(let moreAboutHotel):
-            return moreAboutHotel.count
-        default: return 1
-        }
+        return hotelModel.numberOfRowsInsection(section: section)
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch sections[indexPath.section] {
+        switch hotelModel.sections[indexPath.section] {
             
         case .hotelImage(let imageArr):
             let cell = tableView.dequeueReusableCell(withIdentifier: "HotelCollectionCell", for: indexPath) as! HotelCollectionCell
@@ -99,7 +96,7 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        switch sections[section] {
+        switch hotelModel.sections[section] {
         case .description(_):
             let priceFooter = UINib(nibName: "PriceFooter", bundle: nil).instantiate(withOwner: self).first as! PriceFooter
             priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
@@ -109,7 +106,7 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
             priceFooter.separateView.isHidden = false
             return priceFooter
         case .moreAboutHotel(_):
-            let separateView = createSeparateView()
+            let separateView = hotelModel.createSeparateView(width: tableView.frame.width)
             return separateView
         default: return nil
         }
@@ -153,40 +150,17 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
         case .description(_):
             return 130
         case .tagHotel(let tagHotel):
-            if let height = RoomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {return height}
+            let roomModel = RoomModel()
+            if let height = roomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {return height}
             return 0
         case .detailDescription(let descriptionText):
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width - 30, height: 50))
-            label.text = descriptionText
-            label.font = .systemFont(ofSize: 17)
-            label.numberOfLines = 0
-            label.lineBreakMode = .byWordWrapping
-            return label.sizeThatFits(CGSize(width: tableView.frame.width, height: 50)).height + 30
+            return hotelModel.estimatedHeightForTagCell(widthTableView: tableView.frame.width, withDescription: descriptionText) + 30
         case .moreAboutHotel(_):
             return 90
         case .selectNumber:
             return 85
         }
     }
-}
-
-//MARK: - SeparateView
-
-extension HotelController {
-    
-    func createSeparateView() -> UIView{
-        let backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
-        backView.backgroundColor = UIColor(named: "SeparateCollectionView")
-        let whiteView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
-        whiteView.layer.cornerRadius = 15
-        whiteView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-        whiteView.backgroundColor = .white
-        
-        backView.addSubview(whiteView)
-        
-        return backView
-    }
-    
 }
 
 

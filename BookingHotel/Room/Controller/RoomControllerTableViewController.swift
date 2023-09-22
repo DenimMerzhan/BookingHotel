@@ -13,19 +13,15 @@ class RoomController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var roomArr = [Room]()
+    var roomModel = RoomModel()
     var currentIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        roomArr = roomModel.roomArr
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        var room1 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на бассейн", tagRoom: ["Все включено", "Кондиционер","Djn", "Подробнее о номере"])
-        var room2 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на кухню", tagRoom: ["Все включено", "Кондиционер", "Подробнее о номере"])
-        var room3 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на сад", tagRoom: ["Все включено", "Кондиционер", "Подробнее о номере"])
-        roomArr = [room1,room2,room3]
         self.title = "Steingber Mask"
         
         collectionView.allowsSelection = false
@@ -45,12 +41,12 @@ class RoomController: UIViewController {
 
 extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return roomModel.numberOfSections
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return roomArr.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return roomModel.numberOfRowsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -65,7 +61,7 @@ extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let room = roomArr[indexPath.section]
-        if let height =  RoomModel.calculateHeightTagCollectionView(tagArr: room.tagRoom, widthCollectionView: collectionView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {
+        if let height =  roomModel.calculateHeightTagCollectionView(tagArr: room.tagRoom, widthCollectionView: collectionView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {
             return CGSize(width: collectionView.frame.width, height: height + 300 + 70 + 20) /// 300 высота pageCollection 70 высота лейбла, 20 отступ от верха
         }
         return CGSize(width: collectionView.frame.width, height: 500)

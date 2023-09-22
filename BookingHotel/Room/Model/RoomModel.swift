@@ -10,14 +10,35 @@ import UIKit
 
 struct RoomModel {
     
-    static func calculateHeightTagCollectionView(tagArr: [String],widthCollectionView: CGFloat,font: UIFont) -> CGFloat? {
+    var roomArr = [Room]()
+    
+    var numberOfSections: Int {
+        get {return roomArr.count}
+    }
+    
+    var numberOfRowsInSection: Int {
+        get {return 1}
+    }
+    
+    init(){
+        fillRoomArr()
+    }
+    
+    mutating func fillRoomArr(){
+        var room1 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на бассейн", tagRoom: ["Все включено", "Кондиционер","Djn", "Подробнее о номере"])
+        var room2 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на кухню", tagRoom: ["Все включено", "Кондиционер", "Подробнее о номере"])
+        var room3 = Room(imageArr: [UIImage(named: "Hotel1"),UIImage(named: "Hotel2"),UIImage(named: "Hotel3")], description: "Cтандартный номер с видом на сад", tagRoom: ["Все включено", "Кондиционер", "Подробнее о номере"])
+        roomArr = [room1,room2,room3]
+    }
+    
+    func calculateHeightTagCollectionView(tagArr: [String],widthCollectionView: CGFloat,font: UIFont) -> CGFloat? {
         
         let indentTagCollectionView: CGFloat = 15 * 2
         let itemSpacingTagCollection: CGFloat = 10
         let indentTagCell: CGFloat = 10 * 2 /// Отступы от краев ячейки
         let heightTagetCell: CGFloat = 45
-
-       
+        
+        
         let tagArr = tagArr
         
         var countRow: CGFloat = 1
