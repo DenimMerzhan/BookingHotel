@@ -27,7 +27,10 @@ class HotelCollectionCell: UITableViewCell {
         pageCollectionView?.showsHorizontalScrollIndicator = false
         pageControl.backgroundStyle = .prominent
         
-        
+    }
+    
+    override func prepareForReuse() {
+        pageCollectionView.reloadData()
     }
     
     @IBAction func pageControlTapped(_ sender: UIPageControl) {
@@ -53,8 +56,6 @@ extension HotelCollectionCell: UICollectionViewDataSource, UICollectionViewDeleg
         
         
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)

@@ -11,13 +11,15 @@ class HotelController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var hotelModel = HotelModel()
-    var sections = [SectionsInfoHotel]()
+    var hotelDataModel: HotelDataModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sections = hotelModel.sections
+        HotelNetworkService.getHotel { [weak self] hotel in
+            self?.hotelDataModel = HotelDataModel(hotel: hotel)
+            self?.tableView.reloadData()
+        }
         
         tableView.allowsSelection = false
         tableView.dataSource = self
@@ -44,16 +46,17 @@ class HotelController: UIViewController {
 extension HotelController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return hotelModel.numberOfsections
+        return hotelDataModel?.numberOfsections ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hotelModel.numberOfRowsInsection(section: section)
+        return hotelDataModel?.numberOfRowsInsection(section: section) ?? 0
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch hotelModel.sections[indexPath.section] {
+        guard let sections = hotelDataModel?.sections else {return UITableViewCell()}
+        switch sections[indexPath.section] {
             
         case .hotelImage(let imageArr):
             let cell = tableView.dequeueReusableCell(withIdentifier: "HotelCollectionCell", for: indexPath) as! HotelCollectionCell
@@ -62,7 +65,7 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
             return cell
         case .description(let descriptionHotel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
-            cell.descriptionGrade.text = descriptionHotel.descripitonGrade
+            cell.descriptionGrade.text = descriptionHotel.raitingName
             return cell
         case .tagHotel(let aboutHotel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "TagCollectionCell", for: indexPath) as! TagCollectionCell
@@ -95,8 +98,8 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        switch hotelModel.sections[section] {
+        guard let sections = hotelDataModel?.sections else {return nil}
+        switch sections[section] {
         case .description(_):
             let priceFooter = UINib(nibName: "PriceFooter", bundle: nil).instantiate(withOwner: self).first as! PriceFooter
             priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
@@ -106,13 +109,14 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
             priceFooter.separateView.isHidden = false
             return priceFooter
         case .moreAboutHotel(_):
-            let separateView = hotelModel.createSeparateView(width: tableView.frame.width)
+            let separateView = HotelModel.shared.createSeparateView(width: tableView.frame.width)
             return separateView
         default: return nil
         }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard let sections = hotelDataModel?.sections else {return .leastNormalMagnitude}
         switch sections[section] {
         case .description(_):
             return 80
@@ -123,6 +127,7 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let sections = hotelDataModel?.sections else {return nil}
         let hedearView = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: self).first as! TitleHedear
         switch sections[section] {
         case .tagHotel(_):
@@ -143,6 +148,7 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let sections = hotelDataModel?.sections else {return .leastNormalMagnitude}
         switch sections[indexPath.section] {
             
         case .hotelImage(_):
@@ -151,10 +157,13 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
             return 130
         case .tagHotel(let tagHotel):
             let roomModel = RoomModel()
-            if let height = roomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {return height}
+            if let height = roomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {
+                print(height)
+                return height
+            }
             return 0
         case .detailDescription(let descriptionText):
-            return hotelModel.estimatedHeightForTagCell(widthTableView: tableView.frame.width, withDescription: descriptionText) + 30
+            return HotelModel.shared.estimatedHeightForTagCell(widthTableView: tableView.frame.width, withDescription: descriptionText) + 30
         case .moreAboutHotel(_):
             return 90
         case .selectNumber:

@@ -50,7 +50,7 @@ struct RoomModel {
             let tag = tagArr[i]
             var widthTagCell: CGFloat = tag.contentSizeString(font: font).width + itemSpacingTagCollection + indentTagCell /// + spacingTagView
             if i == tagArr.count - 1 {widthTagCell += 25} /// На последнем теге есть кнопка у которой ширина = 20
-            
+            print(widthTagCell)
             widthTagCollection -= widthTagCell
             if widthTagCollection < 0 {
                 countRow += 1

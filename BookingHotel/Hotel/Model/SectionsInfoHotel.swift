@@ -18,16 +18,16 @@ enum SectionsInfoHotel {
     case moreAboutHotel([MoreAboutHotel])
     case selectNumber
     
-    
 }
 
 struct HotelDescription {
     
     var grade: Int
-    var descripitonGrade: String
+    var raitingName: String
     var nameHotel: String
     var adressHotel: String
-//    var price: String
+    var price: String
+    
 }
 
 

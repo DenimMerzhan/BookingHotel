@@ -88,7 +88,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
         switch bookingInfo[indexPath.section] {
         case .aboutHotel(let hotelDescription):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
-            cell.descriptionGrade.text = String(hotelDescription.grade) +  hotelDescription.descripitonGrade
+            cell.descriptionGrade.text = String(hotelDescription.grade) +  hotelDescription.raitingName
             cell.contentView.layer.cornerRadius = 15
             return cell
         case .bookingDetails(let bookingDetails):

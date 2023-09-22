@@ -20,6 +20,10 @@ class TagCollectionCell: UITableViewCell {
         collectionView.register(UINib(nibName: "TagCell", bundle: nil), forCellWithReuseIdentifier: "TagCell")
     }
     
+    override func prepareForReuse() {
+        collectionView.reloadData()
+    }
+    
 }
 
 extension TagCollectionCell: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -41,7 +45,8 @@ extension TagCollectionCell: UICollectionViewDataSource,UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tag = tagArr[indexPath.row]
-        return CGSize(width: tag.contentSizeString(font: .systemFont(ofSize: 18, weight: .medium)).width + 20, height: 45)
+        return CGSize(width: 100, height: 45)
+//        return CGSize(width: tag.contentSizeString(font: .systemFont(ofSize: 18, weight: .medium)).width + 20, height: 45)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
