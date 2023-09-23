@@ -86,13 +86,17 @@ extension RoomCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
         if collectionView == pageCollectionView {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else {
-            guard let tagArr = room?.tagRoom else {return CGSize.zero}
-            var marginsOnTheSides: CGFloat = 20
+            guard let tagArr = room?.tagRoom else {return .zero}
+            var cellWidth = tagArr[indexPath.row].contentSizeString(font: K.font.tagCell).width + 20
+            
             if indexPath.row == tagArr.count - 1 {
-                marginsOnTheSides += 25 /// 20 размер кнопки, 5 расстояние внутри стэка
+                cellWidth += 25 /// 20 размер кнопки, 5 расстояние внутри стэка
             }
-            let tag = tagArr[indexPath.row]
-            return CGSize(width: tag.contentSizeString(font: .systemFont(ofSize: 18, weight: .medium)).width + marginsOnTheSides, height: 45)
+            if cellWidth > collectionView.frame.width {
+                cellWidth = collectionView.frame.width
+            }
+           
+            return CGSize(width: cellWidth, height: 45)
         }
         
     }

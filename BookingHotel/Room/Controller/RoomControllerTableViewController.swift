@@ -64,7 +64,7 @@ extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         if let height =  roomModel.calculateHeightTagCollectionView(tagArr: room.tagRoom, widthCollectionView: collectionView.frame.width,font: K.font.tagCell) {
             return CGSize(width: collectionView.frame.width, height: height + 300 + 70 + 20) /// 300 высота pageCollection 70 высота лейбла, 20 отступ от верха
         }
-        return CGSize(width: collectionView.frame.width, height: 500)
+        return .zero
     }
     
     

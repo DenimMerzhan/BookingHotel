@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="393" height="158"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lKR-Oe-kMc">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lKR-Oe-kMc">
                         <rect key="frame" x="15" y="0.0" width="363" height="158"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewLayout key="collectionViewLayout" id="XQF-7B-y6g" customClass="LeftAligmentCollectionViewLayout" customModule="BookingHotel" customModuleProvider="target"/>

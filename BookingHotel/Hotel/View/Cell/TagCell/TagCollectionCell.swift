@@ -45,11 +45,11 @@ extension TagCollectionCell: UICollectionViewDataSource,UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tag = tagArr[indexPath.row]
-        var sizeTag = tag.contentSizeString(font: K.font.tagCell)
-        if sizeTag.width > collectionView.frame.width {
-            sizeTag.width = collectionView.frame.width - 20
+        var cellWidth = tag.contentSizeString(font: K.font.tagCell).width + 20
+        if cellWidth > collectionView.frame.width {
+            cellWidth = collectionView.frame.width
         }
-        return CGSize(width: sizeTag.width + 20, height: 45)
+        return CGSize(width: cellWidth, height: 45)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

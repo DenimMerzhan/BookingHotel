@@ -25,7 +25,7 @@ class HotelController: UIViewController {
                 self?.tableView.reloadData()
             }
         }
-    
+        
         tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.delegate = self
