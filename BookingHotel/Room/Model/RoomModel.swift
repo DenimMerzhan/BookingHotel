@@ -36,40 +36,23 @@ struct RoomModel {
         let indentTagCollectionView: CGFloat = 15 * 2
         let itemSpacingTagCollection: CGFloat = 10
         let indentTagCell: CGFloat = 10 * 2 /// Отступы от краев ячейки
-        let heightTagetCell: CGFloat = 45
+        let heightTagCell: CGFloat = 45
         
+        var sumWidth: CGFloat = 1
+        let widthTagCollection = widthCollectionView - indentTagCollectionView
         
-        let tagArr = tagArr
-        
-        var countRow: CGFloat = 1
-        var widthTagCollection = widthCollectionView - indentTagCollectionView
-        var i = 0
-        
-        while i <= tagArr.count - 1 {
-            
-            let tag = tagArr[i]
+        tagArr.forEach { tag in
             var widthTagCell: CGFloat = tag.contentSizeString(font: font).width + itemSpacingTagCollection + indentTagCell /// + spacingTagView
-            if i == tagArr.count - 1 {widthTagCell += 25} /// На последнем теге есть кнопка у которой ширина = 20
-            print(widthTagCell)
-            widthTagCollection -= widthTagCell
-            if widthTagCollection < 0 {
-                countRow += 1
-                widthTagCollection = widthCollectionView - indentTagCollectionView
-                i -= 1
+            if tag == tagArr.last {
+                widthTagCell += 25
             }
-            if i < 0 {
-                return nil
-            }
-            i += 1
+            sumWidth += widthTagCell
         }
         
-        let heightCollectionView = countRow * heightTagetCell
+        let numberOfRows = sumWidth / widthTagCollection
+        let heightTagCollection = round(numberOfRows) * heightTagCell
         
-        return heightCollectionView
+        return heightTagCollection
     }
     
 }
-
-
-
-

@@ -19,8 +19,12 @@ class HotelController: UIViewController {
         HotelNetworkService.getHotel { [weak self] hotel in
             self?.hotelDataModel = HotelDataModel(hotel: hotel)
             self?.tableView.reloadData()
+            HotelNetworkService.getImage(urlArr: hotel.image_urls) { image, imagePosition in
+                self?.hotelDataModel?.hotelImage[imagePosition] = image
+                self?.tableView.reloadData()
+            }
         }
-        
+    
         tableView.allowsSelection = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -55,13 +59,13 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let sections = hotelDataModel?.sections else {return UITableViewCell()}
-        switch sections[indexPath.section] {
+        guard let dataModel = hotelDataModel else {return UITableViewCell()}
+        switch dataModel.sections[indexPath.section] {
             
-        case .hotelImage(let imageArr):
+        case .hotelImage:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HotelCollectionCell", for: indexPath) as! HotelCollectionCell
-            cell.imageArr = imageArr
-            cell.pageControl.numberOfPages = imageArr.count
+            cell.imageArr = dataModel.hotelImage
+            cell.pageControl.numberOfPages = dataModel.hotelImage.count
             return cell
         case .description(let descriptionHotel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
@@ -143,7 +147,7 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 {return 70}
+        if section == 2 {return 60}
         return .leastNormalMagnitude
     }
     
@@ -151,16 +155,13 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
         guard let sections = hotelDataModel?.sections else {return .leastNormalMagnitude}
         switch sections[indexPath.section] {
             
-        case .hotelImage(_):
+        case .hotelImage:
             return 315
         case .description(_):
             return 130
         case .tagHotel(let tagHotel):
             let roomModel = RoomModel()
-            if let height = roomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: .systemFont(ofSize: 18, weight: .medium)) {
-                print(height)
-                return height
-            }
+            if let height = roomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: K.font.tagCell) {return height}
             return 0
         case .detailDescription(let descriptionText):
             return HotelModel.shared.estimatedHeightForTagCell(widthTableView: tableView.frame.width, withDescription: descriptionText) + 30

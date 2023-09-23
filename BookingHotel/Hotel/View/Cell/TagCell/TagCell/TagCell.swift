@@ -18,6 +18,8 @@ class TagCell: UICollectionViewCell {
         super.awakeFromNib()
         button.isHidden = true
         backView.layer.cornerRadius = 10
+        descriptionText.minimumScaleFactor = 0.5
+        descriptionText.adjustsFontSizeToFitWidth = true
     }
 
 }

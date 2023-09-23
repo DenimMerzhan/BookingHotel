@@ -11,6 +11,7 @@ import UIKit
 struct K {
     
     static let color = Color()
+    static let font = Font()
     
 }
 
@@ -20,4 +21,11 @@ struct Color {
     let wrongDataColor = UIColor(named: "WrongDataColor")
     let separateColor = UIColor(named: "SeparateColor")
     let buttonColor = UIColor(named: "ButtonColor")
+    
+}
+
+struct Font {
+    
+    let tagCell = UIFont.systemFont(ofSize: 16, weight: .medium)
+    
 }

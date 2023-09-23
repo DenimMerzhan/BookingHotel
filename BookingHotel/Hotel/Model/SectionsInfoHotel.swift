@@ -11,12 +11,20 @@ import UIKit
 
 enum SectionsInfoHotel {
     
-    case hotelImage([UIImage?])
+    case hotelImage
     case description(HotelDescription)
     case tagHotel([String])
     case detailDescription(String)
     case moreAboutHotel([MoreAboutHotel])
     case selectNumber
+    
+//    mutating func refreshImage(imageArr: [UIImage]){
+//        switch self {
+//        case .hotelImage(_):
+//            self = .hotelImage(imageArr)
+//        default: break
+//        }
+//    }
     
 }
 

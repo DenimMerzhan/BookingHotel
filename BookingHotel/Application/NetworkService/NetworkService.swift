@@ -13,7 +13,7 @@ class NetworkService {
     private init(){}
     static let shared = NetworkService()
     
-    func getData(url:URL,completion:@escaping (Data?) -> ()){
+    func getData(url:URL,completion:@escaping (Data) -> ()){
         let session = URLSession.shared
         session.dataTask(with: url) { data, response, err in
             guard let data = data else {return}
