@@ -20,13 +20,15 @@ struct RoomNetworkService {
         }
     }
     
-    static func getImageRoom(rooms: RoomsJson,completion: @escaping(UIImage,_ roomPostition: Int,_ imagePosition: Int) -> ()){
-        
-        for i in 0...rooms.rooms.count - 1{
-            let urlArr = rooms.rooms[i].image_urls
-            NetworkService.shared.getImageRoom(urlArr: urlArr) { image, imagePosition in
-                completion(image,i,imagePosition)
+    static func getImageRoom(urlArr: [URL],completion: @escaping(UIImage,_ imagePosition: Int) -> ()){
+        for i in 0...urlArr.count - 1 {
+            let url = urlArr[i]
+            NetworkService.shared.getData(url: url) { data in
+                if let image = UIImage(data: data) {
+                    completion(image,i)
+                }
             }
         }
     }
+    
 }

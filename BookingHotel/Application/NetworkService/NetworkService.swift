@@ -26,15 +26,4 @@ class NetworkService {
             }
         }.resume()
     }
-    
-    func getImageRoom(urlArr: [URL],completion: @escaping(UIImage,_ imagePosition: Int) -> ()){
-        for i in 0...urlArr.count - 1 {
-            let url = urlArr[i]
-            NetworkService.shared.getData(url: url) { data in
-                if let image = UIImage(data: data) {
-                    completion(image,i)
-                }
-            }
-        }
-    }
 }

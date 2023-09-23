@@ -21,11 +21,7 @@ class RoomController: UIViewController {
         RoomNetworkService.funcGetDataRoom { [weak self] roomsJson in
             self?.roomModel = RoomDataModel(roomsJson: roomsJson)
             self?.collectionView.reloadData()
-            
-            RoomNetworkService.getImageRoom(rooms: roomsJson) { image, roomPostition, imagePosition in
-                self?.roomModel?.roomArr[roomPostition].roomImage[imagePosition] = image
-                self?.collectionView.reloadData()
-            }
+            self?.getImage(rooms: roomsJson)
         }
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
@@ -63,6 +59,7 @@ extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         guard let room = roomModel?.roomArr[indexPath.section] else {return cell}
         cell.room = room
         cell.pageControl.numberOfPages = room.roomImage.count
+        cell.descriptionNumber.text = room.name
         cell.layer.cornerRadius = 15
         cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return cell
@@ -82,14 +79,14 @@ extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
+        guard let room = roomModel?.roomArr[indexPath.section] else {return UICollectionReusableView()}
         if kind == UICollectionView.elementKindSectionHeader {
             let headear = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleHedear", for: indexPath) as! TitleHedear
             headear.label.isHidden = true
             return headear
         }else {
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
-            priceFooter.updateTextlabel(additionalText: "", priceText: "186 000р ", descriptionText: "За 7 ночей с перелетом")
+            priceFooter.updateTextlabel(additionalText: "", priceText: room.price + " ", descriptionText: room.pricePer)
             priceFooter.indexPath = indexPath
             priceFooter.button.removeTarget(nil, action: nil, for: .allEvents)
             let buttonAction = UIAction { [weak self] action in
@@ -114,4 +111,18 @@ extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
         return .zero
     }
     
+}
+
+extension RoomController {
+    
+    func getImage(rooms: RoomsJson){
+        for i in 0...rooms.rooms.count - 1 {
+            let urlArr = rooms.rooms[i].image_urls
+            RoomNetworkService.getImageRoom(urlArr: urlArr) { [weak self] image, imagePosition in
+                self?.roomModel?.roomArr[i].roomImage[imagePosition] = image
+                self?.collectionView.reloadData()
+                self?.collectionView.reloadData()
+            }
+        }
+    }
 }
