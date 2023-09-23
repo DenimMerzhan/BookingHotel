@@ -11,12 +11,12 @@ import SkeletonView
 class SwipeCell: UICollectionViewCell {
 
     
-    @IBOutlet weak var photoHotel: UIImageView!
+    @IBOutlet weak var image: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        photoHotel.layer.cornerRadius = 10
-        photoHotel.showAnimatedGradientSkeleton()
+        image.layer.cornerRadius = 10
+        image.showAnimatedGradientSkeleton()
     }
 
 }

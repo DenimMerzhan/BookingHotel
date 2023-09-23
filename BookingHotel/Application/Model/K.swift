@@ -21,7 +21,7 @@ struct Color {
     let wrongDataColor = UIColor(named: "WrongDataColor")
     let separateColor = UIColor(named: "SeparateColor")
     let buttonColor = UIColor(named: "ButtonColor")
-    
+    let tintTextTagColor = UIColor(named: "TintAboutHotel")
 }
 
 struct Font {

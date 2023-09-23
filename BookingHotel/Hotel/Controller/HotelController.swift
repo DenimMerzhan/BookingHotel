@@ -161,8 +161,7 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
         case .description(_):
             return 130
         case .tagHotel(let tagHotel):
-            let roomModel = RoomModel()
-            if let height = roomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: K.font.tagCell) {return height}
+            if let height = RoomModel.calculateHeightTagCollectionView(tagArr: tagHotel, widthCollectionView: tableView.frame.width,font: K.font.tagCell) {return height}
             return 0
         case .detailDescription(let descriptionText):
             return HotelModel.shared.estimatedHeightForTagCell(widthTableView: tableView.frame.width, withDescription: descriptionText) + 30

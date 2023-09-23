@@ -12,13 +12,21 @@ class RoomController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var roomArr = [Room]()
-    var roomModel = RoomModel()
+    var roomModel: RoomDataModel?
     var currentIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        roomArr = roomModel.roomArr
+        
+        RoomNetworkService.funcGetDataRoom { [weak self] roomsJson in
+            self?.roomModel = RoomDataModel(roomsJson: roomsJson)
+            self?.collectionView.reloadData()
+            
+            RoomNetworkService.getImageRoom(rooms: roomsJson) { image, roomPostition, imagePosition in
+                self?.roomModel?.roomArr[roomPostition].roomImage[imagePosition] = image
+                self?.collectionView.reloadData()
+            }
+        }
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -42,26 +50,27 @@ class RoomController: UIViewController {
 extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return roomModel.numberOfSections
+        return roomModel?.numberOfSections ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return roomModel.numberOfRowsInSection
+        return roomModel?.numberOfRowsInSection ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomCell", for: indexPath) as! RoomCell
-        let room = roomArr[indexPath.section]
+        guard let room = roomModel?.roomArr[indexPath.section] else {return cell}
         cell.room = room
+        cell.pageControl.numberOfPages = room.roomImage.count
         cell.layer.cornerRadius = 15
         cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let room = roomArr[indexPath.section]
-        if let height =  roomModel.calculateHeightTagCollectionView(tagArr: room.tagRoom, widthCollectionView: collectionView.frame.width,font: K.font.tagCell) {
+        guard let room = roomModel?.roomArr[indexPath.section] else {return .zero}
+        if let height =  RoomModel.calculateHeightTagCollectionView(tagArr: room.peculiarities, widthCollectionView: collectionView.frame.width,font: K.font.tagCell) {
             return CGSize(width: collectionView.frame.width, height: height + 300 + 70 + 20) /// 300 высота pageCollection 70 высота лейбла, 20 отступ от верха
         }
         return .zero

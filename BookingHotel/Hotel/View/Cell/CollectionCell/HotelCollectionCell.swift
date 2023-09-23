@@ -52,8 +52,8 @@ extension HotelCollectionCell: UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipeCell", for: indexPath) as! SwipeCell
         if let image = imageArr[indexPath.row] {
-            cell.photoHotel.image = image
-            cell.photoHotel.hideSkeleton(reloadDataAfter: false, transition: .crossDissolve(0.5))
+            cell.image.image = image
+            cell.image.hideSkeleton(reloadDataAfter: false, transition: .crossDissolve(0.5))
         }
         return cell
         

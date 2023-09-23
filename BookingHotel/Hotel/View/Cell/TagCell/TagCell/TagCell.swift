@@ -21,5 +21,11 @@ class TagCell: UICollectionViewCell {
         descriptionText.minimumScaleFactor = 0.5
         descriptionText.adjustsFontSizeToFitWidth = true
     }
+    
+    override func prepareForReuse() {
+        button.isHidden = true
+        descriptionText.textColor = K.color.tintTextTagColor
+        backView.backgroundColor =  K.color.separateColor
+    }
 
 }

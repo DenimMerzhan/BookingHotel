@@ -34,6 +34,11 @@ class RoomCell: UICollectionViewCell {
         tagCollectionView.delegate = self
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        pageCollectionView.reloadData()
+        tagCollectionView.reloadData()
+    }
     
     @IBAction func pageControllTapped(_ sender: UIPageControl) {
         let page = sender.currentPage
@@ -51,25 +56,28 @@ extension RoomCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let room = room else {return 0}
         if collectionView == pageCollectionView {
-            return room.imageArr.count
+            return room.roomImage.count
         }else {
-            return room.tagRoom.count
+            return room.peculiarities.count
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let room = room else {return UICollectionViewCell()}
         if collectionView == pageCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SwipeCell", for: indexPath) as! SwipeCell
-            if let room = self.room {
-                cell.photoHotel.image = room.imageArr[indexPath.row]
+            if let image = room.roomImage[indexPath.row] {
+                cell.image.image = image
+                cell.image.hideSkeleton(reloadDataAfter: false, transition: .crossDissolve(0.5))
             }
+
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCell", for: indexPath) as! TagCell
             if let room = self.room {
-                cell.descriptionText.text = room.tagRoom[indexPath.row]
-                if indexPath.row == room.tagRoom.count - 1 {
+                cell.descriptionText.text = room.peculiarities[indexPath.row]
+                if indexPath.row == room.peculiarities.count - 1 {
                     cell.button.isHidden = false
                     cell.descriptionText.textColor = UIColor(named: "ButtonColor")
                     cell.backView.backgroundColor = UIColor(named: "LastTagColor")
@@ -80,13 +88,11 @@ extension RoomCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
  
     }
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == pageCollectionView {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else {
-            guard let tagArr = room?.tagRoom else {return .zero}
+            guard let tagArr = room?.peculiarities else {return .zero}
             var cellWidth = tagArr[indexPath.row].contentSizeString(font: K.font.tagCell).width + 20
             
             if indexPath.row == tagArr.count - 1 {

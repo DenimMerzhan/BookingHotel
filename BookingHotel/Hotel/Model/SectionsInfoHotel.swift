@@ -18,14 +18,6 @@ enum SectionsInfoHotel {
     case moreAboutHotel([MoreAboutHotel])
     case selectNumber
     
-//    mutating func refreshImage(imageArr: [UIImage]){
-//        switch self {
-//        case .hotelImage(_):
-//            self = .hotelImage(imageArr)
-//        default: break
-//        }
-//    }
-    
 }
 
 struct HotelDescription {
