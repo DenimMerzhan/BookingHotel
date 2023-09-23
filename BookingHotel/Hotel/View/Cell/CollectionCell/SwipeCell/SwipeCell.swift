@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class SwipeCell: UICollectionViewCell {
 
@@ -15,6 +16,7 @@ class SwipeCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         photoHotel.layer.cornerRadius = 10
+        photoHotel.showAnimatedGradientSkeleton()
     }
 
 }
