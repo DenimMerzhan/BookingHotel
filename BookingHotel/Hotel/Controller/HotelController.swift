@@ -104,10 +104,11 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let sections = hotelDataModel?.sections else {return nil}
+        guard hotelDataModel != nil else {return nil}
         switch sections[section] {
-        case .description(_):
+        case .description(let description):
             let priceFooter = UINib(nibName: "PriceFooter", bundle: nil).instantiate(withOwner: self).first as! PriceFooter
-            priceFooter.updateTextlabel(additionalText: "от ", priceText: "143 000р ", descriptionText: "За тур с перелетом")
+            priceFooter.priceLabel.attributedText =  HotelModel.shared.updatePriceFooterText(additionalText: "от ", price: description.price, descriptionText: " " + description.priceForIt)
             priceFooter.button.isHidden = true
             priceFooter.backgroundView.layer.cornerRadius = 15
             priceFooter.backgroundView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]

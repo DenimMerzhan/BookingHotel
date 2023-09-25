@@ -86,7 +86,7 @@ extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
             return headear
         }else {
             let priceFooter = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "PriceFooter", for: indexPath) as! PriceFooter
-            priceFooter.updateTextlabel(additionalText: "", priceText: room.price + " ", descriptionText: room.pricePer)
+            priceFooter.priceLabel.attributedText =  HotelModel.shared.updatePriceFooterText(additionalText: "", price: room.price, descriptionText: " " + room.pricePer)
             priceFooter.indexPath = indexPath
             priceFooter.button.removeTarget(nil, action: nil, for: .allEvents)
             let buttonAction = UIAction { [weak self] action in
@@ -112,6 +112,8 @@ extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
     
 }
+
+//MARK: - GetImage
 
 extension RoomController {
     

@@ -39,7 +39,7 @@ extension String? {
     }
     
     func isValidPhoneNumber() -> Bool {
-        guard var number = self else {return false}
+        guard let number = self else {return false}
         if number.count < 18 {
             return false
         }else {return true}

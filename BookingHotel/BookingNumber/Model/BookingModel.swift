@@ -37,7 +37,7 @@ struct BookingModel {
             resultArr.append(detail)
         }
         
-        bookingInfo.append(.aboutHotel(HotelDescription(grade: 5, raitingName: "Класс", nameHotel: "Осень", adressHotel: "dwwddw", price: "45")))
+        bookingInfo.append(.aboutHotel(HotelDescription(grade: 5, raitingName: "Класс", nameHotel: "Осень", adressHotel: "dwwddw", price: 23, priceForIt: "dw")))
         bookingInfo.append(.bookingDetails(details))
         bookingInfo.append(.customerInfo(CustomerInfo()))
         bookingInfo.append(.tourist(.init(buttonState: .notTouch)))

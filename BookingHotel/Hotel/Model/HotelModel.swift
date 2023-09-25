@@ -47,4 +47,39 @@ struct HotelModel {
         }
     }
     
+
+    func updatePriceFooterText(additionalText: String, price: Double, descriptionText: String) -> NSMutableAttributedString {
+        
+        let price = String(Int(price))
+        var newPriceText = formatPriceLabelText(text: price)
+        newPriceText += " ₽"
+        
+        let attrs1 = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 26)]
+        let attrs2 = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)]
+        let attrs3 = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.gray]
+
+        let attributedString1 = NSMutableAttributedString(string:additionalText, attributes:attrs1)
+        let attributedString2 = NSMutableAttributedString(string:newPriceText, attributes:attrs2)
+        let attributedString3 = NSMutableAttributedString(string:descriptionText, attributes:attrs3)
+
+        attributedString1.append(attributedString2)
+        attributedString1.append(attributedString3)
+        
+        return attributedString1
+        
+    }
+    
+    private func formatPriceLabelText(text: String) -> String {
+        var text = text
+        switch text.count {
+        case 4: text.insert(" ", at: text.index(text.startIndex, offsetBy: 1))
+        case 5: text.insert(" ", at: text.index(text.startIndex, offsetBy: 2))
+        case 6: text.insert(" ", at: text.index(text.startIndex, offsetBy: 3))
+        case 7: text.insert(" ", at: text.index(after: text.startIndex))
+            text.insert(" ", at: text.index(text.endIndex, offsetBy: -3))
+        default: break
+        }
+        return text
+    }
+    
 }

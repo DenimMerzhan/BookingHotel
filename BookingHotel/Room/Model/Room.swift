@@ -12,12 +12,12 @@ import UIKit
 struct Room {
     
     var name: String
-    var price: String
+    var price: Double
     var pricePer: String
     var roomImage : [UIImage?]
     var peculiarities: [String]
 
-    init(name: String, price: String, pricePer: String, peculiarities: [String],roomImage: [UIImage?]) {
+    init(name: String, price: Double, pricePer: String, peculiarities: [String],roomImage: [UIImage?]) {
         self.name = name
         self.price = price
         self.pricePer = pricePer

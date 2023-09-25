@@ -30,7 +30,7 @@ struct RoomDataModel {
             roomJson.image_urls.forEach { url in
                 roomImage.append(nil)
             }
-            let room = Room(name: roomJson.name, price: String(roomJson.price), pricePer: roomJson.price_per, peculiarities: roomJson.peculiarities,roomImage: roomImage)
+            let room = Room(name: roomJson.name, price: roomJson.price, pricePer: roomJson.price_per, peculiarities: roomJson.peculiarities,roomImage: roomImage)
             self.roomArr.append(room)
         }
     }

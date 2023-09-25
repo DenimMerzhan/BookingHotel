@@ -26,8 +26,8 @@ struct HotelDescription {
     var raitingName: String
     var nameHotel: String
     var adressHotel: String
-    var price: String
-    
+    var price: Double
+    var priceForIt: String
 }
 
 
