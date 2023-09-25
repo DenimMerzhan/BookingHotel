@@ -48,19 +48,10 @@ class BookingController: UIViewController {
     @objc func payPressed(){
         isVerificationBegan = true
         guard let bookingModel = bookingModel else {return}
-        
-        switch bookingModel.bookingInfo[2] {
-        case .customerInfo(let customerInfo):
-            switch bookingModel.bookingInfo[3] {
-            case .tourist(let tourist):
-                if bookingModel.validateBooking(tourist: tourist, customerInfo: customerInfo,bookingInfo: bookingModel.bookingInfo) {
-                    self.performSegue(withIdentifier: "goToDoneScreen", sender: self)
-                }else {
-                    tableView.reloadData()
-                }
-            default: break
-            }
-        default: break
+        if bookingModel.isUserValidate() {
+            performSegue(withIdentifier: "goToDoneScreen", sender: self)
+        }else {
+            tableView.reloadData()
         }
     }
 }
@@ -176,9 +167,10 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
                 cell.descriptionDetails.textColor = K.color.buttonColor
             }
             return cell
-        case .pay:
+        case .pay(let finalPrice):
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActionCell", for: indexPath) as! ActionCell
             cell.button.addTarget(self, action: #selector(payPressed), for: .touchUpInside)
+            cell.button.setTitle("Оплатить \(finalPrice)", for: .normal)
             return cell
         }
     }

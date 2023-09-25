@@ -73,7 +73,7 @@ struct BookingModel {
         bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
         bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
         bookingInfo.append(.result(priceArr))
-        bookingInfo.append(.pay)
+        bookingInfo.append(.pay(HotelModel.shared.formatPrice(text: String(Int(finalPrice))) + " ₽"))
         
     }
     
@@ -151,5 +151,28 @@ extension BookingModel {
             print("Ошибка декодирования информации о бронирование - \(error)")
             return nil
         }
+    }
+}
+
+//MARK: - ValidateUser
+
+extension BookingModel {
+    
+    func isUserValidate() -> Bool {
+        switch bookingInfo[2] {
+        case .customerInfo(let customerInfo):
+            switch bookingInfo[3] {
+            case .tourist(let tourist):
+                if validateBooking(tourist: tourist, customerInfo: customerInfo,bookingInfo: bookingInfo) {
+                    return true
+                    
+                }else {
+                    return false
+                }
+            default: break
+            }
+        default: break
+        }
+        return false
     }
 }

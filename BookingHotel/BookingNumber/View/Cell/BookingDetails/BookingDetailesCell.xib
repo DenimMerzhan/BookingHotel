@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="sLb-24-N7w">
-                        <rect key="frame" x="15" y="15" width="290" height="14"/>
+                        <rect key="frame" x="15" y="12" width="290" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вылет из" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXf-Vs-buH">
-                                <rect key="frame" x="0.0" y="0.0" width="145" height="14"/>
+                                <rect key="frame" x="0.0" y="0.0" width="145" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="TintAboutHotel"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Санкт-Петербург" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Me-Ox-qYJ">
-                                <rect key="frame" x="145" y="0.0" width="145" height="14"/>
+                                <rect key="frame" x="145" y="0.0" width="145" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -38,9 +38,9 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="sLb-24-N7w" secondAttribute="bottom" constant="15" id="Oku-d9-F5e"/>
+                    <constraint firstAttribute="bottom" secondItem="sLb-24-N7w" secondAttribute="bottom" constant="12" id="Oku-d9-F5e"/>
                     <constraint firstAttribute="trailing" secondItem="sLb-24-N7w" secondAttribute="trailing" constant="15" id="UbO-Km-vhR"/>
-                    <constraint firstItem="sLb-24-N7w" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="olw-QF-edJ"/>
+                    <constraint firstItem="sLb-24-N7w" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="olw-QF-edJ"/>
                     <constraint firstItem="sLb-24-N7w" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="tBG-HX-0hG"/>
                 </constraints>
             </tableViewCellContentView>
