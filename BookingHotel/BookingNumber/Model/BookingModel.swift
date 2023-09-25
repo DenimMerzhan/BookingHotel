@@ -165,7 +165,6 @@ extension BookingModel {
             case .tourist(let tourist):
                 if validateBooking(tourist: tourist, customerInfo: customerInfo,bookingInfo: bookingInfo) {
                     return true
-                    
                 }else {
                     return false
                 }

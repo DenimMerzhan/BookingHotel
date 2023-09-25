@@ -51,6 +51,11 @@ class BookingController: UIViewController {
         if bookingModel.isUserValidate() {
             performSegue(withIdentifier: "goToDoneScreen", sender: self)
         }else {
+            switch bookingModel.bookingInfo[3].getState() {
+            case .notTouch:
+                self.bookingModel?.bookingInfo[3].changeSelectedState()
+            default: break
+            }
             tableView.reloadData()
         }
     }
