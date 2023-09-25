@@ -10,21 +10,17 @@ import Foundation
 
 struct BookingModel {
     
-    var bookingInfo = [BookingInfo]()
+    
     
     let touristDataPlaceholder = ["Имя","Фамилия","Дата рождения","Гражданство","Номер загранпаспорта","Срок действия загран паспорта"]
     let customerInfoPlaceholder = ["Номер телефона","Почта"]
     let numberTouirist = ["Первый","Второй","Третий","Четвертый","Пятый","Шестой","Седьмой","Восьмой","Девятый","Десятый"]
     let descriptionPlacheholder = ["Вылет из","Cтрана,город","Даты","Кол-во ночей","Отель","Номер","Питание"]
     
-    init(){
-        fillBookingInfo()
-    }
     
-    
-    
-    mutating func fillBookingInfo(){
+    func fillBookingInfo() -> [BookingInfo] {
         
+        var bookingInfo = [BookingInfo]()
         let fly = BookingDetails(deatails: "Вылет из", descripiton: "Санкт-Петербург")
         var details = [BookingDetails]()
         for _ in 0...8 {
@@ -44,6 +40,8 @@ struct BookingModel {
         bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
         bookingInfo.append(.result(resultArr))
         bookingInfo.append(.pay)
+        
+        return bookingInfo
     }
     
     func getDescriptionStatus(tourist: Tourist,row: Int) -> (description:String?,isValid: Bool) {
@@ -77,7 +75,7 @@ struct BookingModel {
 
 extension BookingModel {
     
-    func validateBooking(tourist: Tourist,customerInfo: CustomerInfo) -> Bool {
+    func validateBooking(tourist: Tourist,customerInfo: CustomerInfo, bookingInfo: [BookingInfo]) -> Bool {
         
         for i in 0...bookingInfo.count - 1 {
             switch bookingInfo[i] {
@@ -103,5 +101,22 @@ extension BookingModel {
             }
         }
         return true
+    }
+}
+
+
+//MARK: - DecodeJson
+
+extension BookingModel {
+    
+    func decodeJson(data: Data) -> BookingInfoJson? {
+        let decoder = JSONDecoder()
+        do {
+            let deocdeData = try decoder.decode(BookingInfoJson.self, from: data)
+            return deocdeData
+        }catch {
+            print("Ошибка декодирования информации о бронирование - \(error)")
+            return nil
+        }
     }
 }

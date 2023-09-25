@@ -19,7 +19,12 @@ class BookingController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Бронирование"
-        bookingInfo = bookingModel.bookingInfo
+        
+        bookingInfo = bookingModel.fillBookingInfo()
+        
+        BookingNetworkService.getBookingInfo(bookingModel: bookingModel) { [weak self] bookingInfo in
+            self?.bookingInfo = self?.bookingModel.fillBookingInfo() ?? <#default value#>
+        }
         
         tableView.allowsSelection = false
         tableView.dataSource = self
@@ -44,7 +49,7 @@ class BookingController: UIViewController {
         case .customerInfo(let customerInfo):
             switch bookingInfo[3] {
             case .tourist(let tourist):
-                if bookingModel.validateBooking(tourist: tourist, customerInfo: customerInfo) {
+                if bookingModel.validateBooking(tourist: tourist, customerInfo: customerInfo,bookingInfo: bookingInfo) {
                     self.performSegue(withIdentifier: "goToDoneScreen", sender: self)
                 }else {
                     tableView.reloadData()
