@@ -10,7 +10,7 @@ import Foundation
 
 struct BookingModel {
     
-    
+    var bookingInfo = [BookingInfo]()
     
     let touristDataPlaceholder = ["Имя","Фамилия","Дата рождения","Гражданство","Номер загранпаспорта","Срок действия загран паспорта"]
     let customerInfoPlaceholder = ["Номер телефона","Почта"]
@@ -18,30 +18,63 @@ struct BookingModel {
     let descriptionPlacheholder = ["Вылет из","Cтрана,город","Даты","Кол-во ночей","Отель","Номер","Питание"]
     
     
-    func fillBookingInfo() -> [BookingInfo] {
-        
-        var bookingInfo = [BookingInfo]()
-        let fly = BookingDetails(deatails: "Вылет из", descripiton: "Санкт-Петербург")
-        var details = [BookingDetails]()
-        for _ in 0...8 {
-            details.append(fly)
+    var numberOfsection: Int {
+        get {
+            return bookingInfo.count
         }
-        
-        var resultArr = [BookingDetails]()
-        let detail = BookingDetails(deatails: "Тур", descripiton: "186 000р")
-        for _ in 0...3 {
-            resultArr.append(detail)
+    }
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        switch bookingInfo[section] {
+        case .aboutHotel(_),.pay: return 1
+        case .bookingDetails(let bookingDetails):
+            return bookingDetails.count
+        case .customerInfo:
+            return customerInfoPlaceholder.count
+        case .tourist (let touristData):
+            switch touristData.buttonState {
+            case .selected:
+                return touristDataPlaceholder.count
+            default: return 0
+            }
+        case .result(let bookingDetails): return bookingDetails.count
         }
+    }
+    
+    
+    init(bookingInfoJson: BookingInfoJson,hotelDescription: HotelDescription, room: Room) {
+        fillBookingInfo(bookingInfoJson: bookingInfoJson, hotelDescription: hotelDescription, room: room)
+    }
+    
+    mutating func fillBookingInfo(bookingInfoJson: BookingInfoJson,hotelDescription: HotelDescription, room: Room) {
         
-        bookingInfo.append(.aboutHotel(HotelDescription(grade: 5, raitingName: "Класс", nameHotel: "Осень", adressHotel: "dwwddw", price: 23, priceForIt: "dw")))
-        bookingInfo.append(.bookingDetails(details))
+        let departure = BookingDetails(deatails: "Вылет из",descripiton: bookingInfoJson.departure)
+        let arrivalCountry = BookingDetails(deatails: "Страна, город",descripiton: bookingInfoJson.arrival_country)
+        let dates = BookingDetails(deatails: "Даты",descripiton: bookingInfoJson.tour_date_start + "-" + bookingInfoJson.tour_date_stop)
+        let numberOfNights = BookingDetails(deatails: "Кол-Во ночей",descripiton: String(bookingInfoJson.number_of_nights))
+        let hotelName = BookingDetails(deatails: "Отель",descripiton: hotelDescription.nameHotel)
+        let roomDescription = BookingDetails(deatails: "Номер",descripiton: room.name)
+        let nutrition = BookingDetails(deatails: "Питание",descripiton: bookingInfoJson.nutrition)
+        
+        let flyDetails = [departure,arrivalCountry,dates,numberOfNights,hotelName,roomDescription,nutrition]
+        
+        let tourPrice = BookingDetails(deatails: "Тур",descripiton: HotelModel.shared.formatPrice(text: String(Int(room.price))) + " ₽")
+        let fuelCharge = BookingDetails(deatails: "Тур",descripiton: HotelModel.shared.formatPrice(text: String(Int(room.fuelCharge))) + " ₽")
+        let serviceCharge = BookingDetails(deatails: "Тур",descripiton: HotelModel.shared.formatPrice(text: String(Int(room.serviceCharge))) + " ₽")
+        let finalPrice = room.price + room.fuelCharge + room.serviceCharge
+        let finalPriceString = BookingDetails(deatails: "Тур",descripiton: HotelModel.shared.formatPrice(text: String(Int(finalPrice))) + " ₽")
+        
+        let priceArr = [tourPrice,fuelCharge,serviceCharge,finalPriceString]
+        
+        bookingInfo.append(.aboutHotel(HotelDescription(grade: hotelDescription.grade, raitingName: hotelDescription.raitingName, nameHotel: hotelDescription.nameHotel, adressHotel: hotelDescription.adressHotel, price: 0, priceForIt: " ")))
+        
+        bookingInfo.append(.bookingDetails(flyDetails))
         bookingInfo.append(.customerInfo(CustomerInfo()))
         bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
         bookingInfo.append(.tourist(.init(buttonState: .notTouch)))
-        bookingInfo.append(.result(resultArr))
+        bookingInfo.append(.result(priceArr))
         bookingInfo.append(.pay)
         
-        return bookingInfo
     }
     
     func getDescriptionStatus(tourist: Tourist,row: Int) -> (description:String?,isValid: Bool) {
@@ -109,7 +142,7 @@ extension BookingModel {
 
 extension BookingModel {
     
-    func decodeJson(data: Data) -> BookingInfoJson? {
+    static func decodeJson(data: Data) -> BookingInfoJson? {
         let decoder = JSONDecoder()
         do {
             let deocdeData = try decoder.decode(BookingInfoJson.self, from: data)

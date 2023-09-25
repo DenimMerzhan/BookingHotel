@@ -9,10 +9,10 @@ import Foundation
 
 class BookingNetworkService {
     
-    static func getBookingInfo(bookingModel: BookingModel,completion: @escaping (_ bookingInfo: BookingInfoJson) -> ()){
+    static func getBookingInfo(completion: @escaping (_ bookingInfoJson: BookingInfoJson) -> ()){
         guard let url = URL(string: "https://run.mocky.io/v3/e8868481-743f-4eb2-a0d7-2bc4012275c8") else {return}
         NetworkService.shared.getData(url: url) { data in
-            if let bookingInfoJson = bookingModel.decodeJson(data: data) {
+            if let bookingInfoJson = BookingModel.decodeJson(data: data) {
                 completion(bookingInfoJson)
             }
         }

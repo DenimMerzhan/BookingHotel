@@ -11,19 +11,22 @@ class BookingController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var bookingInfo = [BookingInfo]()
-    var bookingModel = BookingModel()
+    var bookingModel: BookingModel?
     var isVerificationBegan = Bool()
+    
+    var hotelDescription: HotelDescription?
+    var room: Room?
     var indexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Бронирование"
         
-        bookingInfo = bookingModel.fillBookingInfo()
-        
-        BookingNetworkService.getBookingInfo(bookingModel: bookingModel) { [weak self] bookingInfo in
-            self?.bookingInfo = self?.bookingModel.fillBookingInfo() ?? <#default value#>
+        BookingNetworkService.getBookingInfo() { [weak self] bookingInfoJson in
+            if let hotelDescription = self?.hotelDescription, let room = self?.room {
+                self?.bookingModel = BookingModel(bookingInfoJson: bookingInfoJson,hotelDescription: hotelDescription,room: room)
+            }
+            self?.tableView.reloadData()
         }
         
         tableView.allowsSelection = false
@@ -44,12 +47,13 @@ class BookingController: UIViewController {
 
     @objc func payPressed(){
         isVerificationBegan = true
+        guard let bookingModel = bookingModel else {return}
         
-        switch bookingInfo[2] {
+        switch bookingModel.bookingInfo[2] {
         case .customerInfo(let customerInfo):
-            switch bookingInfo[3] {
+            switch bookingModel.bookingInfo[3] {
             case .tourist(let tourist):
-                if bookingModel.validateBooking(tourist: tourist, customerInfo: customerInfo,bookingInfo: bookingInfo) {
+                if bookingModel.validateBooking(tourist: tourist, customerInfo: customerInfo,bookingInfo: bookingModel.bookingInfo) {
                     self.performSegue(withIdentifier: "goToDoneScreen", sender: self)
                 }else {
                     tableView.reloadData()
@@ -68,31 +72,21 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
 
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return bookingInfo.count
+        return bookingModel?.numberOfsection ?? 0
     }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch bookingInfo[section] {
-        case .aboutHotel(_),.pay: return 1
-        case .bookingDetails(let bookingDetails):
-            return bookingDetails.count
-        case .customerInfo:
-            return bookingModel.customerInfoPlaceholder.count
-        case .tourist (let touristData):
-            switch touristData.buttonState {
-            case .selected:
-                return bookingModel.touristDataPlaceholder.count
-            default: return 0
-            }
-        case .result(let bookingDetails): return bookingDetails.count
-        }
+        return bookingModel?.numberOfRowsInSection(section: section) ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch bookingInfo[indexPath.section] {
+        guard let bookingModel = bookingModel else {return UITableViewCell()}
+        switch bookingModel.bookingInfo[indexPath.section] {
         case .aboutHotel(let hotelDescription):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
+            cell.nameHotel.text = hotelDescription.nameHotel
+            cell.addresHotel.text = hotelDescription.adressHotel
             cell.descriptionGrade.text = String(hotelDescription.grade) +  hotelDescription.raitingName
             cell.contentView.layer.cornerRadius = 15
             return cell
@@ -190,6 +184,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let bookingInfo = bookingModel?.bookingInfo else {return .leastNormalMagnitude}
         switch bookingInfo[section] {
         case .aboutHotel(_):
             return 10
@@ -200,6 +195,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard let bookingInfo = bookingModel?.bookingInfo else {return .leastNormalMagnitude}
         switch bookingInfo[section] {
         case .customerInfo(_): return 70
         case .pay: return .leastNormalMagnitude
@@ -209,13 +205,14 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch bookingInfo[section] {
+        guard let bookingModel = bookingModel else {return nil}
+        switch bookingModel.bookingInfo[section] {
         case .aboutHotel(_):
             let view = UINib(nibName: "TitleHedear", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! TitleHedear
             view.label.isHidden = true
             return view
         case .customerInfo:
-            let state = bookingInfo[section].getState()
+            let state = bookingModel.bookingInfo[section].getState()
             let bookingHeader = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
             bookingHeader.label.text = "Информация о покупателе"
             bookingHeader.button.isHidden = true
@@ -223,7 +220,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
             bookingHeader.delegate = self
             return bookingHeader
         case .tourist:
-            let state = bookingInfo[section].getState()
+            let state = bookingModel.bookingInfo[section].getState()
             let bookingHeader = BookingHeader(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100),stateButton: state)
             bookingHeader.label.text = bookingModel.numberTouirist[section - 3] + " Турист"
             bookingHeader.section = section
@@ -242,6 +239,7 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let bookingInfo = bookingModel?.bookingInfo else {return nil}
         let footer = UINib(nibName: "BookingFooter", bundle: nil).instantiate(withOwner: nil).first as! BookingFooter
         switch bookingInfo[section] {
         case .customerInfo(_):
@@ -259,13 +257,16 @@ extension BookingController: UITableViewDataSource,UITableViewDelegate {
 extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
     
     func buttonPressed(section: Int,isAddTourist: Bool) {
+        
+        guard let bookingInfo = bookingModel?.bookingInfo else {return}
+        
         if isAddTourist {
             let index = bookingInfo.count - 3
-            bookingInfo.insert((.tourist(.init(buttonState: .notTouch))), at: index)
+            bookingModel?.bookingInfo.insert((.tourist(.init(buttonState: .notTouch))), at: index)
             tableView.reloadData()
             return
         }
-        bookingInfo[section].changeSelectedState()
+        bookingModel?.bookingInfo[section].changeSelectedState()
         tableView.reloadData()
         let row = tableView.numberOfRows(inSection: section)
         if row > 0 {
@@ -275,11 +276,12 @@ extension BookingController: BookingHeaderDelegate, InfoTouristDelegate {
     
     
     func textDidChange(text: String?,indexPath:IndexPath) {
+        guard let bookingInfo = bookingModel?.bookingInfo else {return}
         switch bookingInfo[indexPath.section] {
         case .customerInfo(_):
-            bookingInfo[indexPath.section].changeCustomerInfoData(newValue: text, row: indexPath.row)
+            bookingModel?.bookingInfo[indexPath.section].changeCustomerInfoData(newValue: text, row: indexPath.row)
         case .tourist(_):
-            bookingInfo[indexPath.section].changeTouristData(newValue: text, row: indexPath.row)
+            bookingModel?.bookingInfo[indexPath.section].changeTouristData(newValue: text, row: indexPath.row)
         default: break
         }
     }

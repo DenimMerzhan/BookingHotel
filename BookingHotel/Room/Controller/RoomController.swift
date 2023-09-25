@@ -13,6 +13,7 @@ class RoomController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var roomModel: RoomDataModel?
+    var hotelDescription: HotelDescription?
     var currentIndexPath: IndexPath?
     
     override func viewDidLoad() {
@@ -26,7 +27,7 @@ class RoomController: UIViewController {
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.title = "Steingber Mask"
+        self.title = hotelDescription?.nameHotel
         
         collectionView.allowsSelection = false
         collectionView.dataSource = self
@@ -38,7 +39,9 @@ class RoomController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destanationVC = segue.destination as? BookingController else {return}
-        destanationVC.indexPath =  currentIndexPath
+        guard let indexPath = currentIndexPath else {return}
+        destanationVC.room = roomModel?.roomArr[indexPath.section]
+        destanationVC.hotelDescription = hotelDescription
     }
     
 }

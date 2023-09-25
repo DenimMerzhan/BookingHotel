@@ -39,7 +39,7 @@ struct HotelDataModel {
         }
         
         let hotelImage = SectionsInfoHotel.hotelImage
-        let hotelDescription = SectionsInfoHotel.description(HotelDescription(grade: hotel.rating, raitingName: hotel.rating_name, nameHotel: hotel.name, adressHotel: hotel.adress, price: hotel.minimal_price,priceForIt: hotel.price_for_it))
+        let hotelDescription = SectionsInfoHotel.description(HotelDescription(grade: hotel.rating, raitingName: hotel.rating_name, nameHotel: "Steigenberger Makadi", adressHotel: hotel.adress, price: hotel.minimal_price,priceForIt: hotel.price_for_it))
         let aboutHotel = SectionsInfoHotel.tagHotel(hotel.about_the_hotel.peculiarities)
         
         let moreAboutHotel = SectionsInfoHotel.moreAboutHotel([.init(description: "Удобства",image: UIImage(named: "FacilitiesMAH")),.init(description: "Что включено",image: UIImage(named: "IncludedMAH")),.init(description: "Что не включено",image: UIImage(named: "NotIncludedMAH"))])

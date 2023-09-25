@@ -14,7 +14,7 @@ struct HotelModel {
     static let shared = HotelModel()
     private init() {}
     
-    func estimatedHeightForTagCell(widthTableView: CGFloat,withDescription description: String) -> CGFloat { 
+    func estimatedHeightForTagCell(widthTableView: CGFloat,withDescription description: String) -> CGFloat {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: widthTableView, height: 50))
         label.text = description
         label.font = .systemFont(ofSize: 17)
@@ -47,21 +47,21 @@ struct HotelModel {
         }
     }
     
-
+    
     func updatePriceFooterText(additionalText: String, price: Double, descriptionText: String) -> NSMutableAttributedString {
         
         let price = String(Int(price))
-        var newPriceText = formatPriceLabelText(text: price)
+        var newPriceText = formatPrice(text: price)
         newPriceText += " ₽"
         
         let attrs1 = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 26)]
         let attrs2 = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)]
         let attrs3 = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.gray]
-
+        
         let attributedString1 = NSMutableAttributedString(string:additionalText, attributes:attrs1)
         let attributedString2 = NSMutableAttributedString(string:newPriceText, attributes:attrs2)
         let attributedString3 = NSMutableAttributedString(string:descriptionText, attributes:attrs3)
-
+        
         attributedString1.append(attributedString2)
         attributedString1.append(attributedString3)
         
@@ -69,7 +69,7 @@ struct HotelModel {
         
     }
     
-    private func formatPriceLabelText(text: String) -> String {
+    func formatPrice(text: String) -> String {
         var text = text
         switch text.count {
         case 4: text.insert(" ", at: text.index(text.startIndex, offsetBy: 1))

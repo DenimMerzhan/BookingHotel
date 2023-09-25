@@ -17,6 +17,18 @@ struct Room {
     var roomImage : [UIImage?]
     var peculiarities: [String]
 
+    var fuelCharge: Double {
+        get {
+            return price * 0.03
+        }
+    }
+    
+    var serviceCharge: Double {
+        get {
+            return price * 0.07
+        }
+    }
+    
     init(name: String, price: Double, pricePer: String, peculiarities: [String],roomImage: [UIImage?]) {
         self.name = name
         self.price = price

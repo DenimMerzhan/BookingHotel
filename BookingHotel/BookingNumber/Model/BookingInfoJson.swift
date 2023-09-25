@@ -10,15 +10,16 @@ import Foundation
 
 struct BookingInfoJson: Decodable {
     
-    let id: String, hotelName: String,hotelAdress: String
-    let hotelRaiting: Int
-    let raitingName,departure,avvivalCountry,tourDateStart,tourDateStop : String
-    let numberOfNights: Int
-    let roomDescription: String
+    let id: Int
+    let hotel_name: String,hotel_adress: String
+    let horating: Int
+    let rating_name,departure,arrival_country,tour_date_start,tour_date_stop : String
+    let number_of_nights: Int
+    let room: String
     let nutrition: String
     
-    let tourPrice: Double
-    let fuelCharge: Double
-    let serviceCharge: Double
+    let tour_price: Double
+    let fuel_charge: Double
+    let service_charge: Double
     
 }

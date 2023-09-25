@@ -43,6 +43,15 @@ class HotelController: UIViewController {
         self.performSegue(withIdentifier: "goToSelectNumber", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destanationVC = segue.destination as? RoomController else {return}
+        switch hotelDataModel?.sections[1] {
+        case .description(let hotelDescription):
+            destanationVC.hotelDescription = hotelDescription
+        default: break
+        }
+    }
+    
 }
 
 
@@ -70,6 +79,8 @@ extension HotelController: UITableViewDataSource, UITableViewDelegate {
             return cell
         case .description(let descriptionHotel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoHotelCell", for: indexPath) as! InfoHotelCell
+            cell.nameHotel.text = descriptionHotel.nameHotel
+            cell.addresHotel.text = descriptionHotel.adressHotel
             cell.descriptionGrade.text = descriptionHotel.raitingName
             return cell
         case .tagHotel(let aboutHotel):
