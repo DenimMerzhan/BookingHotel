@@ -44,6 +44,10 @@ class RoomController: UIViewController {
         destanationVC.hotelDescription = hotelDescription
     }
     
+    deinit {
+        print("\(self) deinit")
+    }
+    
 }
 
 extension RoomController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {

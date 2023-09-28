@@ -265,7 +265,7 @@
 			path = InfoTouirist;
 			sourceTree = "<group>";
 		};
-		CF8056E62AA887BA00B81176 /* BookingNumber */ = {
+		CF8056E62AA887BA00B81176 /* Booking */ = {
 			isa = PBXGroup;
 			children = (
 				CF8056E92AA887F100B81176 /* Model */,
@@ -273,7 +273,7 @@
 				CF8056E72AA887E500B81176 /* Controller */,
 				CF026CD32AC1BBBD0063946C /* BookingNetworkService */,
 			);
-			path = BookingNumber;
+			path = Booking;
 			sourceTree = "<group>";
 		};
 		CF8056E72AA887E500B81176 /* Controller */ = {
@@ -345,7 +345,7 @@
 				CF969D482AA0625000CD75F9 /* Application */,
 				CF969D4C2AA0627800CD75F9 /* Hotel */,
 				CFAC3FC32AA7130700284369 /* Room */,
-				CF8056E62AA887BA00B81176 /* BookingNumber */,
+				CF8056E62AA887BA00B81176 /* Booking */,
 				CF8A21D42ABAF09900735923 /* DoneController */,
 				CF969D372AA05E8700CD75F9 /* Main.storyboard */,
 				CF969D3A2AA05E8900CD75F9 /* Assets.xcassets */,

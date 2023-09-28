@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol BookingHeaderDelegate {
+protocol BookingHeaderDelegate:AnyObject {
     
     func buttonPressed(section: Int, isAddTourist: Bool)
 }
@@ -18,7 +18,7 @@ class BookingHeader: UIView {
     var button = UIButton()
     var label = UILabel()
     var section =  Int()
-    var delegate: BookingHeaderDelegate?
+    weak var delegate: BookingHeaderDelegate?
     var isAddTourist = false
     
     

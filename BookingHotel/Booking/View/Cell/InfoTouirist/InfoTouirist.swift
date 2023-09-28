@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol InfoTouristDelegate {
+protocol InfoTouristDelegate: AnyObject {
     func textDidChange(text:String?,indexPath: IndexPath)
 }
 
@@ -18,7 +18,7 @@ class InfoTouirist: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var view: UIView!
     
-    var delegate: InfoTouristDelegate?
+    weak var delegate: InfoTouristDelegate?
     var isUsedMaskNumber = Bool()
     var indexPath = IndexPath()
     

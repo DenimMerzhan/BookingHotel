@@ -59,6 +59,10 @@ class BookingController: UIViewController {
             tableView.reloadData()
         }
     }
+    
+    deinit {
+        print("\(self) deinit")
+    }
 }
 
 // MARK: - Table view data source
