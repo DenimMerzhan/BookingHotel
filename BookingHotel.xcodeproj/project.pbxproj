@@ -54,6 +54,7 @@
 		CF986E1B2AB855B50075E721 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF986E1A2AB855B50075E721 /* K.swift */; };
 		CF995A572AA87622004706F5 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF995A552AA87622004706F5 /* RoomCell.swift */; };
 		CF995A582AA87622004706F5 /* RoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF995A562AA87622004706F5 /* RoomCell.xib */; };
+		CFA4E9EB2AC592E0005A5CCA /* DecodeJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA4E9EA2AC592E0005A5CCA /* DecodeJson.swift */; };
 		CFAC3FC52AA7137D00284369 /* RoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC3FC42AA7137D00284369 /* RoomController.swift */; };
 		CFAC3FC72AA7139B00284369 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC3FC62AA7139B00284369 /* RoomModel.swift */; };
 		CFAC3FC92AA713A800284369 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAC3FC82AA713A800284369 /* Room.swift */; };
@@ -116,6 +117,7 @@
 		CF986E1A2AB855B50075E721 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		CF995A552AA87622004706F5 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 		CF995A562AA87622004706F5 /* RoomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomCell.xib; sourceTree = "<group>"; };
+		CFA4E9EA2AC592E0005A5CCA /* DecodeJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeJson.swift; sourceTree = "<group>"; };
 		CFAC3FC42AA7137D00284369 /* RoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomController.swift; sourceTree = "<group>"; };
 		CFAC3FC62AA7139B00284369 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		CFAC3FC82AA713A800284369 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			children = (
 				CFAC3FD12AA72C7700284369 /* Extension */,
 				CF986E1A2AB855B50075E721 /* K.swift */,
+				CFA4E9EA2AC592E0005A5CCA /* DecodeJson.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				CF969D322AA05E8700CD75F9 /* AppDelegate.swift in Sources */,
 				CF969D342AA05E8700CD75F9 /* SceneDelegate.swift in Sources */,
 				CF53C1322ABD92A90005DBEC /* HotelNetworkService.swift in Sources */,
+				CFA4E9EB2AC592E0005A5CCA /* DecodeJson.swift in Sources */,
 				CF34ED582AADAAAB00CA2D95 /* TagCell.swift in Sources */,
 				CFAC3FC92AA713A800284369 /* Room.swift in Sources */,
 				CF8A21D32ABAF08700735923 /* DoneController.swift in Sources */,

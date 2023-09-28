@@ -14,7 +14,7 @@ struct RoomNetworkService {
     static func funcGetDataRoom(completion: @escaping(RoomsJson) -> ()){
         guard let url = URL(string: "https://run.mocky.io/v3/f9a38183-6f95-43aa-853a-9c83cbb05ecd") else {return}
         NetworkService.shared.getData(url: url) { data in
-            if let rooms = RoomModel.decodeJsonRoom(data: data) {
+            if let rooms = DecodeJson.decodeJson(data: data, decodingType: RoomsJson.self) {
                 completion(rooms)
             }
         }

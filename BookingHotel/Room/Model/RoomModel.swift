@@ -33,15 +33,4 @@ struct RoomModel {
         
         return heightTagCollection
     }
-    
-    static func decodeJsonRoom(data: Data) -> RoomsJson? {
-        let decoder = JSONDecoder()
-        do {
-            let decodeData = try decoder.decode(RoomsJson.self, from: data)
-            return decodeData
-        }catch{
-            print("Ошибка декдоирования образца типа Hotel - \(error)")
-            return nil
-        }
-    }
 }

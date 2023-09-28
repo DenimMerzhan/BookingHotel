@@ -137,23 +137,6 @@ extension BookingModel {
     }
 }
 
-
-//MARK: - DecodeJson
-
-extension BookingModel {
-    
-    static func decodeJson(data: Data) -> BookingInfoJson? {
-        let decoder = JSONDecoder()
-        do {
-            let deocdeData = try decoder.decode(BookingInfoJson.self, from: data)
-            return deocdeData
-        }catch {
-            print("Ошибка декодирования информации о бронирование - \(error)")
-            return nil
-        }
-    }
-}
-
 //MARK: - ValidateUser
 
 extension BookingModel {

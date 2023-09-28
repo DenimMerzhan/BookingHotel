@@ -36,18 +36,6 @@ struct HotelModel {
         return backView
     }
     
-    func decodeJson(data: Data) -> Hotel? {
-        let decoder = JSONDecoder()
-        do {
-            let decodeData = try decoder.decode(Hotel.self, from: data)
-            return decodeData
-        }catch{
-            print("Ошибка декдоирования образца типа Hotel - \(error)")
-            return nil
-        }
-    }
-    
-    
     func updatePriceFooterText(additionalText: String, price: Double, descriptionText: String) -> NSMutableAttributedString {
         
         let price = String(Int(price))
